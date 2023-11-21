@@ -20,9 +20,9 @@ export const LightColors : ThemeColors = {
 
 export const DarkColors : ThemeColors = {
     background: '#EFEFEF',
-    backgroundLight: '#FFFFFF',
+    backgroundLight: '#222',
     link: '#96A7F2',
-    textMainBlack: '#222',
+    textMainBlack: '#FFF',
     textLowGray:'#C8C8C8',
     textWhite: '#FFFFFF',
     wclear: 'orange',
