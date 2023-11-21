@@ -11,7 +11,7 @@ export function requestUserGeolocation(then: (w: Weather) => void) {
             lat = position.coords.latitude;
             lon = position.coords.longitude;
             lang = navigator.language.toLocaleLowerCase().replace('-', '_');
-            const result = await API.getForecastWithCoords(lat, lon, lang);
+            const result = await API.getWeatherWithCoords(lat, lon, lang);
             then(result);
         }, (err) => console.log(err));
     }
