@@ -25,7 +25,8 @@ export default function App() {
     feelsLike: 0,
     name: '',
     latitude: 0,
-    longitude: 0
+    longitude: 0,
+    color:'orange',
   });
 
   function getCurrentColors() {

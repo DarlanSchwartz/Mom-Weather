@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Weather } from "../protocols/Application.types";
-import { WeatherAPIResponse } from "../protocols/WeatherAPI.types";
-import { capitalizeFirstLetter } from "../utils/utils";
+import { WeatherAPIResponse, WeatherCondition } from "../protocols/WeatherAPI.types";
+import { capitalizeFirstLetter, getWeatherColor } from "../utils/utils";
 import { GeoLocationAPIResponse } from "../protocols/GeolocationAPI.types";
 import { BAD_WEATHER_OBJECT } from "../protocols/Constants";
 
@@ -14,13 +14,15 @@ async function getCityClimate(city: string) {
     if(cityInformation.data.features.length === 0) return BAD_WEATHER_OBJECT;
     cityInformation.data.features.sort((a, b) => b.properties.rank.importance - a.properties.rank.importance);
     const result = await getForecastWithCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
-    result.city = cityInformation.data.features[0].properties.city;
+    result.city = cityInformation.data.features[0].properties.city ||  cityInformation.data.features[0].properties.municipality || cityInformation.data.features[0].properties.county || cityInformation.data.features[0].properties.state || cityInformation.data.features[0].properties.country;
     return result;
 }
 
 async function getForecastWithCoords(latitude: number, longitude: number, lang: string) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const response = await axios.get<WeatherAPIResponse>(url);
+    console.log(response.data.weather[0].id);
+    console.log(response.data.weather[0].main);
     if (response.data.cod === 200) {
         const result: Weather = {
             name: response.data.weather[0].main,
@@ -35,6 +37,7 @@ async function getForecastWithCoords(latitude: number, longitude: number, lang: 
             windSpeed: Math.round(response.data.wind.speed),
             longitude: Number(response.data.coord.lon.toFixed(2)),
             latitude: Number(response.data.coord.lat.toFixed(2)),
+            color: getWeatherColor(response.data.weather[0].main as WeatherCondition)
         };
         return result;
     }

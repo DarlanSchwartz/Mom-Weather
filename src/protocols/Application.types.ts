@@ -7,7 +7,7 @@ export enum ForecastUnit {
 }
 
 export type ForecastInformation = {
-    minimumTemperature:number;
+    minimumTemperature: number;
     maximumTemperature: number;
     humidity: number;
     windSpeed: number;
@@ -19,21 +19,22 @@ export type TodayForecast = {
     latitute: number;
     longitude: number;
     todayText: string;
-    forecast : ForecastInformation;
+    forecast: ForecastInformation;
     speedUnit: ForecastUnit;
 }
 
 export type Weather = {
-    city:string;
+    city: string;
     name: string;
-    description:string;
-    currentTemperature:number;
-    min:number;
-    max:number;
-    humidity:number;
-    feelsLike:number;
+    description: string;
+    currentTemperature: number;
+    min: number;
+    max: number;
+    humidity: number;
+    feelsLike: number;
     icon: string;
     windSpeed: number;
     longitude: number;
     latitude: number;
+    color: string;
 }

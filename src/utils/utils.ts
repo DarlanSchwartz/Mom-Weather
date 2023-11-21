@@ -1,5 +1,7 @@
 import { Weather } from "../protocols/Application.types";
 import { MIN_TEMP_TO_FREEZE } from "../protocols/Constants";
+import { WeatherCondition } from "../protocols/WeatherAPI.types";
+import { LightColors } from "../styles/Colors";
 
 export function capitalizeWords(sentence: string): string {
     if (sentence.length === 0) return sentence;
@@ -44,4 +46,25 @@ export function getTodayText(weather: Weather) {
 
 export function addLeadingZero(number: number) {
     return number < 10 ? `0${number}` : number;
+}
+
+export function getWeatherColor(weatherName: WeatherCondition) {
+    switch (weatherName) {
+        case WeatherCondition.THUNDERSTORM:
+            return LightColors.wthunderstorm;
+        case WeatherCondition.DRIZZLE:
+            return LightColors.wdrizzle;
+        case WeatherCondition.RAIN:
+            return LightColors.wrain;
+        case WeatherCondition.SNOW:
+            return LightColors.wsnow;
+        case WeatherCondition.CLEAR:
+            return LightColors.wclear;
+        case WeatherCondition.CLOUDS:
+            return LightColors.wclouds;
+        case WeatherCondition.MIST:
+            return LightColors.wmist;
+        default:
+            return LightColors.wclear;
+    }
 }

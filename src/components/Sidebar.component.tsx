@@ -30,15 +30,16 @@ export default function Sidebar() {
                         lang={navigator.language}
                         value={cityName}
                         onChange={(e) => setCityName(e.currentTarget.value)}
+                        autoComplete='on'
                     />
                 </SearchForm>
                 <SidebarClimate
                     date={new Date()}
                     farenheit={useFarhenheit}
-                    image={currentWeather?.icon}
-                    temperature={currentWeather?.currentTemperature}
-                    weatherDescription={currentWeather?.description}
-                    temperatureColor={'orange'}
+                    image={currentWeather.icon}
+                    temperature={currentWeather.currentTemperature}
+                    weatherDescription={currentWeather.description}
+                    temperatureColor={currentWeather.color}
                 />
             </MainContent>
             <BottomContent>

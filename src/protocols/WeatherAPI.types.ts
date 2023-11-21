@@ -54,3 +54,13 @@ export type WeatherAPIResponse = {
   name: string;
   cod: number;
 };
+
+export enum WeatherCondition {
+  THUNDERSTORM = "Thunderstorm",
+  DRIZZLE = "Drizzle",
+  RAIN = "Rain",
+  SNOW = "Snow",
+  MIST= "Mist",
+  CLEAR = "Clear",
+  CLOUDS = "Clouds",
+}
