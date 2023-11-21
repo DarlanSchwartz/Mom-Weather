@@ -15,6 +15,7 @@ export const LightColors : ThemeColors = {
     wdrizzle: 'lightblue',
     wmist: 'lightgray',
     searchBackground: '#EDEDEF',
+    climateBox: '#4F43AE',
 }
 
 
@@ -33,4 +34,5 @@ export const DarkColors : ThemeColors = {
     wdrizzle: 'lightblue',
     wmist: 'lightgray',
     searchBackground: '#EDEDEF',
+    climateBox: '#4F43AE',
 }

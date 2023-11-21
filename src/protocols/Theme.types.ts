@@ -13,4 +13,5 @@ export type ThemeColors = {
     wdrizzle: string;
     wmist: string;
     searchBackground: string;
+    climateBox: string;
 };
