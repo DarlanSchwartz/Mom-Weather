@@ -1,10 +1,12 @@
 import styled from "styled-components"
 import Sidebar from "../components/Sidebar.component";
+import Forecast from "../components/Forecast.component";
 
 export default function Home() {
     return (
         <PageContainer>
             <Sidebar />
+            <Forecast />
         </PageContainer>
     )
 }
