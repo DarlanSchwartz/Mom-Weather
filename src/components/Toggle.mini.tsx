@@ -17,7 +17,7 @@ const ToggleContainer = styled.div`
     width: 40px;
     height: 20px;
     border-radius: 20px;
-    background-color: ${({ theme }) => theme.colors.textLowGray};
+    background-color: ${({ theme }) => theme.colors.toggleBackground};
     display: flex;
     align-items: center;
     position: relative;
@@ -32,7 +32,7 @@ const ToggleCircle = styled.div<ToggleCircleProps>`
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: white;
+    background-color: ${({ theme }) => theme.colors.toggleHandle};
     
     position: absolute;
     left: ${p => p.$enabled ? '55%' : '2px'};
