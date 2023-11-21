@@ -96,7 +96,7 @@ html, body, span, applet, object, iframe,
 	}
 
     * {
-        /* font-family: Plus Jakarta Sans; */
+        font-family: 'Poppins', sans-serif;
         transition: all 200ms;
         box-sizing: border-box;
 		&::-webkit-scrollbar {
