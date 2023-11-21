@@ -97,7 +97,9 @@ html, body, span, applet, object, iframe,
 
     * {
         font-family: 'Poppins', sans-serif;
-        transition: all 200ms;
+        transition: color 200ms;
+        transition: background-color 200ms;
+        transition: opacity 200ms;
         box-sizing: border-box;
 		&::-webkit-scrollbar {
 			width: 10px;
