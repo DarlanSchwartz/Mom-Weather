@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { LightColors } from "./Colors";
 
 const ResetStyle = createGlobalStyle`
 html, body, span, applet, object, iframe,
@@ -100,11 +101,12 @@ html, body, span, applet, object, iframe,
         box-sizing: border-box;
 		&::-webkit-scrollbar {
 			width: 10px;
-			background-color: #BAFB8E;
+			background-color: ${LightColors.background};
 			opacity: 0.5;
 		}
 		&::-webkit-scrollbar-thumb {
 			border-radius: 1px;
+            background-color: ${LightColors.climateBox};
 		}
     }
 `;
