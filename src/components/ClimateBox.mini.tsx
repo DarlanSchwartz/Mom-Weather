@@ -29,6 +29,8 @@ const ClimateBoxContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     padding: 45px;
+    flex-basis: calc(50% - 10px);
+    margin: 5px;
 
     h2{
         color: ${({ theme }) => theme.colors.textWhite};
