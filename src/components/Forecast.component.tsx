@@ -4,6 +4,8 @@ import TodayClimate from './TodayClimate.component';
 import { useContext, useState } from 'react';
 import OpenWeatherCred from './OpenWeatherCred.mini';
 import ApplicationContext from '../contexts/Application.context';
+import { convertCelciusToFarenheit, metersPerSecondToMPH } from '../utils/utils';
+import { ForecastUnit } from '../protocols/Application.types';
 
 enum ForecastState {
     TODAY,
@@ -12,65 +14,58 @@ enum ForecastState {
 
 export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
-    const { currentWeather , useFarhenheit } = useContext(ApplicationContext);
-    
+    const { currentWeather, useFarhenheit } = useContext(ApplicationContext);
+
     function getTodayText() {
-        if(useFarhenheit){
-            if(currentWeather.currentTemperature <= 62.6 || currentWeather.min <= 62.6 || currentWeather.max <= 62.6){
-                return 'Sim, você deve levar um casaquinho!'
-            }
-            return 'Não, você não deve levar um casaquinho!';
+        if (currentWeather.currentTemperature <= 17 || currentWeather.min <= 17 || currentWeather.max <= 17) {
+            return 'Sim, você deve levar um casaquinho!'
         }
-        else{
-            if(currentWeather.currentTemperature <= 17 || currentWeather.min <= 17 || currentWeather.max <= 17){
-                return 'Sim, você deve levar um casaquinho!'
-            }
-            return 'Não, você não deve levar um casaquinho!';
-        }
+        return 'Não, você não deve levar um casaquinho!';
     }
     return (
         <ForecastContainer>
             <MainContent>
-            <ForecastHeader>
-                <ForecastHeaderItem
-                    $active={forecastState == ForecastState.TODAY}
-                    onClick={() => {
-                        if (forecastState == ForecastState.TODAY) return;
-                        setForecastState(ForecastState.TODAY);
-                    }}>
-                    Hoje
-                </ForecastHeaderItem>
-                <ForecastHeaderItem
-                    $active={forecastState == ForecastState.NEXT_DAYS}
-                    onClick={() => {
-                        if (forecastState == ForecastState.NEXT_DAYS) return;
-                        setForecastState(ForecastState.NEXT_DAYS);
-                    }}
-                >
-                    Próximos dias
-                </ForecastHeaderItem>
-            </ForecastHeader>
-            {
-                forecastState == ForecastState.TODAY ?
-
-                    <TodayClimate
-                        cityName={currentWeather.city}
-                        latitute={currentWeather.latitude}
-                        longitude={currentWeather.longitude}
-                        todayText={getTodayText()}
-                        forecast={{
-                            minimumTemperature: currentWeather.min,
-                            maximumTemperature: currentWeather.max,
-                            humidity: currentWeather.humidity,
-                            windSpeed: currentWeather.windSpeed,
-                            farenheit: useFarhenheit
+                <ForecastHeader>
+                    <ForecastHeaderItem
+                        $active={forecastState == ForecastState.TODAY}
+                        onClick={() => {
+                            if (forecastState == ForecastState.TODAY) return;
+                            setForecastState(ForecastState.TODAY);
+                        }}>
+                        Hoje
+                    </ForecastHeaderItem>
+                    <ForecastHeaderItem
+                        $active={forecastState == ForecastState.NEXT_DAYS}
+                        onClick={() => {
+                            if (forecastState == ForecastState.NEXT_DAYS) return;
+                            setForecastState(ForecastState.NEXT_DAYS);
                         }}
-                    />
-                    : null
-            }
+                    >
+                        Próximos dias
+                    </ForecastHeaderItem>
+                </ForecastHeader>
+                {
+                    forecastState == ForecastState.TODAY ?
+
+                        <TodayClimate
+                            cityName={currentWeather.city}
+                            latitute={currentWeather.latitude}
+                            longitude={currentWeather.longitude}
+                            todayText={getTodayText()}
+                            speedUnit={useFarhenheit ? ForecastUnit.MILES_PER_HOUR : ForecastUnit.METERS_PER_SECOND}
+                            forecast={{
+                                minimumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.min) : currentWeather.min,
+                                maximumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.max) : currentWeather.max ,
+                                humidity: currentWeather.humidity,
+                                windSpeed: useFarhenheit ? metersPerSecondToMPH(currentWeather.windSpeed) : currentWeather.windSpeed,
+                                fahrenheit: useFarhenheit
+                            }}
+                        />
+                        : null
+                }
 
             </MainContent>
-           <OpenWeatherCred/>
+            <OpenWeatherCred />
         </ForecastContainer>
     )
 }

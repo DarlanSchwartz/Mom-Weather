@@ -21,3 +21,11 @@ export function capitalizeFirstLetter(input: string): string {
     const restOfString = input.slice(1);
     return `${firstLetter}${restOfString}`;
 }
+
+export function convertCelciusToFarenheit(celcius: number): number {
+    return Math.round(((celcius * 9) / 5 + 32));
+}
+
+export function metersPerSecondToMPH(metersPerSecond: number): number {
+    return Math.round(metersPerSecond * 2.23694);
+}

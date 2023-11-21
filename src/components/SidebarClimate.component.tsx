@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { capitalizeWords } from "../utils/utils";
+import { capitalizeWords, convertCelciusToFarenheit } from "../utils/utils";
 
 type MyClimateProps = {
     temperature: number;
@@ -23,7 +23,7 @@ export default function SidebarClimate({ temperature, farenheit, image, temperat
                 <>
                     <TemperatureContainer color={temperatureColor} >
                         <img src={image} alt="" />
-                        <h1>{temperature}<sup>°{farenheit ? "F" : "C"}</sup></h1>
+                        <h1>{farenheit ? convertCelciusToFarenheit(temperature) : temperature}<sup>°{farenheit ? "F" : "C"}</sup></h1>
                     </TemperatureContainer>
                     <h2>{weatherDescription}</h2>
                     <h3>{date.toLocaleDateString()}</h3>

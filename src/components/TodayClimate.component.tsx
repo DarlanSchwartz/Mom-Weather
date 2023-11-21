@@ -2,7 +2,7 @@ import ClimateBox from './ClimateBox.mini';
 import { TodayForecast, ForecastUnit } from '../protocols/Application.types';
 import styled from 'styled-components';
 
-export default function TodayClimate({ cityName, latitute, longitude, todayText, forecast }: TodayForecast) {
+export default function TodayClimate({ cityName, latitute, longitude, todayText, forecast , speedUnit: unit}: TodayForecast) {
     return (
         <TodayClimateContainer>
             <h1>{cityName}</h1>
@@ -10,10 +10,10 @@ export default function TodayClimate({ cityName, latitute, longitude, todayText,
                 <span>Lat: {latitute} Long: {longitude}</span>
             </CoordinatesContainer>
             <ClimateBoxesContainer>
-                <ClimateBox label="Mínima" value={forecast.minimumTemperature} unit={forecast.farenheit ? ForecastUnit.FARENHEIT : ForecastUnit.CELSIUS} />
-                <ClimateBox label="Máxima" value={forecast.maximumTemperature} unit={forecast.farenheit ? ForecastUnit.FARENHEIT : ForecastUnit.CELSIUS} />
+                <ClimateBox label="Mínima" value={forecast.minimumTemperature} unit={forecast.fahrenheit ? ForecastUnit.FAHRENHEIT : ForecastUnit.CELSIUS} />
+                <ClimateBox label="Máxima" value={forecast.maximumTemperature} unit={forecast.fahrenheit ? ForecastUnit.FAHRENHEIT : ForecastUnit.CELSIUS} />
                 <ClimateBox label="Umidade" value={forecast.humidity} unit={ForecastUnit.PERCENT} />
-                <ClimateBox label="Velocidade do vento" value={forecast.windSpeed} unit={ForecastUnit.METERS_PER_SECOND} />
+                <ClimateBox label="Velocidade do vento" value={forecast.windSpeed} unit={unit} />
             </ClimateBoxesContainer>
             <TodayText>{todayText}</TodayText>
         </TodayClimateContainer>

@@ -35,17 +35,13 @@ export default function App() {
     let lat = 0;
     let lon = 0;
     let lang = 'en';
-    let unit = 'imperial';
 
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(async function (position) {
         lat = position.coords.latitude;
         lon = position.coords.longitude;
         lang = navigator.language.toLocaleLowerCase().replace('-', '_');
-        if (lang !== 'en') {
-          unit = 'metric';
-        }
-        const result = await API.getForecastWithCoords(lat, lon, lang, unit);
+        const result = await API.getForecastWithCoords(lat, lon, lang);
         setCurrentWeather(result);
       }, (err) => console.log(err));
     }

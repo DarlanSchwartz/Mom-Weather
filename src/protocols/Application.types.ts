@@ -1,8 +1,9 @@
 export enum ForecastUnit {
-    FARENHEIT = ' F',
+    FAHRENHEIT = ' F',
     CELSIUS = ' C',
     PERCENT = '%',
     METERS_PER_SECOND = ' m/s',
+    MILES_PER_HOUR = ' mph',
 }
 
 export type ForecastInformation = {
@@ -10,7 +11,7 @@ export type ForecastInformation = {
     maximumTemperature: number;
     humidity: number;
     windSpeed: number;
-    farenheit: boolean;
+    fahrenheit: boolean;
 }
 
 export type TodayForecast = {
@@ -19,6 +20,7 @@ export type TodayForecast = {
     longitude: number;
     todayText: string;
     forecast : ForecastInformation;
+    speedUnit: ForecastUnit;
 }
 
 export type Weather = {

@@ -11,7 +11,7 @@ export default function ClimateBox({ label, value, unit }: ClimateBoxProps) {
     return (
         <ClimateBoxContainer>
             <h2>{label}</h2>
-            <span>{value}{unit == ForecastUnit.CELSIUS && '°'}{unit}</span>
+            <span>{value}{(unit === ForecastUnit.CELSIUS || unit === ForecastUnit.FAHRENHEIT)  && '°'}{unit}</span>
         </ClimateBoxContainer>
     )
 }
