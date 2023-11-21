@@ -9,7 +9,7 @@ type MyClimateProps = {
     date: Date;
 }
 
-export default function MyClimate({ temperature, farenheit, image, temperatureColor, weather, date }: MyClimateProps) {
+export default function SidebarClimate({ temperature, farenheit, image, temperatureColor, weather, date }: MyClimateProps) {
     const dateFormatter = new Intl.DateTimeFormat(navigator.language, { weekday: 'long' });
     const dayName = dateFormatter.format(date);
     function addLeadingZero(number: number) {

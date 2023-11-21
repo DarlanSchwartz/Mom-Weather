@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Logo from './Logo.mini';
 import { CiSearch } from "react-icons/ci";
-import MyClimate from './MyClimate.component';
+import SidebarClimate from './SidebarClimate.component';
 import { useState, useContext } from 'react';
 import Toggle from './Toggle.mini';
 import ThemeContext from '../contexts/Theme.context';
@@ -21,7 +21,7 @@ export default function Sidebar() {
                         autoFocus
                     />
                 </SearchContainer>
-                <MyClimate
+                <SidebarClimate
                     date={new Date()}
                     farenheit={false}
                     image={'/images/coat.png'}
