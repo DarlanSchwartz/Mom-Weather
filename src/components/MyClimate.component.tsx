@@ -57,6 +57,10 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
             font-weight: 300;
             line-height: 100%;
         }
+
+        @media (max-height: 660px){
+            font-size: 6rem;
+        }
     }
 `;
 
@@ -76,6 +80,9 @@ const MyClimateContainer = styled.div`
         padding-bottom: 30px;
         border-bottom: 1px solid #E0E0E0;
         text-align: center;
+        @media (max-height: 660px){
+            font-size: 25px;
+        }
     }
 
     h3{

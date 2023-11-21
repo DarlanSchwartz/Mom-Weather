@@ -80,6 +80,10 @@ const ToggleContainer = styled.div`
         font-weight: 400;
         line-height: 100%;
         width: 130px;
+
+        @media (max-height: 660px){
+            font-size: 18px;
+        }
     }
 `;
 

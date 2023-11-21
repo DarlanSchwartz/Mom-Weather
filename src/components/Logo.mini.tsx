@@ -16,13 +16,13 @@ const LogoContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.backgroundLight};
     color: ${({ theme }) => theme.colors.textMainBlack};
     display: flex;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
-    
+
     img{
-        max-width: 6.5em;
-        max-height: 6.5em;
+        max-width: 5.5em;
+        max-height: 5.5em;
         width: 100%;
     }
 
@@ -31,6 +31,6 @@ const LogoContainer = styled.div`
         font-size: 2rem;
         font-style: normal;
         font-weight: 600;
-        line-height: 3rem; /* 77.419% */
+        line-height: 2rem; /* 77.419% */
     }
 `;
