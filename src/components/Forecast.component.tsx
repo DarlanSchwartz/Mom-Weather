@@ -1,8 +1,9 @@
 
 import styled from 'styled-components';
 import TodayClimate from './TodayClimate.component';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import OpenWeatherCred from './OpenWeatherCred.mini';
+import ApplicationContext from '../contexts/Application.context';
 
 enum ForecastState {
     TODAY,
@@ -11,6 +12,7 @@ enum ForecastState {
 
 export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
+    const { currentWeather } = useContext(ApplicationContext);
     return (
         <ForecastContainer>
             <MainContent>
@@ -37,15 +39,15 @@ export default function Forecast() {
                 forecastState == ForecastState.TODAY ?
 
                     <TodayClimate
-                        cityName='São Paulo'
-                        latitute={-23.5489}
-                        longitude={-46.6388}
+                        cityName={currentWeather.city}
+                        latitute={currentWeather.latitude}
+                        longitude={currentWeather.longitude}
                         todayText='Não, você não deve levar um casaquinho!'
                         forecast={{
-                            minimumTemperature: 20,
-                            maximumTemperature: 30,
-                            humidity: 80,
-                            windSpeed: 10,
+                            minimumTemperature: currentWeather.min,
+                            maximumTemperature: currentWeather.max,
+                            humidity: currentWeather.humidity,
+                            windSpeed: currentWeather.windSpeed,
                             farenheit: false
                         }}
                     />

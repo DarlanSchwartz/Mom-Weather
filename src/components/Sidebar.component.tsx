@@ -5,10 +5,12 @@ import SidebarClimate from './SidebarClimate.component';
 import { useState, useContext } from 'react';
 import Toggle from './Toggle.mini';
 import ThemeContext from '../contexts/Theme.context';
+import ApplicationContext from '../contexts/Application.context';
 
 export default function Sidebar() {
     const [farenheit, setFarenheit] = useState(false);
     const { darkModeEnabled, setDarkModeEnabled } = useContext(ThemeContext);
+    const { currentWeather } = useContext(ApplicationContext);
     return (
         <SidebarContainer>
             <MainContent>
@@ -23,10 +25,10 @@ export default function Sidebar() {
                 </SearchContainer>
                 <SidebarClimate
                     date={new Date()}
-                    farenheit={false}
-                    image={'/images/coat.png'}
-                    temperature={31}
-                    weather='Ensolarado'
+                    farenheit={farenheit}
+                    image={currentWeather?.icon}
+                    temperature={currentWeather?.currentTemperature}
+                    weatherDescription={currentWeather?.description}
                     temperatureColor={'orange'}
                 />
             </MainContent>
@@ -129,6 +131,10 @@ const SearchInput = styled.input`
     padding-left: 45px;
     border: 0;
     background-color: ${({ theme }) => theme.colors.searchBackground};
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 `;
 
 const CopyrightText = styled.span`

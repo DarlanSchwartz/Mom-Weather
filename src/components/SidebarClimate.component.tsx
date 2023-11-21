@@ -1,29 +1,35 @@
 import styled from "styled-components";
+import { capitalizeWords } from "../utils/utils";
 
 type MyClimateProps = {
     temperature: number;
     farenheit: boolean;
     image: string;
     temperatureColor: string;
-    weather: string;
+    weatherDescription: string;
     date: Date;
 }
 
-export default function SidebarClimate({ temperature, farenheit, image, temperatureColor, weather, date }: MyClimateProps) {
+export default function SidebarClimate({ temperature, farenheit, image, temperatureColor, weatherDescription, date }: MyClimateProps) {
     const dateFormatter = new Intl.DateTimeFormat(navigator.language, { weekday: 'long' });
-    const dayName = dateFormatter.format(date);
+    const dayName = capitalizeWords(dateFormatter.format(date));
     function addLeadingZero(number: number) {
         return number < 10 ? `0${number}` : number;
     }
     return (
         <MyClimateContainer>
-            <TemperatureContainer color={temperatureColor} >
-                <img src={image} alt="" />
-                <h1>{temperature}<sup>°{farenheit ? "F" : "C"}</sup></h1>
-            </TemperatureContainer>
-            <h2>{weather}</h2>
-            <h3>{date.toLocaleDateString()}</h3>
-            <h4>{dayName} {addLeadingZero(date.getHours())}:{addLeadingZero(date.getMinutes())}</h4>
+            {
+                image && temperature !== undefined && temperature !== null && weatherDescription && temperatureColor &&
+                <>
+                    <TemperatureContainer color={temperatureColor} >
+                        <img src={image} alt="" />
+                        <h1>{temperature}<sup>°{farenheit ? "F" : "C"}</sup></h1>
+                    </TemperatureContainer>
+                    <h2>{weatherDescription}</h2>
+                    <h3>{date.toLocaleDateString()}</h3>
+                    <h4>{dayName} {addLeadingZero(date.getHours())}:{addLeadingZero(date.getMinutes())}</h4>
+                </>
+            }
         </MyClimateContainer>
     )
 }
@@ -41,8 +47,8 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
     margin-top: 5%;
     img{
         width: 100%;
-        max-width: 4.375rem;
-        max-height: 4.375rem;
+        max-width: 9.375rem;
+        max-height: 9.375rem;
     }
     h1{
         font-size: 8rem;
