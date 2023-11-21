@@ -13,15 +13,14 @@ async function getCityClimate(city: string) {
     const cityInformation = await axios.get<GeoLocationAPIResponse>(url);
     if (cityInformation.data.features.length === 0) return { weather: BAD_WEATHER_OBJECT, forecast: null };
     cityInformation.data.features.sort((a, b) => b.properties.rank.importance - a.properties.rank.importance);
-    const weatherPromise = getWeatherWithCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
-    const forecastPromise = getForecastWithCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
-    const [weather, forecast] = await Promise.all([weatherPromise, forecastPromise]);
+    const weather = await getWeatherWithCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
+    const forecast = await getForecastWithCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
     weather.city = cityInformation.data.features[0].properties.city || cityInformation.data.features[0].properties.municipality || cityInformation.data.features[0].properties.county || cityInformation.data.features[0].properties.state || cityInformation.data.features[0].properties.country;
     return { weather, forecast };
 }
 
 async function getWeatherWithCoords(latitude: number, longitude: number, lang: string) {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
+    const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const response = await axios.get<WeatherAPIResponse>(url);
     if (response.data.cod === 200) {
         const result: Weather = {
@@ -41,7 +40,10 @@ async function getWeatherWithCoords(latitude: number, longitude: number, lang: s
         };
         return result;
     }
-
+    else{
+        console.log(response.data);
+    }
+    
     return BAD_WEATHER_OBJECT;
 }
 
