@@ -10,9 +10,8 @@ async function getCityClimate(city:string) {
 }
 
 async function getForecastWithCoords(latitude : number, longitude: number, lang: string, units: string) {
-    const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang=${lang}&units=${units}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang=${lang}&units=${units}`;
     const response = await axios.get<WeatherData>(url);
-    console.log(response.data);
     if(response.data.cod === 200){
         const result : Weather = {
             name: response.data.weather[0].main,
