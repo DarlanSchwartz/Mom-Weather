@@ -7,6 +7,8 @@ type ApplicationContextProps = {
     setCurrentWeather: React.Dispatch<React.SetStateAction<Weather>>;
     useFarhenheit: boolean;
     setUseFarhenheit: React.Dispatch<React.SetStateAction<boolean>>;
+    searchWeather: (city: string) => void;
+    loading: boolean;
 }
 
 const ApplicationContext = createContext<ApplicationContextProps>({} as ApplicationContextProps);

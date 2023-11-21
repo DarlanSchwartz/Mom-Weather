@@ -7,10 +7,12 @@ import ThemeContext from "./contexts/Theme.context";
 import { Weather } from "./protocols/Application.types";
 import ApplicationContext from "./contexts/Application.context";
 import { requestUserGeolocation } from "./services/Services.service";
+import API from "./services/API.service";
 
 export default function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(false);
   const [useFarhenheit, setUseFarhenheit] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [currentWeather, setCurrentWeather] = useState<Weather>({
     currentTemperature: 0,
     description: '',
@@ -30,11 +32,28 @@ export default function App() {
     return darkModeEnabled ? DarkColors : LightColors;
   }
   useEffect(() => {
-    requestUserGeolocation((weather) => setCurrentWeather(weather));
+    setLoading(true);
+    requestUserGeolocation((weather) => {
+      setCurrentWeather(weather);
+      setLoading(false);
+    });
   }, []);
 
+  async function searchWeather(city: string) {
+    setLoading(true);
+    const result = await API.getCityClimate(city);
+    setCurrentWeather(result);
+  }
+
   return (
-    <ApplicationContext.Provider value={{ currentWeather, setCurrentWeather, useFarhenheit, setUseFarhenheit }}>
+    <ApplicationContext.Provider value={{
+      currentWeather,
+      setCurrentWeather,
+      useFarhenheit,
+      setUseFarhenheit,
+      searchWeather,
+      loading
+    }}>
       <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled }}>
         <ThemeProvider theme={{ colors: { ...getCurrentColors() } }}>
           <BrowserRouter>

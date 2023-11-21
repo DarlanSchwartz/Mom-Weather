@@ -6,23 +6,32 @@ import { useContext } from 'react';
 import Toggle from './Toggle.mini';
 import ThemeContext from '../contexts/Theme.context';
 import ApplicationContext from '../contexts/Application.context';
+import { useState } from 'react';
 
 export default function Sidebar() {
     const { darkModeEnabled, setDarkModeEnabled } = useContext(ThemeContext);
-    const { currentWeather, useFarhenheit, setUseFarhenheit } = useContext(ApplicationContext);
-
+    const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather } = useContext(ApplicationContext);
+    const [cityName, setCityName] = useState<string>("");
     return (
         <SidebarContainer>
             <MainContent>
                 <Logo />
-                <SearchContainer>
+                <SearchForm onSubmit={(e) => {
+                    e.preventDefault();
+                    searchWeather(cityName);
+                }}>
                     <CiSearch className="icon" />
                     <SearchInput
                         type="text"
                         placeholder="Procure por uma cidade"
                         autoFocus
+                        id='city'
+                        name='city'
+                        lang={navigator.language}
+                        value={cityName}
+                        onChange={(e) => setCityName(e.currentTarget.value)}
                     />
-                </SearchContainer>
+                </SearchForm>
                 <SidebarClimate
                     date={new Date()}
                     farenheit={useFarhenheit}
@@ -110,7 +119,7 @@ const SidebarContainer = styled.aside`
     min-width: 370px;
 `;
 
-const SearchContainer = styled.div`
+const SearchForm = styled.form`
     width: 100%;
     margin-top: 20px;
     position: relative;

@@ -1,17 +1,26 @@
 import axios from "axios";
 import { Weather } from "../protocols/Application.types";
-import { WeatherData } from "../protocols/API.types";
+import { WeatherAPIResponse } from "../protocols/WeatherAPI.types";
 import { capitalizeFirstLetter } from "../utils/utils";
+import { GeoLocationAPIResponse } from "../protocols/GeolocationAPI.types";
+import { BAD_WEATHER_OBJECT } from "../protocols/Constants";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-
+const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const GEOCODE_API_KEY = import.meta.env.VITE_GEOCODE_API_KEY;
 async function getCityClimate(city: string) {
-    console.log(city);
+    const encodedCity = encodeURI(city);
+    const url = `https://api.geoapify.com/v1/geocode/search?text=${encodedCity}&apiKey=${GEOCODE_API_KEY}`;
+    const cityInformation = await axios.get<GeoLocationAPIResponse>(url);
+    if(cityInformation.data.features.length === 0) return BAD_WEATHER_OBJECT;
+    cityInformation.data.features.sort((a, b) => b.properties.rank.importance - a.properties.rank.importance);
+    const result = await getForecastWithCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
+    result.city = cityInformation.data.features[0].properties.city;
+    return result;
 }
 
 async function getForecastWithCoords(latitude: number, longitude: number, lang: string) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang=${lang}&units=metric`;
-    const response = await axios.get<WeatherData>(url);
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
+    const response = await axios.get<WeatherAPIResponse>(url);
     if (response.data.cod === 200) {
         const result: Weather = {
             name: response.data.weather[0].main,
@@ -30,20 +39,7 @@ async function getForecastWithCoords(latitude: number, longitude: number, lang: 
         return result;
     }
 
-    return {
-        name: 'Error',
-        city: 'Error',
-        currentTemperature: 0,
-        min: 0,
-        max: 0,
-        humidity: 0,
-        feelsLike: 0,
-        description: 'Error',
-        icon: '',
-        windSpeed: 0,
-        longitude: 0,
-        latitude: 0,
-    } as Weather;
+    return BAD_WEATHER_OBJECT;
 }
 
 const API = {
