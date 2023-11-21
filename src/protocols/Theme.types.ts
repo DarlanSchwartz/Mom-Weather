@@ -1,4 +1,4 @@
-export type ThemeColors = {
+export type ApplicationThemeColors = {
     background: string;
     backgroundLight: string;
     link: string;
@@ -14,4 +14,7 @@ export type ThemeColors = {
     wmist: string;
     searchBackground: string;
     climateBox: string;
+    textToday: string;
+    toggleHandle: string;
+    toggleBackground: string;
 };

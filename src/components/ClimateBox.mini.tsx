@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import { Unit } from "../protocols/Application.types";
+import { ForecastUnit } from "../protocols/Application.types";
 
 type ClimateBoxProps = {
     label: string;
     value: number;
-    unit: Unit;
+    unit: ForecastUnit;
 }
 
 export default function ClimateBox({ label, value, unit }: ClimateBoxProps) {
     return (
         <ClimateBoxContainer>
             <h2>{label}</h2>
-            <span>{value}{unit == Unit.CELSIUS && '°'}{unit}</span>
+            <span>{value}{unit == ForecastUnit.CELSIUS && '°'}{unit}</span>
         </ClimateBoxContainer>
     )
 }
@@ -43,5 +43,22 @@ const ClimateBoxContainer = styled.div`
         font-size: 48px;
         font-weight: 700;
         line-height: 24px;
+    }
+
+    @media (max-width: 1360px){
+        max-width: 300px;
+        max-height: 80px;
+        padding: 15px;
+        border-radius: 16px;
+
+        h2{
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        span{
+            font-size: 24px;
+            line-height: 24px;
+        }
     }
 `;
