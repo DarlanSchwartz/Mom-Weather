@@ -12,4 +12,5 @@ export type ThemeColors = {
     wthunderstorm: string;
     wdrizzle: string;
     wmist: string;
+    searchBackground: string;
 };

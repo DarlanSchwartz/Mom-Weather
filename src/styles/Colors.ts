@@ -14,6 +14,7 @@ export const LightColors : ThemeColors = {
     wthunderstorm: 'purple',
     wdrizzle: 'lightblue',
     wmist: 'lightgray',
+    searchBackground: '#EDEDEF',
 }
 
 
@@ -31,4 +32,5 @@ export const DarkColors : ThemeColors = {
     wthunderstorm: 'purple',
     wdrizzle: 'lightblue',
     wmist: 'lightgray',
+    searchBackground: '#EDEDEF',
 }
