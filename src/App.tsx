@@ -1,10 +1,11 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
-    <>
-      <div>
-        Wheater
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<h1>Home</h1>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
