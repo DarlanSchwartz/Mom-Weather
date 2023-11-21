@@ -4,7 +4,7 @@ import TodayClimate from './TodayClimate.component';
 import { useContext, useState } from 'react';
 import OpenWeatherCred from './OpenWeatherCred.mini';
 import ApplicationContext from '../contexts/Application.context';
-import { convertCelciusToFarenheit, metersPerSecondToMPH } from '../utils/utils';
+import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '../utils/utils';
 import { ForecastUnit } from '../protocols/Application.types';
 
 enum ForecastState {
@@ -15,13 +15,6 @@ enum ForecastState {
 export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
     const { currentWeather, useFarhenheit } = useContext(ApplicationContext);
-
-    function getTodayText() {
-        if (currentWeather.currentTemperature <= 17 || currentWeather.min <= 17 || currentWeather.max <= 17) {
-            return 'Sim, você deve levar um casaquinho!'
-        }
-        return 'Não, você não deve levar um casaquinho!';
-    }
     return (
         <ForecastContainer>
             <MainContent>
@@ -51,17 +44,17 @@ export default function Forecast() {
                             cityName={currentWeather.city}
                             latitute={currentWeather.latitude}
                             longitude={currentWeather.longitude}
-                            todayText={getTodayText()}
+                            todayText={getTodayText(currentWeather)}
                             speedUnit={useFarhenheit ? ForecastUnit.MILES_PER_HOUR : ForecastUnit.METERS_PER_SECOND}
                             forecast={{
                                 minimumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.min) : currentWeather.min,
-                                maximumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.max) : currentWeather.max ,
+                                maximumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.max) : currentWeather.max,
                                 humidity: currentWeather.humidity,
                                 windSpeed: useFarhenheit ? metersPerSecondToMPH(currentWeather.windSpeed) : currentWeather.windSpeed,
                                 fahrenheit: useFarhenheit
                             }}
                         />
-                        : null
+                        : <h1 style={{ fontSize: '30px' }}>Ainda não implementado</h1>
                 }
 
             </MainContent>

@@ -1,3 +1,6 @@
+import { Weather } from "../protocols/Application.types";
+import { MIN_TEMP_TO_FREEZE } from "../protocols/Constants";
+
 export function capitalizeWords(sentence: string): string {
     if (sentence.length === 0) return sentence;
 
@@ -28,4 +31,17 @@ export function convertCelciusToFarenheit(celcius: number): number {
 
 export function metersPerSecondToMPH(metersPerSecond: number): number {
     return Math.round(metersPerSecond * 2.23694);
+}
+
+export function getTodayText(weather: Weather) {
+    if (weather.currentTemperature <= MIN_TEMP_TO_FREEZE ||
+        weather.min <= MIN_TEMP_TO_FREEZE ||
+        weather.max <= MIN_TEMP_TO_FREEZE) {
+        return 'Sim, você deve levar um casaquinho!'
+    }
+    return 'Não, você não deve levar um casaquinho!';
+}
+
+export function addLeadingZero(number: number) {
+    return number < 10 ? `0${number}` : number;
 }

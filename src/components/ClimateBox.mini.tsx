@@ -11,7 +11,7 @@ export default function ClimateBox({ label, value, unit }: ClimateBoxProps) {
     return (
         <ClimateBoxContainer>
             <h2>{label}</h2>
-            <span>{value}{(unit === ForecastUnit.CELSIUS || unit === ForecastUnit.FAHRENHEIT)  && '°'}{unit}</span>
+            <span>{value}{(unit === ForecastUnit.CELSIUS || unit === ForecastUnit.FAHRENHEIT) && '°'}{unit}</span>
         </ClimateBoxContainer>
     )
 }
@@ -25,7 +25,6 @@ const ClimateBoxContainer = styled.div`
     max-height: 180px;
     border-radius: 32px;
     background: linear-gradient(117deg, ${({ theme }) => theme.colors.climateBox} 22.83%, ${({ theme }) => theme.colors.climateBox} 90.03%);
-
     display: flex;
     flex-direction: column;
     gap: 10px;

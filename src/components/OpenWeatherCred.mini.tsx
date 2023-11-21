@@ -1,7 +1,8 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { OPEN_WEATHER_LINK } from '../protocols/Constants';
 
 export default function OpenWeatherCred() {
-  return <OpenWeatherCredText>Dados fornecidos pela <a href="https://openweathermap.org/">Open Weather API</a></OpenWeatherCredText>
+    return <OpenWeatherCredText>Dados fornecidos pela <a href={OPEN_WEATHER_LINK}>Open Weather API</a></OpenWeatherCredText>
 }
 
 const OpenWeatherCredText = styled.span`

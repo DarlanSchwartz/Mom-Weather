@@ -1,11 +1,11 @@
 import { ApplicationThemeColors } from "../protocols/Theme.types";
 
-export const LightColors : ApplicationThemeColors = {
+export const LightColors: ApplicationThemeColors = {
     background: '#EFEFEF',
     backgroundLight: '#FFFFFF',
     link: '#96A7F2',
     textMainBlack: '#222',
-    textLowGray:'#C8C8C8',
+    textLowGray: '#C8C8C8',
     textWhite: '#FFFFFF',
     textToday: '#AFADAD',
     wclear: 'orange',
@@ -22,12 +22,12 @@ export const LightColors : ApplicationThemeColors = {
 }
 
 
-export const DarkColors : ApplicationThemeColors = {
+export const DarkColors: ApplicationThemeColors = {
     background: '#212425',
     backgroundLight: '#181a1b',
     link: '#96A7F2',
     textMainBlack: '#FFF',
-    textLowGray:'#C8C8C8',
+    textLowGray: '#C8C8C8',
     textWhite: '#FFFFFF',
     textToday: '#AFADAD',
     wclear: 'orange',

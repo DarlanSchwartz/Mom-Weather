@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { capitalizeWords, convertCelciusToFarenheit } from "../utils/utils";
+import { addLeadingZero, capitalizeWords, convertCelciusToFarenheit } from "../utils/utils";
 
 type MyClimateProps = {
     temperature: number;
@@ -13,9 +13,7 @@ type MyClimateProps = {
 export default function SidebarClimate({ temperature, farenheit, image, temperatureColor, weatherDescription, date }: MyClimateProps) {
     const dateFormatter = new Intl.DateTimeFormat(navigator.language, { weekday: 'long' });
     const dayName = capitalizeWords(dateFormatter.format(date));
-    function addLeadingZero(number: number) {
-        return number < 10 ? `0${number}` : number;
-    }
+
     return (
         <MyClimateContainer>
             {

@@ -8,9 +8,9 @@ import ThemeContext from '../contexts/Theme.context';
 import ApplicationContext from '../contexts/Application.context';
 
 export default function Sidebar() {
-    
     const { darkModeEnabled, setDarkModeEnabled } = useContext(ThemeContext);
     const { currentWeather, useFarhenheit, setUseFarhenheit } = useContext(ApplicationContext);
+
     return (
         <SidebarContainer>
             <MainContent>

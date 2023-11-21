@@ -7,5 +7,4 @@ type ThemeContextProps = {
 }
 
 const ThemeContext = createContext<ThemeContextProps>({} as ThemeContextProps);
-
 export default ThemeContext;

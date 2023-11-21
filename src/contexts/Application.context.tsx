@@ -10,5 +10,4 @@ type ApplicationContextProps = {
 }
 
 const ApplicationContext = createContext<ApplicationContextProps>({} as ApplicationContextProps);
-
 export default ApplicationContext;
