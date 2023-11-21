@@ -12,7 +12,22 @@ enum ForecastState {
 
 export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
-    const { currentWeather } = useContext(ApplicationContext);
+    const { currentWeather , useFarhenheit } = useContext(ApplicationContext);
+    
+    function getTodayText() {
+        if(useFarhenheit){
+            if(currentWeather.currentTemperature <= 62.6 || currentWeather.min <= 62.6 || currentWeather.max <= 62.6){
+                return 'Sim, você deve levar um casaquinho!'
+            }
+            return 'Não, você não deve levar um casaquinho!';
+        }
+        else{
+            if(currentWeather.currentTemperature <= 17 || currentWeather.min <= 17 || currentWeather.max <= 17){
+                return 'Sim, você deve levar um casaquinho!'
+            }
+            return 'Não, você não deve levar um casaquinho!';
+        }
+    }
     return (
         <ForecastContainer>
             <MainContent>
@@ -42,13 +57,13 @@ export default function Forecast() {
                         cityName={currentWeather.city}
                         latitute={currentWeather.latitude}
                         longitude={currentWeather.longitude}
-                        todayText='Não, você não deve levar um casaquinho!'
+                        todayText={getTodayText()}
                         forecast={{
                             minimumTemperature: currentWeather.min,
                             maximumTemperature: currentWeather.max,
                             humidity: currentWeather.humidity,
                             windSpeed: currentWeather.windSpeed,
-                            farenheit: false
+                            farenheit: useFarhenheit
                         }}
                     />
                     : null

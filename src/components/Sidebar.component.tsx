@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import Logo from './Logo.mini';
 import { CiSearch } from "react-icons/ci";
 import SidebarClimate from './SidebarClimate.component';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import Toggle from './Toggle.mini';
 import ThemeContext from '../contexts/Theme.context';
 import ApplicationContext from '../contexts/Application.context';
 
 export default function Sidebar() {
-    const [farenheit, setFarenheit] = useState(false);
+    
     const { darkModeEnabled, setDarkModeEnabled } = useContext(ThemeContext);
-    const { currentWeather } = useContext(ApplicationContext);
+    const { currentWeather, useFarhenheit, setUseFarhenheit } = useContext(ApplicationContext);
     return (
         <SidebarContainer>
             <MainContent>
@@ -25,7 +25,7 @@ export default function Sidebar() {
                 </SearchContainer>
                 <SidebarClimate
                     date={new Date()}
-                    farenheit={farenheit}
+                    farenheit={useFarhenheit}
                     image={currentWeather?.icon}
                     temperature={currentWeather?.currentTemperature}
                     weatherDescription={currentWeather?.description}
@@ -36,8 +36,8 @@ export default function Sidebar() {
                 <ActionsContainer>
                     <ToggleContainer>
                         <Toggle
-                            enabled={farenheit}
-                            onToggle={setFarenheit}
+                            enabled={useFarhenheit}
+                            onToggle={setUseFarhenheit}
                         />
                         <span>°F</span>
                     </ToggleContainer>

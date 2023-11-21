@@ -5,6 +5,8 @@ import { Weather } from '../protocols/Application.types';
 type ApplicationContextProps = {
     currentWeather: Weather;
     setCurrentWeather: React.Dispatch<React.SetStateAction<Weather>>;
+    useFarhenheit: boolean;
+    setUseFarhenheit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ApplicationContext = createContext<ApplicationContextProps>({} as ApplicationContextProps);

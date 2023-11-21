@@ -10,6 +10,7 @@ import ApplicationContext from "./contexts/Application.context";
 
 export default function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(false);
+  const [useFarhenheit, setUseFarhenheit] = useState(false);
   const [currentWeather, setCurrentWeather] = useState<Weather>({
     currentTemperature: 0,
     description: '',
@@ -24,12 +25,11 @@ export default function App() {
     latitude:0,
     longitude:0
   });
+
   function getCurrentColors() {
     return darkModeEnabled ? DarkColors : LightColors;
   }
-  useEffect(() => {
-    requestUserGeolocation();
-  }, []);
+  useEffect(requestUserGeolocation, []);
 
   function requestUserGeolocation() {
     let lat = 0;
@@ -38,7 +38,6 @@ export default function App() {
     let unit = 'imperial';
 
     if ("geolocation" in navigator) {
-      // Geolocation is available
       navigator.geolocation.getCurrentPosition(async function (position) {
         lat = position.coords.latitude;
         lon = position.coords.longitude;
@@ -48,13 +47,12 @@ export default function App() {
         }
         const result = await API.getForecastWithCoords(lat, lon, lang, unit);
         setCurrentWeather(result);
-
       }, (err) => console.log(err));
     }
   }
 
   return (
-   <ApplicationContext.Provider value={{ currentWeather, setCurrentWeather }}>
+   <ApplicationContext.Provider value={{ currentWeather, setCurrentWeather, useFarhenheit, setUseFarhenheit }}>
      <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled }}>
       <ThemeProvider theme={{ colors: { ...getCurrentColors() } }}>
         <BrowserRouter>
