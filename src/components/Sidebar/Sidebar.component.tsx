@@ -20,6 +20,10 @@ export default function Sidebar() {
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
     const [currentClassName, setCurrentClassName] = useState<string>("");
     const size = useWindowSize();
+    function openModal() {
+        setSearchEnabled(true);
+        setCurrentClassName("");
+    }
     function closeModal() {
         setCurrentClassName("animate__animated animate__fadeOut");
         setTimeout(() => {
@@ -29,7 +33,7 @@ export default function Sidebar() {
     }
 
     useEffect(() => {
-      if(size && size.width !== null && size.width <= 1140 && size.width >= 660){
+      if(size && size.width !== null && size.width <= 660){
         closeModal();
       }
     }, [size])
@@ -92,7 +96,7 @@ export default function Sidebar() {
                     (size && size.width !== null && size.width <= 1140 && size.width >= 660) &&
                     <IoSearchOutline
                         className="icon-search"
-                        onClick={() => setSearchEnabled(true)}
+                        onClick={openModal}
                     />
                 }
                 {
