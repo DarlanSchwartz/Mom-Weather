@@ -7,15 +7,16 @@ import ApplicationContext from '../contexts/Application.context';
 import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '../utils/utils';
 import { ForecastUnit } from '../protocols/Application.types';
 import NextDaysClimate from './NextDaysClimate.component';
-
+import LoadingClimate from './LoadingClimate.mini';
 enum ForecastState {
     TODAY,
     NEXT_DAYS
 }
-
 export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
-    const { currentForecast, currentWeather, useFarhenheit } = useContext(ApplicationContext);
+    const { currentForecast, currentWeather, useFarhenheit, loading } = useContext(ApplicationContext);
+
+
     return (
         <ForecastContainer>
             <MainContent>
@@ -39,31 +40,39 @@ export default function Forecast() {
                     </ForecastHeaderItem>
                 </ForecastHeader>
                 <>
-                    <CityName>{currentWeather.city}</CityName>
-                    <CoordinatesContainer>
-                        <span>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</span>
-                    </CoordinatesContainer>
-                </>
-                {
-                    forecastState == ForecastState.TODAY ?
+                    {
+                        loading ?
+                            <LoadingClimate />
+                            :
+                            <>
+                                <CityName>{currentWeather.city}</CityName>
+                                <CoordinatesContainer>
+                                    <span>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</span>
+                                </CoordinatesContainer>
 
-                        <TodayClimate
-                            cityName={currentWeather.city}
-                            latitute={currentWeather.latitude}
-                            longitude={currentWeather.longitude}
-                            todayText={getTodayText(currentWeather)}
-                            speedUnit={useFarhenheit ? ForecastUnit.MILES_PER_HOUR : ForecastUnit.METERS_PER_SECOND}
-                            forecast={{
-                                minimumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.min) : currentWeather.min,
-                                maximumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.max) : currentWeather.max,
-                                humidity: currentWeather.humidity,
-                                windSpeed: useFarhenheit ? metersPerSecondToMPH(currentWeather.windSpeed) : currentWeather.windSpeed,
-                                fahrenheit: useFarhenheit
-                            }}
-                        />
-                        :
-                        <NextDaysClimate forecast={currentForecast} useFarheinheit={useFarhenheit} />
-                }
+                                {
+                                    forecastState == ForecastState.TODAY ?
+
+                                        <TodayClimate
+                                            cityName={currentWeather.city}
+                                            latitute={currentWeather.latitude}
+                                            longitude={currentWeather.longitude}
+                                            todayText={getTodayText(currentWeather)}
+                                            speedUnit={useFarhenheit ? ForecastUnit.MILES_PER_HOUR : ForecastUnit.METERS_PER_SECOND}
+                                            forecast={{
+                                                minimumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.min) : currentWeather.min,
+                                                maximumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.max) : currentWeather.max,
+                                                humidity: currentWeather.humidity,
+                                                windSpeed: useFarhenheit ? metersPerSecondToMPH(currentWeather.windSpeed) : currentWeather.windSpeed,
+                                                fahrenheit: useFarhenheit
+                                            }}
+                                        />
+                                        :
+                                        <NextDaysClimate forecast={currentForecast} useFarheinheit={useFarhenheit} />
+                                }
+                            </>
+                    }
+                </>
 
             </MainContent>
             <OpenWeatherCred />

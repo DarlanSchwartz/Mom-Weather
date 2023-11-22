@@ -60,6 +60,7 @@ export default function App() {
     const result = await API.getCityClimate(city);
     setCurrentWeather(result.weather);
     setCurrentForecast(result.forecast?.list || []);
+    setLoading(false);
   }
 
   return (

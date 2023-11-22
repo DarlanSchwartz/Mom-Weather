@@ -7,10 +7,11 @@ import Toggle from './Toggle.mini';
 import ThemeContext from '../contexts/Theme.context';
 import ApplicationContext from '../contexts/Application.context';
 import { useState } from 'react';
+import LoadingClimate from './LoadingClimate.mini';
 
 export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
-    const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather } = useContext(ApplicationContext);
+    const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading } = useContext(ApplicationContext);
     const [cityName, setCityName] = useState<string>("");
     return (
         <SidebarContainer>
@@ -35,14 +36,19 @@ export default function Sidebar() {
                         />
                     </div>
                 </SearchForm>
-                <SidebarClimate
-                    date={new Date()}
-                    farenheit={useFarhenheit}
-                    image={currentWeather.icon}
-                    temperature={currentWeather.currentTemperature}
-                    weatherDescription={currentWeather.description}
-                    temperatureColor={currentWeather.color}
-                />
+                {
+                    loading ?
+                        <LoadingClimate />
+                        :
+                        <SidebarClimate
+                            date={new Date()}
+                            farenheit={useFarhenheit}
+                            image={currentWeather.icon}
+                            temperature={currentWeather.currentTemperature}
+                            weatherDescription={currentWeather.description}
+                            temperatureColor={currentWeather.color}
+                        />
+                }
             </MainContent>
             <BottomContent>
                 <ActionsContainer>
