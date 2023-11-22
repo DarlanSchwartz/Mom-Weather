@@ -20,7 +20,7 @@ export default function SidebarClimate({ temperature, farenheit, image, temperat
             {
                 image && temperature !== undefined && temperature !== null && weatherDescription && temperatureColor &&
                 <>
-                    <TemperatureContainer color={temperatureColor} >
+                    <TemperatureContainer $color={temperatureColor} >
                         <img src={image} alt="" />
                         <h1>{farenheit ? convertCelciusToFarenheit(temperature) : temperature}<sup>°{farenheit ? "F" : "C"}</sup></h1>
                     </TemperatureContainer>
@@ -34,7 +34,7 @@ export default function SidebarClimate({ temperature, farenheit, image, temperat
 }
 
 type TemperatureContainerProps = {
-    color: string;
+    $color: string;
 }
 
 const TemperatureContainer = styled.div<TemperatureContainerProps>`
@@ -44,14 +44,24 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
     justify-content: center;
     gap: 20px;
     margin-top: 5%;
-    @media (max-width: 1060px){
+    @media (max-width: 660px){
+        margin-top: 0;
+        flex-direction: row;
+        width: fit-content;
+    } 
+    @media (max-width: 1060px) and (min-width: 660px){
         flex-direction: column;
     }
     img{
         width: 100%;
         max-width: 9.375rem;
         max-height: 9.375rem;
-        @media (max-width: 1060px){
+        @media (max-width: 660px){
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 1060px) and (min-width: 660px){
             max-width: 5rem;
             max-height: 5rem;
         }
@@ -65,7 +75,7 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
         font-style: normal;
         font-weight: 600;
         line-height: 100%;
-        color: ${p => p.color};
+        color: ${p => p.$color};
         font-weight: 300;
         sup{
             font-size: 50%;
@@ -73,7 +83,7 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
             font-weight: 300;
             line-height: 100%;
         }
-
+       
         @media (max-width: 1061px){
             font-size: 30px;
         }
@@ -98,6 +108,11 @@ const MyClimateContainer = styled.div`
     align-items: center;
     width: 100%;
 
+    @media (max-width: 660px){
+        flex-direction: row;
+        width: fit-content;
+    } 
+
     h2{
         width: 100%;
         color: ${({ theme }) => theme.colors.textMainBlack};
@@ -109,6 +124,7 @@ const MyClimateContainer = styled.div`
         border-bottom: 3px solid #E0E0E0;
         text-align: center;
         max-width: 420px;
+       
         @media (max-width: 1060px){
            display: none;
         }
@@ -133,7 +149,10 @@ const MyClimateContainer = styled.div`
         text-align: center;
         line-height: 100%;
         padding-top: 30px;
-        @media (max-width: 1060px){
+        @media (max-width: 660px){
+            display: none;
+        }
+        @media (max-width: 1060px) and (min-width: 660px){
             font-size: 12px;
         }
         @media (max-width: 1200px) and (min-width: 1060px){
@@ -154,7 +173,11 @@ const MyClimateContainer = styled.div`
         line-height: 100%;
         margin-top: 6px;
 
-        @media (max-width: 1060px){
+        @media (max-width: 660px){
+            display: none;
+        }
+
+        @media (max-width: 1060px) and (min-width: 660px){
             font-size: 13px;
             line-height: 18px;
         }

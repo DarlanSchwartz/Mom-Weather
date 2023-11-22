@@ -88,8 +88,26 @@ const CityName = styled.h1`
     width: 100%;
     margin-top: 90px;
     white-space: nowrap;
+    padding-right: 20px;
 
-    @media (max-width: 1360px){
+    
+    @media (max-width: 400px){
+        font-size: 40px;
+        margin-top: 20px;
+        width: 100%;
+        line-height: 100%;
+        text-align: center;
+    }
+
+    @media (max-width: 660px) and (min-width: 400px){
+        font-size: 50px;
+        margin-top: 20px;
+        width: 100%;
+        line-height: 100%;
+        text-align: center;
+    }
+
+    @media (max-width: 1360px) and (min-width: 660px){
         font-size: 75px;
         margin-top: 40px;
     }
@@ -102,6 +120,12 @@ const ForecastHeader = styled.div`
     gap: 90px;
     align-items: center;
     padding-top: 30px;
+
+    @media (max-width: 660px){
+       justify-content: space-between;
+       gap: 0;
+       padding-right: 20px;
+    }
 `;
 const MainContent = styled.div`
     width: 100%;
@@ -119,6 +143,9 @@ const ForecastContainer = styled.div`
     justify-content: space-between;
     padding-left: 3%;
     overflow: hidden;
+    @media (max-width: 660px){
+        min-height: calc(100svh - 80px);
+    }
 `;
 
 type ForecastHeaderItemProps = {
@@ -135,6 +162,10 @@ const ForecastHeaderItem = styled.span<ForecastHeaderItemProps>`
     transition: opacity 0.2s ease-in-out;
     :hover{
         opacity: 1;
+    }
+
+    @media (max-width: 660px){
+        font-size: 30px;
     }
 `;
 

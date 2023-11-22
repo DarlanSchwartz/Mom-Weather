@@ -16,4 +16,7 @@ const PageContainer = styled.main`
     background-color: ${({ theme }) => theme.colors.background};
     width: 100%;
     min-height: 100dvh;
+    @media (max-width: 660px){
+        flex-direction: column;
+    }
 `;

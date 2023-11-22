@@ -24,6 +24,11 @@ const LogoContainer = styled.div`
         max-width: 5.5em;
         max-height: 5.5em;
         width: 100%;
+        @media (max-width: 660px){
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+        }
     }
 
     h1{
@@ -45,6 +50,10 @@ const LogoContainer = styled.div`
         @media (max-height: 660px){
             font-size: 18px;
         }
+    }
+
+    @media (max-width: 660px){
+        width: fit-content;
     }
 
     @media (min-height: 950px) and (min-width: 1360px){

@@ -81,6 +81,13 @@ const MainContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 660px){
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100vw;
+        gap: 20px;
+    } 
 `;
 
 const BottomContent = styled.div`
@@ -89,6 +96,9 @@ const BottomContent = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    @media (max-width: 660px){
+        display: none;
+    }
 `;
 
 const ToggleContainer = styled.div`
@@ -151,7 +161,17 @@ const SidebarContainer = styled.aside`
     padding: 20px;
     min-width: 370px;
 
-    @media (max-width: 1060px){
+    @media (max-width: 660px){
+        width: 100%;
+        min-width: auto;
+        flex-direction: row;
+        max-width: 100%;
+        max-height: 80px;
+        height: 80px;
+        min-height: 80px;
+    }
+
+    @media (max-width: 1060px) and (min-width: 660px){
         width: 80px;
         min-width: 80px;
     }
@@ -164,6 +184,11 @@ const SearchForm = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    @media (max-width: 660px){
+        margin-top: 0;
+        min-width: 100px;
+    } 
     .input-container{
         width: 100%;
         max-width: 500px;
@@ -173,6 +198,10 @@ const SearchForm = styled.form`
         @media (min-height: 950px) and (min-width: 1360px){
             margin-top: 40px;
         }
+
+        @media (max-width: 660px){
+            margin-top: 0;
+        }   
     }
     .icon{
         position: absolute;
@@ -182,6 +211,8 @@ const SearchForm = styled.form`
         color: #8B9CAF;
         font-size: 25px;
     }
+
+    
 `;
 const SearchInput = styled.input`
     width: 100%;
@@ -212,12 +243,12 @@ const CopyrightText = styled.span`
     line-height: 100%;
     color: ${({ theme }) => theme.colors.textMainBlack};
     @media (max-width: 1060px){
-           display: none;
-        }
-    @media (max-width: 1200px){
+        display: none;
+    }
+    @media (max-width: 1200px) and (min-width: 1060px){
         font-size: 16px;
     }
-    @media (min-height: 950px) and (min-width: 1360px){
+    @media (min-height: 950px) and (min-width: 1200px){
         font-size: 24px;
     }
 `;

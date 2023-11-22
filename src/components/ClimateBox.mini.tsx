@@ -47,7 +47,7 @@ const ClimateBoxContainer = styled.div`
         font-size: 26px;
         line-height: 28px;
     }
-    @media (min-height: 900px){
+    @media (min-height: 900px) and (max-width: 520px){
         max-width: 500px;
         max-height: 180px;
         width:100%;
@@ -67,7 +67,26 @@ const ClimateBoxContainer = styled.div`
             line-height: 24px;
         }
     }
-    @media (max-width: 750px){
+    @media (max-width: 520px){
+       max-width: 80px;
+       padding: 10px;
+       border-radius: 16px;
+       flex-grow: 0;
+       margin: 0;
+       min-width: 150px;
+       h2{
+            font-size: 14px;
+            line-height: 18px;
+            white-space: nowrap;
+        }
+
+        span{
+            font-size: 24px;
+            line-height: 24px;
+            white-space: nowrap;
+        }
+    }  
+    @media (max-width: 750px) and (min-width: 520px){
         max-width: 200px;
         flex-basis: auto;
         padding: 15px;

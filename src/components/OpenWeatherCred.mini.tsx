@@ -22,7 +22,17 @@ const OpenWeatherCredText = styled.span`
             text-decoration: underline;
         }
     }
-    @media (max-width: 1061px){
+    @media (max-width: 660px){
+        font-size: 12px;
+        width: 100%;
+        justify-content: center;
+        gap: .5ch;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin-top: 30px;
+    }  
+    @media (max-width: 1061px) and (min-width: 660px){
         font-size: 16px;
     }
     @media (min-height: 660px) and (min-width: 1360px){
