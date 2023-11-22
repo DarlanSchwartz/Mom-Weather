@@ -24,9 +24,9 @@ export default function SidebarClimate({ temperature, farenheit, image, temperat
                         <img src={image} alt="" />
                         <h1>{farenheit ? convertCelciusToFarenheit(temperature) : temperature}<sup>°{farenheit ? "F" : "C"}</sup></h1>
                     </TemperatureContainer>
-                    <h2>{weatherDescription}</h2>
-                    <h3>{date.toLocaleDateString()}</h3>
-                    <h4>{(size && size.width !== null && size.width > 1060 )? dayName : dayName.slice(0,3)} {addLeadingZero(date.getHours())}:{addLeadingZero(date.getMinutes())}</h4>
+                    {(size && size.width !== null && size.width > 1060) && <h2>{weatherDescription}</h2>}
+                    {(size && size.width !== null && size.width > 660) && <h3>{date.toLocaleDateString()}</h3>}
+                    <h4>{(size && size.width !== null && size.width > 1060) ? dayName : dayName.slice(0, 3)} {addLeadingZero(date.getHours())}:{addLeadingZero(date.getMinutes())}</h4>
                 </>
             }
         </MyClimateContainer>
@@ -125,9 +125,6 @@ const MyClimateContainer = styled.div`
         text-align: center;
         max-width: 420px;
        
-        @media (max-width: 1060px){
-           display: none;
-        }
         @media (max-width: 1200px)  and (min-width: 1060px){
             font-size: 28px;
         }
@@ -149,9 +146,6 @@ const MyClimateContainer = styled.div`
         text-align: center;
         line-height: 100%;
         padding-top: 30px;
-        @media (max-width: 660px){
-            display: none;
-        }
         @media (max-width: 1060px) and (min-width: 660px){
             font-size: 12px;
         }

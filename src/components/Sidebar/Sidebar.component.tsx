@@ -8,12 +8,14 @@ import ThemeContext from '../../contexts/Theme.context';
 import ApplicationContext from '../../contexts/Application.context';
 import { useState } from 'react';
 import LoadingClimate from '../LoadingClimate.mini';
+import { useWindowSize } from '@uidotdev/usehooks';
 
 export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
     const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading } = useContext(ApplicationContext);
     const [cityName, setCityName] = useState<string>("");
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
+    const size = useWindowSize();
     return (
         <SidebarContainer>
             <MainContent>
@@ -45,15 +47,16 @@ export default function Sidebar() {
                         :
                         <>
                             {
-                                !isFocusedSearch &&
-                                <SidebarClimate
-                            date={new Date()}
-                            farenheit={useFarhenheit}
-                            image={currentWeather.icon}
-                            temperature={currentWeather.currentTemperature}
-                            weatherDescription={currentWeather.description}
-                            temperatureColor={currentWeather.color}
-                        />
+                                (!isFocusedSearch || (size && size.width !== null && size.width > 660)) &&
+                                < SidebarClimate
+                                    key={new Date().getTime()}
+                                    date={new Date()}
+                                    farenheit={useFarhenheit}
+                                    image={currentWeather.icon}
+                                    temperature={currentWeather.currentTemperature}
+                                    weatherDescription={currentWeather.description}
+                                    temperatureColor={currentWeather.color}
+                                />
                             }
                         </>
                 }
