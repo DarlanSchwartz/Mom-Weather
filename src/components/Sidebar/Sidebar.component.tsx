@@ -3,7 +3,7 @@ import Logo from './Logo.mini';
 import { CiSearch } from "react-icons/ci";
 import SidebarClimate from './SidebarClimate.component';
 import { useContext } from 'react';
-import Toggle from '../Toggle.mini';
+import Toggle from './Toggle.mini';
 import ThemeContext from '../../contexts/Theme.context';
 import ApplicationContext from '../../contexts/Application.context';
 import { useState } from 'react';
