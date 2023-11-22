@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Sidebar from "../components/Sidebar.component";
-import Forecast from "../components/Forecast.component";
+import Sidebar from "../components/Sidebar/Sidebar.component";
+import Forecast from "../components/Forecast/Forecast.component";
 
 export default function Home() {
     return (

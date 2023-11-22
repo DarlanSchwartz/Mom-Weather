@@ -1,11 +1,11 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { APIForecastResponse } from '../protocols/WeatherAPI.types';
-import { convertCelciusToFarenheit, formatDateString } from '../utils/utils';
+import { APIForecastResponse } from '../../../protocols/WeatherAPI.types';
+import { convertCelciusToFarenheit, formatDateString } from '../../../utils/utils';
 import styled from 'styled-components';
-import ThemeContext from '../contexts/Theme.context';
+import ThemeContext from '../../../contexts/Theme.context';
 import { useContext } from 'react';
-import { DarkColors, LightColors } from '../styles/Colors';
+import { DarkColors, LightColors } from '../../../styles/Colors';
 
 export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast: APIForecastResponse[], useFarheinheit: boolean }) {
     const { darkModeEnabled } = useContext(ThemeContext);

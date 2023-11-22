@@ -1,13 +1,13 @@
 
 import styled from 'styled-components';
-import TodayClimate from './TodayClimate.component';
+import TodayClimate from './Today/TodayClimate.component';
 import { useContext, useState } from 'react';
-import OpenWeatherCred from './OpenWeatherCred.mini';
-import ApplicationContext from '../contexts/Application.context';
-import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '../utils/utils';
-import { ForecastUnit } from '../protocols/Application.types';
-import NextDaysClimate from './NextDaysClimate.component';
-import LoadingClimate from './LoadingClimate.mini';
+import OpenWeatherCred from '../OpenWeatherCred.mini';
+import ApplicationContext from '../../contexts/Application.context';
+import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '../../utils/utils';
+import { ForecastUnit } from '../../protocols/Application.types';
+import NextDaysClimate from './Next Days/NextDaysClimate.component';
+import LoadingClimate from '../LoadingClimate.mini';
 enum ForecastState {
     TODAY,
     NEXT_DAYS

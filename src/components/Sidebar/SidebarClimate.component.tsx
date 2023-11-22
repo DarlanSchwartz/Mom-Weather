@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { addLeadingZero, capitalizeWords, convertCelciusToFarenheit } from "../utils/utils";
+import { addLeadingZero, capitalizeWords, convertCelciusToFarenheit } from "../../utils/utils";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 type MyClimateProps = {

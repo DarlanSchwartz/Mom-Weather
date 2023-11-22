@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ForecastUnit } from "../protocols/Application.types";
+import { ForecastUnit } from "../../../protocols/Application.types";
 
 type ClimateBoxProps = {
     label: string;

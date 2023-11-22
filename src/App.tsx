@@ -57,7 +57,7 @@ export default function App() {
 
   async function searchWeather(city: string) {
     setLoading(true);
-    const result = await API.getCityClimate(city);
+    const result = await API.getCityClimateByName(city);
     setCurrentWeather(result.weather);
     setCurrentForecast(result.forecast?.list || []);
     setLoading(false);

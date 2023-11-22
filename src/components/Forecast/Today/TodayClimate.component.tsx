@@ -1,5 +1,5 @@
 import ClimateBox from './ClimateBox.mini';
-import { TodayForecast, ForecastUnit } from '../protocols/Application.types';
+import { TodayForecast, ForecastUnit } from '../../../protocols/Application.types';
 import styled from 'styled-components';
 import { useWindowSize } from "@uidotdev/usehooks";
 

@@ -12,7 +12,7 @@ export function requestUserGeolocation(then: (w: Weather, f: ForecastAPIResponse
             lat = position.coords.latitude;
             lon = position.coords.longitude;
             lang = navigator.language.toLocaleLowerCase().replace('-', '_');
-            const result = await API.getCityClimateWithCoords(lat, lon, lang);
+            const result = await API.getCityClimateByCoords(lat, lon, lang);
             then(result.weather, result.forecast);
         }, (err) => console.log(err));
     }

@@ -3,11 +3,11 @@ import Logo from './Logo.mini';
 import { CiSearch } from "react-icons/ci";
 import SidebarClimate from './SidebarClimate.component';
 import { useContext } from 'react';
-import Toggle from './Toggle.mini';
-import ThemeContext from '../contexts/Theme.context';
-import ApplicationContext from '../contexts/Application.context';
+import Toggle from '../Toggle.mini';
+import ThemeContext from '../../contexts/Theme.context';
+import ApplicationContext from '../../contexts/Application.context';
 import { useState } from 'react';
-import LoadingClimate from './LoadingClimate.mini';
+import LoadingClimate from '../LoadingClimate.mini';
 
 export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
