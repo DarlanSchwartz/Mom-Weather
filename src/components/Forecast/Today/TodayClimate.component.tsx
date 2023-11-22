@@ -19,22 +19,25 @@ export default function TodayClimate({ todayText, forecast, speedUnit }: TodayFo
 }
 
 const ClimateBoxesContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(2,1fr);
     width: 100%;
-    gap: 20px;
+
     margin-top: 30px;
     margin-bottom: 66px;
-    padding-right: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
     max-height: 392px;
+    grid-gap: 20px;
     @media (max-width: 660px){
         justify-content: center;
-        gap: 20px;
-        padding-right: 0;
+
+ 
     }
     @media (max-width: 1140px) and (min-width: 660px){
         max-height: 340px;
-        gap: 20px;
+
     }
 `;
 

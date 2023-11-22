@@ -20,15 +20,18 @@ const ClimateBoxContainer = styled.div`
     
     background-color: ${({ theme }) => theme.colors.climateBox};
     color: ${({ theme }) => theme.colors.textWhite};
+    width:100%;
     max-width: 500px;
     max-height: 180px;
     padding: 24px;
     border-radius: 16px;
-    min-width: 209px;
+    min-width: 150px !important;
     background: linear-gradient(117deg, ${({ theme }) => theme.colors.climateBox} 22.83%, ${({ theme }) => theme.colors.climateBox} 90.03%);
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex-shrink: 0;
+    
    
     flex-basis: calc(50% - 20px);
     margin: 5px;
