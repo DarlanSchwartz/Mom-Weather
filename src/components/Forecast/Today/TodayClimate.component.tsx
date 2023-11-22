@@ -23,7 +23,6 @@ const ClimateBoxesContainer = styled.div`
     place-items: center;
     grid-template-columns: repeat(2,1fr);
     width: 100%;
-
     margin-top: 30px;
     margin-bottom: 66px;
     padding-right: 10px;
@@ -32,12 +31,9 @@ const ClimateBoxesContainer = styled.div`
     grid-gap: 20px;
     @media (max-width: 660px){
         justify-content: center;
-
- 
     }
     @media (max-width: 1140px) and (min-width: 660px){
         max-height: 340px;
-
     }
 `;
 

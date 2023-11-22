@@ -21,7 +21,7 @@ const ClimateBoxContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.climateBox};
     color: ${({ theme }) => theme.colors.textWhite};
     width:100%;
-    max-width: 500px;
+    max-width: calc(100% - 20px);
     max-height: 180px;
     padding: 24px;
     border-radius: 16px;
@@ -51,7 +51,7 @@ const ClimateBoxContainer = styled.div`
         line-height: 28px;
     }
     @media (min-height: 900px) and (max-width: 520px){
-        max-width: 500px;
+       
         max-height: 180px;
         width:100%;
         height: 100%;
@@ -71,7 +71,7 @@ const ClimateBoxContainer = styled.div`
         }
     }
     @media (max-width: 520px){
-       max-width: 180px;
+      
        padding: 15px;
        border-radius: 16px;
        flex-grow: 0;
@@ -92,7 +92,7 @@ const ClimateBoxContainer = styled.div`
         }
     }  
     @media (max-width: 770px) and (min-width: 520px){
-        max-width: 200px;
+       
         padding: 15px;
         border-radius: 16px;
 
@@ -108,7 +108,7 @@ const ClimateBoxContainer = styled.div`
     }
 
     @media (max-width: 1360px) and (min-width: 750px){
-        max-width: 300px;
+       
         max-height: 80px;
         padding: 15px;
         border-radius: 16px;
@@ -123,4 +123,7 @@ const ClimateBoxContainer = styled.div`
             line-height: 24px;
         }
     }
+    @media (max-width: 2500px) and (min-width: 1360px){
+        max-width: 600px;
+    }   
 `;
