@@ -6,6 +6,7 @@ import OpenWeatherCred from './OpenWeatherCred.mini';
 import ApplicationContext from '../contexts/Application.context';
 import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '../utils/utils';
 import { ForecastUnit } from '../protocols/Application.types';
+import NextDaysClimate from './NextDaysClimate.component';
 
 enum ForecastState {
     TODAY,
@@ -14,7 +15,7 @@ enum ForecastState {
 
 export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
-    const { currentWeather, useFarhenheit } = useContext(ApplicationContext);
+    const { currentForecast, currentWeather, useFarhenheit } = useContext(ApplicationContext);
     return (
         <ForecastContainer>
             <MainContent>
@@ -37,6 +38,12 @@ export default function Forecast() {
                         Próximos dias
                     </ForecastHeaderItem>
                 </ForecastHeader>
+                <>
+                    <CityName>{currentWeather.city}</CityName>
+                    <CoordinatesContainer>
+                        <span>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</span>
+                    </CoordinatesContainer>
+                </>
                 {
                     forecastState == ForecastState.TODAY ?
 
@@ -54,7 +61,8 @@ export default function Forecast() {
                                 fahrenheit: useFarhenheit
                             }}
                         />
-                        : <h1 style={{ fontSize: '30px' }}>Ainda não implementado</h1>
+                        :
+                        <NextDaysClimate forecast={currentForecast} useFarheinheit={useFarhenheit} />
                 }
 
             </MainContent>
@@ -62,6 +70,20 @@ export default function Forecast() {
         </ForecastContainer>
     )
 }
+
+const CityName = styled.h1`
+    color: ${({ theme }) => theme.colors.textMainBlack};
+    font-size: 150px;
+    font-weight: 400;
+    line-height: 40%;
+    width: 100%;
+    margin-top: 90px;
+
+    @media (max-width: 1360px){
+        font-size: 75px;
+    }
+`;
+
 const ForecastHeader = styled.div`
     width: 100%;
     display: flex;
@@ -107,6 +129,25 @@ const ForecastHeaderItem = styled.span<ForecastHeaderItemProps>`
     transition: opacity 0.2s ease-in-out;
     :hover{
         opacity: 1;
+    }
+`;
+
+const CoordinatesContainer = styled.div`
+    width: 100%;
+    padding: 10px;
+    span{
+        color: ${({ theme }) => theme.colors.textMainBlack};
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+
+    @media (max-width: 1360px){
+        span{
+            font-size: 10px;
+            line-height: 10px;
+        }
+        padding: 5px;
     }
 `;
 

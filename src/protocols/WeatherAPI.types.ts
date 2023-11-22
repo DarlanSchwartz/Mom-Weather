@@ -44,37 +44,17 @@ type Coord = {
   lat: number;
 };
 
-type Temperature = {
-  day: number;
-  min: number;
-  max: number;
-  night: number;
-  eve: number;
-  morn: number;
-};
-
-type FeelsLike = {
-  day: number;
-  night: number;
-  eve: number;
-  morn: number;
-};
-
 export type APIForecastResponse = {
   dt: number;
-  sunrise: number;
-  sunset: number;
-  temp: Temperature;
-  feels_like: FeelsLike;
-  pressure: number;
-  humidity: number;
+  main: MainWeatherData & { temp_kf: number };
   weather: Weather[];
-  speed: number;
-  deg: number;
-  gust: number;
-  clouds: number;
+  clouds: { all: number };
+  wind: Wind;
+  visibility: number;
   pop: number;
-  rain: number;
+  rain: { "3h": number };
+  sys: { pod: string };
+  dt_txt: string;
 };
 
 type City = {

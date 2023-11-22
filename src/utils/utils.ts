@@ -48,6 +48,16 @@ export function addLeadingZero(number: number) {
     return number < 10 ? `0${number}` : number;
 }
 
+export function formatDateString(input: string, locale?: string, dateOptions?: Intl.DateTimeFormatOptions): string {
+    const inputDate = new Date(input);
+    const formatter = new Intl.DateTimeFormat(locale,dateOptions);
+    const day = inputDate.getDate();
+    const month = inputDate.getMonth() + 1;
+    const dayOfWeek = formatter.format(inputDate).slice(0, 3);
+    const formattedDate = `${day}/${month} (${dayOfWeek})`;
+    return formattedDate;
+}
+
 export function getWeatherColor(weatherName: WeatherCondition) {
     switch (weatherName) {
         case WeatherCondition.THUNDERSTORM:

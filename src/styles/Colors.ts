@@ -16,9 +16,10 @@ export const LightColors: ApplicationThemeColors = {
     wdrizzle: 'lightblue',
     wmist: 'lightgray',
     searchBackground: '#EDEDEF',
-    climateBox: '#4F43AE',
+    climateBox: '#554c99',
     toggleHandle: '#FFF',
     toggleBackground: '#C8C8C8',
+    chartBorder: '#D8D8D8',
 }
 
 
@@ -38,7 +39,8 @@ export const DarkColors: ApplicationThemeColors = {
     wdrizzle: 'lightblue',
     wmist: 'lightgray',
     searchBackground: '#EDEDEF',
-    climateBox: '#4F43AE',
+    climateBox: '#554c99',
     toggleHandle: '#181a1b',
     toggleBackground: '#373c3e',
+    chartBorder: '#D8D8D8',
 }

@@ -17,4 +17,5 @@ export type ApplicationThemeColors = {
     textToday: string;
     toggleHandle: string;
     toggleBackground: string;
+    chartBorder: string;
 };
