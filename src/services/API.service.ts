@@ -19,6 +19,12 @@ async function getCityClimate(city: string) {
     return { weather, forecast };
 }
 
+async function getCityClimateWithCoords(latitude: number, longitude: number, lang: string) {
+    const weather = await getWeatherWithCoords(latitude, longitude, lang);
+    const forecast = await getForecastWithCoords(latitude, longitude, lang);
+    return { weather, forecast };
+}
+
 async function getWeatherWithCoords(latitude: number, longitude: number, lang: string) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const response = await axios.get<WeatherAPIResponse>(url);
@@ -57,6 +63,7 @@ const API = {
     getCityClimate,
     getWeatherWithCoords,
     getForecastWithCoords,
+    getCityClimateWithCoords
 };
 
 export default API;

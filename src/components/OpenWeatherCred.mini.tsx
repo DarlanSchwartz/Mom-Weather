@@ -19,8 +19,14 @@ const OpenWeatherCredText = styled.span`
             text-decoration: underline;
         }
     }
+    @media (max-width: 1061px){
+        font-size: 16px;
+    }
+    @media (min-height: 660px) and (min-width: 1360px){
+        font-size: 20px;
+    }
 
-    @media (max-width: 1360px){
-        font-size: 18px;
+    @media (min-height: 950px) and (min-width: 1360px){
+        font-size: 24px;
     }
 `;

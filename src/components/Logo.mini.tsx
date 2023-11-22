@@ -27,10 +27,32 @@ const LogoContainer = styled.div`
     }
 
     h1{
-        width: 100%;
-        font-size: 2rem;
+        display: flex;
+        font-size: 40px;
+        max-width: 300px;
         font-style: normal;
         font-weight: 600;
-        line-height: 2rem; /* 77.419% */
+        line-height: 80%; /* 77.419% */
+
+        @media (max-width: 1060px){
+            display: none;
+        }
+
+        @media (max-width: 1200px){
+            font-size: 36px;
+        }
+
+        @media (max-height: 660px){
+            font-size: 18px;
+        }
+    }
+
+    @media (min-height: 950px) and (min-width: 1360px){
+        h1{
+            font-size: 62px;
+            max-width: 416px;
+        }
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 `;

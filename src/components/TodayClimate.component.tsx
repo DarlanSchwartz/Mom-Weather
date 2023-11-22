@@ -24,6 +24,10 @@ const ClimateBoxesContainer = styled.div`
     gap: 40px;
     margin-top: 30px;
     margin-bottom: 66px;
+    @media (max-width: 1060px) and (min-width: 750px){
+        max-height: 340px;
+        gap: 20px;
+    }
 `;
 
 const TodayClimateContainer = styled.div`

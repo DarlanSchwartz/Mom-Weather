@@ -31,13 +31,26 @@ export default function App() {
     color: LightColors.wclear,
   });
 
+  function enableDarkMode() {
+    setDarkModeEnabled(true);
+    localStorage.setItem('darkModeEnabled', JSON.stringify({ darkModeEnabled: true }));
+  }
+
+  function disableDarkMode() {
+    setDarkModeEnabled(false);
+    localStorage.setItem('darkModeEnabled', JSON.stringify({ darkModeEnabled: false }));
+  }
+
   function getCurrentColors() {
     return darkModeEnabled ? DarkColors : LightColors;
   }
   useEffect(() => {
     setLoading(true);
-    requestUserGeolocation((weather) => {
+    const item = localStorage.getItem('darkModeEnabled');
+    if (item) setDarkModeEnabled(JSON.parse(item).darkModeEnabled);
+    requestUserGeolocation((weather, forecast) => {
       setCurrentWeather(weather);
+      setCurrentForecast(forecast.list);
       setLoading(false);
     });
   }, []);
@@ -59,7 +72,7 @@ export default function App() {
       currentForecast,
       loading
     }}>
-      <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled }}>
+      <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, enableDarkMode, disableDarkMode }}>
         <ThemeProvider theme={{ colors: { ...getCurrentColors() } }}>
           <BrowserRouter>
             <Routes>

@@ -22,6 +22,11 @@ const ToggleContainer = styled.div`
     align-items: center;
     position: relative;
     cursor: pointer;
+
+    @media (min-height: 950px) and (min-width: 1360px){
+        width: 50px;
+        height: 30px;
+    }
 `;
 
 type ToggleCircleProps = {
@@ -39,4 +44,10 @@ const ToggleCircle = styled.div<ToggleCircleProps>`
     top: 50%;
     transform: translateY(-50%);
     transition: all 200ms ease;
+
+    @media (min-height: 950px) and (min-width: 1360px){
+        width: 26px;
+        height: 26px;
+        left: ${p => p.$enabled ? '44%' : '2px'};
+    }
 `;

@@ -9,7 +9,7 @@ import ApplicationContext from '../contexts/Application.context';
 import { useState } from 'react';
 
 export default function Sidebar() {
-    const { darkModeEnabled, setDarkModeEnabled } = useContext(ThemeContext);
+    const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
     const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather } = useContext(ApplicationContext);
     const [cityName, setCityName] = useState<string>("");
     return (
@@ -20,18 +20,20 @@ export default function Sidebar() {
                     e.preventDefault();
                     searchWeather(cityName);
                 }}>
-                    <CiSearch className="icon" />
-                    <SearchInput
-                        type="text"
-                        placeholder="Procure por uma cidade"
-                        autoFocus
-                        id='city'
-                        name='city'
-                        lang={navigator.language}
-                        value={cityName}
-                        onChange={(e) => setCityName(e.currentTarget.value)}
-                        autoComplete='on'
-                    />
+                    <div className='input-container'>
+                        <CiSearch className="icon" />
+                        <SearchInput
+                            type="text"
+                            placeholder="Procure por uma cidade"
+                            autoFocus
+                            id='city'
+                            name='city'
+                            lang={navigator.language}
+                            value={cityName}
+                            onChange={(e) => setCityName(e.currentTarget.value)}
+                            autoComplete='on'
+                        />
+                    </div>
                 </SearchForm>
                 <SidebarClimate
                     date={new Date()}
@@ -54,7 +56,10 @@ export default function Sidebar() {
                     <ToggleContainer>
                         <Toggle
                             enabled={darkModeEnabled}
-                            onToggle={setDarkModeEnabled}
+                            onToggle={() => {
+                                if (darkModeEnabled) disableDarkMode();
+                                else enableDarkMode();
+                            }}
                         />
                         <span>Dark Mode</span>
                     </ToggleContainer>
@@ -87,14 +92,26 @@ const ToggleContainer = styled.div`
     justify-content: center;
     span{
         color: ${({ theme }) => theme.colors.textMainBlack};
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
         width: 130px;
 
-        @media (max-height: 660px){
-            font-size: 18px;
+        @media (max-width: 1060px){
+           display: none;
+        }
+
+        @media (max-width: 1200px){
+            font-size: 16px;
+        }
+
+        @media (min-height: 660px) and (min-width: 1360px){
+            font-size: 20px;
+        }
+
+        @media (min-height: 950px) and (min-width: 1360px){
+            font-size: 24px;
         }
     }
 `;
@@ -104,6 +121,15 @@ const ActionsContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 40px;
+
+    @media (min-height: 950px) and (min-width: 1360px){
+        gap: 30px;
+    }
+
+    @media (min-height: 1000px){
+        margin-bottom: 60px;
+    }
 `;
 
 const SidebarContainer = styled.aside`
@@ -118,12 +144,30 @@ const SidebarContainer = styled.aside`
     color: #fff;
     padding: 20px;
     min-width: 370px;
+
+    @media (max-width: 1060px){
+        width: 80px;
+        min-width: 80px;
+    }
 `;
 
 const SearchForm = styled.form`
     width: 100%;
     margin-top: 20px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .input-container{
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        @media (min-height: 950px) and (min-width: 1360px){
+            margin-top: 40px;
+        }
+    }
     .icon{
         position: absolute;
         left: 10px;
@@ -145,12 +189,25 @@ const SearchInput = styled.input`
     font-style: normal;
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
+    max-width: 500px;
+    @media (max-width: 1200px){
+        font-size: 16px;
+    }
 `;
 
 const CopyrightText = styled.span`
-    font-size: 1rem;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 18px;
+    line-height: 100%;
     color: ${({ theme }) => theme.colors.textMainBlack};
+    @media (max-width: 1060px){
+           display: none;
+        }
+    @media (max-width: 1200px){
+        font-size: 16px;
+    }
+    @media (min-height: 950px) and (min-width: 1360px){
+        font-size: 24px;
+    }
 `;

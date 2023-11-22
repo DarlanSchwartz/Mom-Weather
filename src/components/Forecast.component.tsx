@@ -78,9 +78,11 @@ const CityName = styled.h1`
     line-height: 40%;
     width: 100%;
     margin-top: 90px;
+    white-space: nowrap;
 
     @media (max-width: 1360px){
         font-size: 75px;
+        margin-top: 40px;
     }
 `;
 
@@ -96,6 +98,11 @@ const ForecastHeader = styled.div`
         font-size: 48px;
         font-weight: 400;
         line-height: 48px;
+
+        @media (max-width: 1060px){
+            font-size: 24px;
+            line-height: 24px;
+        }
     }
 `;
 const MainContent = styled.div`
@@ -113,6 +120,7 @@ const ForecastContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     padding-left: 3%;
+    overflow: hidden;
 `;
 
 type ForecastHeaderItemProps = {
