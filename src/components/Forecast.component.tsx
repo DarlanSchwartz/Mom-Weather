@@ -81,7 +81,7 @@ export default function Forecast() {
 
 const CityName = styled.h1`
     color: ${({ theme }) => theme.colors.textMainBlack};
-    font-size: 150px;
+    font-size: 130px;
     font-weight: 400;
     line-height: 40%;
     width: 100%;
