@@ -22,15 +22,17 @@ const ClimateBoxesContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 40px;
+    gap: 20px;
     margin-top: 30px;
     margin-bottom: 66px;
     padding-right: 20px;
+    max-height: 392px;
     @media (max-width: 660px){
         justify-content: center;
         gap: 20px;
+        padding-right: 0;
     }
-    @media (max-width: 1060px) and (min-width: 660px){
+    @media (max-width: 1140px) and (min-width: 660px){
         max-height: 340px;
         gap: 20px;
     }

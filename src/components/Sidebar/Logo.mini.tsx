@@ -39,7 +39,7 @@ const LogoContainer = styled.div`
         font-weight: 600;
         line-height: 80%; /* 77.419% */
 
-        @media (max-width: 1060px){
+        @media (max-width: 1140px){
             display: none;
         }
 

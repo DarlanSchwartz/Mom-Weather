@@ -6,44 +6,72 @@ import { useContext } from 'react';
 import Toggle from './Toggle.mini';
 import ThemeContext from '../../contexts/Theme.context';
 import ApplicationContext from '../../contexts/Application.context';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import LoadingClimate from '../LoadingClimate.mini';
 import { useWindowSize } from '@uidotdev/usehooks';
+import { IoSearchOutline } from "react-icons/io5";
+import 'animate.css';
 
 export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
     const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading } = useContext(ApplicationContext);
     const [cityName, setCityName] = useState<string>("");
+    const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
+    const [currentClassName, setCurrentClassName] = useState<string>("");
     const size = useWindowSize();
+    function closeModal() {
+        setCurrentClassName("animate__animated animate__fadeOut");
+        setTimeout(() => {
+            setSearchEnabled(false);
+            setCurrentClassName("");
+        }, 1000);
+    }
+
+    useEffect(() => {
+      if(size && size.width !== null && size.width <= 1140 && size.width >= 660){
+        closeModal();
+      }
+    }, [size])
+    
+
     return (
         <SidebarContainer>
             <MainContent>
                 <Logo />
-                <SearchForm onSubmit={(e) => {
-                    e.preventDefault();
-                    searchWeather(cityName);
-                }}>
-                    <div className='input-container'>
-                        <CiSearch className="icon" />
-                        <SearchInput
-                            type="text"
-                            placeholder="Procure por uma cidade"
-                            autoFocus
-                            id='city'
-                            name='city'
-                            lang={navigator.language}
-                            value={cityName}
-                            onChange={(e) => setCityName(e.currentTarget.value)}
-                            autoComplete='on'
-                            onFocus={() => setIsFocusedSearch(true)}
-                            onBlur={() => setIsFocusedSearch(false)}
-                        />
-                    </div>
-                </SearchForm>
+
+                {
+                    (size && size.width !== null && !(size.width <= 1140 && size.width >= 660)) &&
+                    <SearchForm onSubmit={(e) => {
+                        e.preventDefault();
+                        searchWeather(cityName);
+                    }}>
+                        <div className='input-container'>
+                            <CiSearch className="icon" />
+                            <SearchInput
+                                type="text"
+                                placeholder="Procure por uma cidade"
+                                autoFocus
+                                id='city'
+                                name='city'
+                                lang={navigator.language}
+                                value={cityName}
+                                onChange={(e) => setCityName(e.currentTarget.value)}
+                                autoComplete='on'
+                                onFocus={() => setIsFocusedSearch(true)}
+                                onBlur={() => setIsFocusedSearch(false)}
+                            />
+                        </div>
+                    </SearchForm>
+                }
                 {
                     loading ?
-                        <LoadingClimate />
+                        <>
+                            {
+                                (size && size.width !== null && size.width > 1140) &&
+                                <LoadingClimate />
+                            }
+                        </>
                         :
                         <>
                             {
@@ -59,6 +87,32 @@ export default function Sidebar() {
                                 />
                             }
                         </>
+                }
+                {
+                    (size && size.width !== null && size.width <= 1140 && size.width >= 660) &&
+                    <IoSearchOutline
+                        className="icon-search"
+                        onClick={() => setSearchEnabled(true)}
+                    />
+                }
+                {
+                    searchEnabled &&
+                    <ModalSearch className={currentClassName} onSubmit={(e) => {
+                        e.preventDefault();
+                        searchWeather(cityName);
+                        closeModal();
+                    }}
+                        onClick={closeModal}>
+                        <input
+                            type="text"
+                            className='animate__animated animate__bounceInLeft'
+                            placeholder='Procure por uma cidade, estado , país ou continente'
+                            value={cityName}
+                            onChange={(e) => setCityName(e.currentTarget.value)}
+                            onClick={(e) => e.stopPropagation()}
+                            autoFocus
+                        />
+                    </ModalSearch>
                 }
             </MainContent>
             <BottomContent>
@@ -87,11 +141,39 @@ export default function Sidebar() {
     )
 }
 
+const ModalSearch = styled.form`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 999;
+    display: flex;
+    padding: 20px;
+    input {
+        border-radius: 20px;
+        width: 100%;
+        padding: 10px;
+        border: 0;
+        flex-grow: 0;
+        height: 50px;
+    }
+`;
+
 const MainContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    .icon-search{
+        font-size: 32px;
+        box-sizing: border-box;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: ${({ theme }) => theme.colors.textMainBlack};
+        cursor: pointer;
+    }
     @media (max-width: 660px){
         flex-direction: row;
         align-items: center;
@@ -125,7 +207,7 @@ const ToggleContainer = styled.div`
         line-height: 100%;
         width: 130px;
 
-        @media (max-width: 1060px){
+        @media (max-width: 1140px){
            display: none;
         }
 
@@ -183,7 +265,7 @@ const SidebarContainer = styled.aside`
         transition: all 200ms;
     }
 
-    @media (max-width: 1060px) and (min-width: 660px){
+    @media (max-width: 1140px) and (min-width: 660px){
         width: 80px;
         min-width: 80px;
     }
@@ -254,10 +336,10 @@ const CopyrightText = styled.span`
     font-weight: 400;
     line-height: 100%;
     color: ${({ theme }) => theme.colors.textMainBlack};
-    @media (max-width: 1060px){
+    @media (max-width: 1140px){
         display: none;
     }
-    @media (max-width: 1200px) and (min-width: 1060px){
+    @media (max-width: 1200px) and (min-width: 1140px){
         font-size: 16px;
     }
     @media (min-height: 950px) and (min-width: 1200px){

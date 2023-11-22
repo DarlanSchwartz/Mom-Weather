@@ -30,7 +30,7 @@ const ClimateBoxContainer = styled.div`
     flex-direction: column;
     gap: 10px;
    
-    flex-basis: calc(50% - 10px);
+    flex-basis: calc(50% - 20px);
     margin: 5px;
     overflow-wrap:unset;
 
@@ -68,27 +68,28 @@ const ClimateBoxContainer = styled.div`
         }
     }
     @media (max-width: 520px){
-       max-width: 80px;
-       padding: 10px;
+       max-width: 180px;
+       padding: 15px;
        border-radius: 16px;
        flex-grow: 0;
        margin: 0;
        min-width: 150px;
+       padding-right: 0;
+       width: 100%;
        h2{
-            font-size: 14px;
+            font-size: 12px;
             line-height: 18px;
             white-space: nowrap;
         }
 
         span{
-            font-size: 24px;
-            line-height: 24px;
+            font-size: 18px;
+            line-height: 18px;
             white-space: nowrap;
         }
     }  
-    @media (max-width: 750px) and (min-width: 520px){
+    @media (max-width: 770px) and (min-width: 520px){
         max-width: 200px;
-        flex-basis: auto;
         padding: 15px;
         border-radius: 16px;
 

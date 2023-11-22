@@ -24,9 +24,9 @@ export default function SidebarClimate({ temperature, farenheit, image, temperat
                         <img src={image} alt="" />
                         <h1>{farenheit ? convertCelciusToFarenheit(temperature) : temperature}<sup>°{farenheit ? "F" : "C"}</sup></h1>
                     </TemperatureContainer>
-                    {(size && size.width !== null && size.width > 1060) && <h2>{weatherDescription}</h2>}
+                    {(size && size.width !== null && size.width > 1140) && <h2>{weatherDescription}</h2>}
                     {(size && size.width !== null && size.width > 660) && <h3>{date.toLocaleDateString()}</h3>}
-                    <h4>{(size && size.width !== null && size.width > 1060) ? dayName : dayName.slice(0, 3)} {addLeadingZero(date.getHours())}:{addLeadingZero(date.getMinutes())}</h4>
+                    <h4>{(size && size.width !== null && size.width > 1140) ? dayName : dayName.slice(0, 3)} {addLeadingZero(date.getHours())}:{addLeadingZero(date.getMinutes())}</h4>
                 </>
             }
         </MyClimateContainer>
@@ -49,7 +49,7 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
         flex-direction: row;
         width: fit-content;
     } 
-    @media (max-width: 1060px) and (min-width: 660px){
+    @media (max-width: 1140px) and (min-width: 660px){
         flex-direction: column;
     }
     img{
@@ -61,7 +61,7 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
             height: 60px;
             flex-shrink: 0;
         }
-        @media (max-width: 1060px) and (min-width: 660px){
+        @media (max-width: 1140px) and (min-width: 660px){
             max-width: 5rem;
             max-height: 5rem;
         }
@@ -84,11 +84,11 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
             line-height: 100%;
         }
        
-        @media (max-width: 1061px){
+        @media (max-width: 1140px){
             font-size: 30px;
         }
 
-        @media (max-width: 1200px) and (min-width: 1061px){
+        @media (max-width: 1200px) and (min-width: 1140px){
             font-size: 90px;
         }
 
@@ -125,7 +125,7 @@ const MyClimateContainer = styled.div`
         text-align: center;
         max-width: 420px;
        
-        @media (max-width: 1200px)  and (min-width: 1060px){
+        @media (max-width: 1200px)  and (min-width: 1140px){
             font-size: 28px;
         }
         @media (max-height: 660px){
@@ -146,10 +146,10 @@ const MyClimateContainer = styled.div`
         text-align: center;
         line-height: 100%;
         padding-top: 30px;
-        @media (max-width: 1060px) and (min-width: 660px){
+        @media (max-width: 1140px) and (min-width: 660px){
             font-size: 12px;
         }
-        @media (max-width: 1200px) and (min-width: 1060px){
+        @media (max-width: 1200px) and (min-width: 1140px){
             font-size: 16px;
         }
         @media (min-height: 950px) and (min-width: 1360px){
@@ -171,12 +171,12 @@ const MyClimateContainer = styled.div`
             display: none;
         }
 
-        @media (max-width: 1060px) and (min-width: 660px){
+        @media (max-width: 1140px) and (min-width: 660px){
             font-size: 13px;
             line-height: 18px;
         }
 
-        @media (max-width: 1200px) and (min-width: 1060px){
+        @media (max-width: 1200px) and (min-width: 1140px){
             font-size: 16px;
         }
         @media (min-height: 950px) and (min-width: 1360px){
