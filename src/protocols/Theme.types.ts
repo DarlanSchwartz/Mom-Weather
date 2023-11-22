@@ -18,4 +18,5 @@ export type ApplicationThemeColors = {
     toggleHandle: string;
     toggleBackground: string;
     chartBorder: string;
+    chartTickText: string;
 };

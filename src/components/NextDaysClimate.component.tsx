@@ -41,7 +41,8 @@ export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast
                         tickSize={10}
                         minTickGap={60}
                         tick={{
-                            stroke: darkModeEnabled ? DarkColors.textMainBlack : LightColors.textMainBlack,
+                            stroke: darkModeEnabled ? DarkColors.chartTickText : LightColors.chartTickText,
+                            strokeWidth:0.1
                         }}
                     />
                     <YAxis
@@ -49,7 +50,8 @@ export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast
                         allowDecimals={false}
                         tickFormatter={(value) => `${Math.round(Number(value))}°${useFarheinheit ? "F" : "C"}`}
                         tick={{
-                            stroke: darkModeEnabled ? DarkColors.textMainBlack : LightColors.textMainBlack,
+                            stroke: darkModeEnabled ? DarkColors.chartTickText : LightColors.chartTickText,
+                            strokeWidth:0.1
                         }}
                     />
                     <Tooltip

@@ -20,6 +20,7 @@ export const LightColors: ApplicationThemeColors = {
     toggleHandle: '#FFF',
     toggleBackground: '#C8C8C8',
     chartBorder: '#D8D8D8',
+    chartTickText: '#666666',
 }
 
 
@@ -43,4 +44,5 @@ export const DarkColors: ApplicationThemeColors = {
     toggleHandle: '#181a1b',
     toggleBackground: '#373c3e',
     chartBorder: '#D8D8D8',
+    chartTickText: '#b2b2b2',
 }
