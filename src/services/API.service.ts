@@ -20,7 +20,7 @@ async function getCityClimate(city: string) {
 }
 
 async function getWeatherWithCoords(latitude: number, longitude: number, lang: string) {
-    const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const response = await axios.get<WeatherAPIResponse>(url);
     if (response.data.cod === 200) {
         const result: Weather = {
