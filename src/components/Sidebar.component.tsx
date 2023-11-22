@@ -181,7 +181,7 @@ const SearchInput = styled.input`
     width: 100%;
     height: 60px;
     border-radius: 20px;
-    box-shadow: 0px 24px 48px 0px rgba(49, 79, 124, 0.08);
+    box-shadow: 0px 24px 48px 0px ${({ theme }) => theme.colors.sidebarInputBoxshadow};
     padding-left: 45px;
     border: 0;
     background-color: ${({ theme }) => theme.colors.searchBackground};
@@ -190,6 +190,10 @@ const SearchInput = styled.input`
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
     max-width: 500px;
+    color: ${({ theme }) => theme.colors.textMainBlack};
+    &::placeholder{
+        color: ${({ theme }) => theme.colors.inputPlaceholder};
+    }
     @media (max-width: 1200px){
         font-size: 16px;
     }

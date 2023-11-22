@@ -19,4 +19,6 @@ export type ApplicationThemeColors = {
     toggleBackground: string;
     chartBorder: string;
     chartTickText: string;
+    inputPlaceholder: string;
+    sidebarInputBoxshadow: string;
 };

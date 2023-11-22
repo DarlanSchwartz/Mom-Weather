@@ -7,7 +7,10 @@ export default function OpenWeatherCred() {
 
 const OpenWeatherCredText = styled.span`
     color: ${({ theme }) => theme.colors.textMainBlack};
-    font-size: 24px;
+    width: 100%;
+    padding-right: 30px;
+    text-align: left;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
@@ -23,7 +26,7 @@ const OpenWeatherCredText = styled.span`
         font-size: 16px;
     }
     @media (min-height: 660px) and (min-width: 1360px){
-        font-size: 20px;
+        font-size: 18px;
     }
 
     @media (min-height: 950px) and (min-width: 1360px){

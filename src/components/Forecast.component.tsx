@@ -93,17 +93,6 @@ const ForecastHeader = styled.div`
     gap: 90px;
     align-items: center;
     padding-top: 30px;
-    span{
-        color: ${({ theme }) => theme.colors.textMainBlack};
-        font-size: 48px;
-        font-weight: 400;
-        line-height: 48px;
-
-        @media (max-width: 1060px){
-            font-size: 24px;
-            line-height: 24px;
-        }
-    }
 `;
 const MainContent = styled.div`
     width: 100%;

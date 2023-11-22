@@ -21,6 +21,8 @@ export const LightColors: ApplicationThemeColors = {
     toggleBackground: '#C8C8C8',
     chartBorder: '#D8D8D8',
     chartTickText: '#666666',
+    inputPlaceholder: '#424243',
+    sidebarInputBoxshadow: 'rgba(49, 79, 124, 0.08)',
 }
 
 
@@ -39,10 +41,12 @@ export const DarkColors: ApplicationThemeColors = {
     wthunderstorm: 'purple',
     wdrizzle: 'lightblue',
     wmist: 'lightgray',
-    searchBackground: '#EDEDEF',
+    searchBackground: '#222',
     climateBox: '#554c99',
     toggleHandle: '#181a1b',
     toggleBackground: '#373c3e',
     chartBorder: '#D8D8D8',
     chartTickText: '#b2b2b2',
+    inputPlaceholder: '#8d8d8f',
+    sidebarInputBoxshadow: 'rgba(255, 255, 255, 0.03)',
 }
