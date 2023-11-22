@@ -76,16 +76,15 @@ const NextDaysClimateContainer = styled.div`
     align-items: center;
     justify-content: center;
     height: 460px;
-    padding-right: 100px;
+    padding-right: 30px;
+
     .chart-container{
         background-color: ${({ theme }) => theme.colors.backgroundLight};
         padding-top: 40px;
         padding-bottom: 40px;
         border: 1px solid ${({ theme }) => theme.colors.chartBorder};
     }
-    .recharts-cartesian-axis-ticks{
-        
-    }
+    
     .recharts-default-tooltip{
 		height: 100%;
 		display: flex;
