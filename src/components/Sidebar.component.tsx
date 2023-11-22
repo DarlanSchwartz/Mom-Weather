@@ -13,6 +13,7 @@ export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
     const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading } = useContext(ApplicationContext);
     const [cityName, setCityName] = useState<string>("");
+    const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
     return (
         <SidebarContainer>
             <MainContent>
@@ -33,6 +34,8 @@ export default function Sidebar() {
                             value={cityName}
                             onChange={(e) => setCityName(e.currentTarget.value)}
                             autoComplete='on'
+                            onFocus={() => setIsFocusedSearch(true)}
+                            onBlur={() => setIsFocusedSearch(false)}
                         />
                     </div>
                 </SearchForm>
@@ -40,7 +43,10 @@ export default function Sidebar() {
                     loading ?
                         <LoadingClimate />
                         :
-                        <SidebarClimate
+                        <>
+                            {
+                                !isFocusedSearch &&
+                                <SidebarClimate
                             date={new Date()}
                             farenheit={useFarhenheit}
                             image={currentWeather.icon}
@@ -48,6 +54,8 @@ export default function Sidebar() {
                             weatherDescription={currentWeather.description}
                             temperatureColor={currentWeather.color}
                         />
+                            }
+                        </>
                 }
             </MainContent>
             <BottomContent>
@@ -169,6 +177,7 @@ const SidebarContainer = styled.aside`
         max-height: 80px;
         height: 80px;
         min-height: 80px;
+        transition: all 200ms;
     }
 
     @media (max-width: 1060px) and (min-width: 660px){
@@ -188,6 +197,7 @@ const SearchForm = styled.form`
     @media (max-width: 660px){
         margin-top: 0;
         min-width: 100px;
+        transition: all 200ms;
     } 
     .input-container{
         width: 100%;
@@ -211,8 +221,6 @@ const SearchForm = styled.form`
         color: #8B9CAF;
         font-size: 25px;
     }
-
-    
 `;
 const SearchInput = styled.input`
     width: 100%;
@@ -227,6 +235,7 @@ const SearchInput = styled.input`
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
     max-width: 500px;
+    transition: all 200ms;
     color: ${({ theme }) => theme.colors.textMainBlack};
     &::placeholder{
         color: ${({ theme }) => theme.colors.inputPlaceholder};

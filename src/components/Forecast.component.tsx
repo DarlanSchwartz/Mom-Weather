@@ -16,7 +16,6 @@ export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
     const { currentForecast, currentWeather, useFarhenheit, loading } = useContext(ApplicationContext);
 
-
     return (
         <ForecastContainer>
             <MainContent>
@@ -89,7 +88,7 @@ const CityName = styled.h1`
     margin-top: 90px;
     white-space: nowrap;
     padding-right: 20px;
-
+    padding-left: 20px;
     
     @media (max-width: 400px){
         font-size: 40px;
@@ -125,6 +124,7 @@ const ForecastHeader = styled.div`
        justify-content: space-between;
        gap: 0;
        padding-right: 20px;
+       padding-left: 20px;
     }
 `;
 const MainContent = styled.div`
@@ -145,6 +145,7 @@ const ForecastContainer = styled.div`
     overflow: hidden;
     @media (max-width: 660px){
         min-height: calc(100svh - 80px);
+        padding: 0;
     }
 `;
 

@@ -78,6 +78,10 @@ const NextDaysClimateContainer = styled.div`
     height: 460px;
     padding-right: 30px;
 
+    @media (max-width: 660px){
+        padding-right: 0;
+    }
+
     .chart-container{
         background-color: ${({ theme }) => theme.colors.backgroundLight};
         padding-top: 40px;
