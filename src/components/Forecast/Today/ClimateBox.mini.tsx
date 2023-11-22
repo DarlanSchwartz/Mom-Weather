@@ -20,8 +20,8 @@ const ClimateBoxContainer = styled.div`
     
     background-color: ${({ theme }) => theme.colors.climateBox};
     color: ${({ theme }) => theme.colors.textWhite};
-    max-width: 380px;
-    max-height: 100px;
+    max-width: 500px;
+    max-height: 180px;
     padding: 24px;
     border-radius: 16px;
     min-width: 209px;
