@@ -39,8 +39,9 @@ export type Weather = {
     color: string;
 }
 
-export type UserData = {
+export type UserNavigatorData = {
     lat: number;
     lon: number;
     lang: string;
+    rejected: boolean;
 }

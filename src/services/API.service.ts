@@ -3,13 +3,17 @@ import { Weather } from "../protocols/Application.types";
 import { ForecastAPIResponse, WeatherAPIResponse, WeatherCondition } from "../protocols/WeatherAPI.types";
 import { capitalizeFirstLetter, getWeatherColor } from "../utils/utils";
 import { GeoLocationAPIResponse } from "../protocols/GeolocationAPI.types";
-import { BAD_WEATHER_OBJECT, GEOCODE_API_KEY , WEATHER_API_KEY } from "../protocols/Constants";
+import { BAD_WEATHER_OBJECT, DEFAULT_ERROR_TITLE, GEOCODE_API_KEY, WEATHER_API_KEY } from "../protocols/Constants";
+import { throwError } from "./Services.service";
 
-async function getCityClimateByName(city: string) {
+async function getCityClimateByName(city: string, darkModeEnabled = false) {
     const encodedCity = encodeURI(city);
     const url = `https://api.geoapify.com/v1/geocode/search?text=${encodedCity}&apiKey=${GEOCODE_API_KEY}`;
     const cityInformation = await axios.get<GeoLocationAPIResponse>(url);
-    if (cityInformation.data.features.length === 0) return { weather: BAD_WEATHER_OBJECT, forecast: null };
+    if (cityInformation.data.features.length === 0){
+        throwError('Não foi possivel obter o clima desta localização.', DEFAULT_ERROR_TITLE, darkModeEnabled);
+        return { weather: BAD_WEATHER_OBJECT, forecast: null };
+    }
     cityInformation.data.features.sort((a, b) => b.properties.rank.importance - a.properties.rank.importance);
     const weather = await getWeatherByCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
     const forecast = await getForecastByCoords(cityInformation.data.features[0].properties.lat, cityInformation.data.features[0].properties.lon, navigator.language.toLocaleLowerCase().replace('-', '_'));
@@ -23,10 +27,10 @@ async function getCityClimateByCoords(latitude: number, longitude: number, lang:
     return { weather, forecast };
 }
 
-async function getWeatherByCoords(latitude: number, longitude: number, lang: string) {
+async function getWeatherByCoords(latitude: number, longitude: number, lang: string, darkModeEnabled = false) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const response = await axios.get<WeatherAPIResponse>(url);
-    if (response.data.cod === 200) {
+    if (response.data.cod == 200) {
         const result: Weather = {
             name: response.data.weather[0].main,
             city: response.data.name,
@@ -45,15 +49,16 @@ async function getWeatherByCoords(latitude: number, longitude: number, lang: str
         return result;
     }
     else {
-        console.log(response.data);
+        throwError('Não foi possivel obter o clima desta localização.', DEFAULT_ERROR_TITLE, darkModeEnabled);
     }
 
     return BAD_WEATHER_OBJECT;
 }
 
-async function getForecastByCoords(latitude: number, longitude: number, lang: string) {
+async function getForecastByCoords(latitude: number, longitude: number, lang: string, darkModeEnabled = false) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const result = await axios.get<ForecastAPIResponse>(url);
+    if (result.data.cod != '200') throwError('Não foi possivel obter a previsão do tempo desta localização.', DEFAULT_ERROR_TITLE, darkModeEnabled);
     return result.data as ForecastAPIResponse;
 }
 

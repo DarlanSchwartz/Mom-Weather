@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import { GEOAPIFY_LINK, OPEN_WEATHER_LINK } from '../protocols/Constants';
+import { GEOAPIFY_LINK, MAP_API_LINK, OPEN_WEATHER_LINK } from '../protocols/Constants';
 
 export default function OpenWeatherCred() {
-    return <OpenWeatherCredText>Dados fornecidos pela <a target='_blank' href={OPEN_WEATHER_LINK}>Open Weather API</a> e <a target='_blank' href={GEOAPIFY_LINK}>Geoapify</a></OpenWeatherCredText>
+    return (
+        <OpenWeatherCredText>
+            Dados fornecidos por <a target='_blank' href={OPEN_WEATHER_LINK}>Open Weather API</a> , <a target='_blank' href={GEOAPIFY_LINK}>Geoapify</a> e <a target='_blank' href={MAP_API_LINK}>Windy</a>
+        </OpenWeatherCredText>
+    );
 }
 
 const OpenWeatherCredText = styled.span`

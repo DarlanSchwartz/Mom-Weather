@@ -8,13 +8,18 @@ import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '.
 import { ForecastUnit } from '../../protocols/Application.types';
 import NextDaysClimate from './Next Days/NextDaysClimate.component';
 import LoadingClimate from '../LoadingClimate.mini';
+import Rain from '../RainDrops.component';
+import { WeatherCondition } from '../../protocols/WeatherAPI.types';
+import ForecastMap from './Map.component';
 enum ForecastState {
     TODAY,
-    NEXT_DAYS
+    NEXT_DAYS,
+    MAP
 }
 export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
     const { currentForecast, currentWeather, useFarhenheit, loading } = useContext(ApplicationContext);
+    const errorOcurred = currentWeather.name === "Não encontrado";
 
     return (
         <ForecastContainer>
@@ -37,7 +42,27 @@ export default function Forecast() {
                     >
                         Próximos dias
                     </ForecastHeaderItem>
+                    <ForecastHeaderItem
+                        $active={forecastState == ForecastState.MAP}
+                        onClick={() => {
+                            if (forecastState == ForecastState.MAP) return;
+                            setForecastState(ForecastState.MAP);
+                        }}
+                    >
+                        Mapa
+                    </ForecastHeaderItem>
                 </ForecastHeader>
+               
+                {
+                    (currentWeather.name === WeatherCondition.RAIN
+                        || currentWeather.name === WeatherCondition.THUNDERSTORM
+                        || currentWeather.name === WeatherCondition.DRIZZLE) &&
+                    <Rain dropCount={
+                        currentWeather.name === WeatherCondition.RAIN ? 100 :
+                            currentWeather.name === WeatherCondition.THUNDERSTORM ? 500 :
+                                currentWeather.name === WeatherCondition.DRIZZLE ? 50 : 0
+                    } />
+                }
                 <>
                     {
                         loading ?
@@ -45,29 +70,54 @@ export default function Forecast() {
                             :
                             <>
                                 <CityName>{currentWeather.city}</CityName>
-                                <CoordinatesContainer>
-                                    <span>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</span>
-                                </CoordinatesContainer>
-
+                                {
+                                    !errorOcurred &&
+                                    <CoordinatesContainer>
+                                        <span>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</span>
+                                    </CoordinatesContainer>
+                                }
                                 {
                                     forecastState == ForecastState.TODAY ?
+                                        <>
+                                            {
+                                                !errorOcurred &&
 
-                                        <TodayClimate
-                                            cityName={currentWeather.city}
-                                            latitute={currentWeather.latitude}
-                                            longitude={currentWeather.longitude}
-                                            todayText={getTodayText(currentWeather)}
-                                            speedUnit={useFarhenheit ? ForecastUnit.MILES_PER_HOUR : ForecastUnit.METERS_PER_SECOND}
-                                            forecast={{
-                                                minimumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.min) : currentWeather.min,
-                                                maximumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.max) : currentWeather.max,
-                                                humidity: currentWeather.humidity,
-                                                windSpeed: useFarhenheit ? metersPerSecondToMPH(currentWeather.windSpeed) : currentWeather.windSpeed,
-                                                fahrenheit: useFarhenheit
-                                            }}
-                                        />
-                                        :
-                                        <NextDaysClimate forecast={currentForecast} useFarheinheit={useFarhenheit} />
+                                                <TodayClimate
+                                                    cityName={currentWeather.city}
+                                                    latitute={currentWeather.latitude}
+                                                    longitude={currentWeather.longitude}
+                                                    todayText={getTodayText(currentWeather)}
+                                                    speedUnit={useFarhenheit ? ForecastUnit.MILES_PER_HOUR : ForecastUnit.METERS_PER_SECOND}
+                                                    forecast={{
+                                                        minimumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.min) : currentWeather.min,
+                                                        maximumTemperature: useFarhenheit ? convertCelciusToFarenheit(currentWeather.max) : currentWeather.max,
+                                                        humidity: currentWeather.humidity,
+                                                        windSpeed: useFarhenheit ? metersPerSecondToMPH(currentWeather.windSpeed) : currentWeather.windSpeed,
+                                                        fahrenheit: useFarhenheit
+                                                    }}
+                                                />
+                                            }
+                                        </>
+                                        : forecastState == ForecastState.NEXT_DAYS ?
+                                        <>
+                                            {
+                                                !errorOcurred &&
+                                                <NextDaysClimate forecast={currentForecast} useFarheinheit={useFarhenheit} />
+                                            }
+                                        </>
+                                        : 
+                                        <>
+                                            {
+                                                !errorOcurred &&
+                                                <ForecastMap
+                                                    heigth={"500"}
+                                                    width={"100%"}
+                                                   weather={currentWeather}
+                                                   useFarhenheit={useFarhenheit}
+
+                                                />
+                                            }
+                                        </>
                                 }
                             </>
                     }

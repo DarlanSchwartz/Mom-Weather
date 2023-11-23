@@ -48,7 +48,7 @@ const LogoContainer = styled.div`
         }
 
         @media (max-height: 660px){
-            font-size: 18px;
+            font-size: 28px;
         }
     }
 

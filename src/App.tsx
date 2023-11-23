@@ -6,7 +6,7 @@ import ApplicationContext from "./contexts/Application.context";
 import { DEFAULT_USER_DATA, DEFAULT_WEATHER } from "./protocols/Constants";
 import { APP_ROUTES } from "./routes/routes";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { UserData } from "./protocols/Application.types";
+import { UserNavigatorData } from "./protocols/Application.types";
 import { requestUserGeolocation } from "./services/Services.service";
 import API from "./services/API.service";
 import { useMutation } from "react-query";
@@ -17,7 +17,7 @@ export default function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(false);
   const [useFarhenheit, setUseFarhenheit] = useState(false);
   const [cityName, setCityName] = useState<string>("");
-  const [userNavigatorData, setUserNavigatorData] = useState<UserData | null>(DEFAULT_USER_DATA);
+  const [userNavigatorData, setUserNavigatorData] = useState<UserNavigatorData | null>(DEFAULT_USER_DATA);
 
   const { data: currentWeatherData, isLoading: loading, mutateAsync: searchWeather } = useMutation({
     mutationKey: `weather`,
@@ -50,7 +50,7 @@ export default function App() {
     return darkModeEnabled ? DarkColors : LightColors;
   }
 
-  // query client
+
   //errors swal
   //show request
   //save farhenheit
@@ -66,7 +66,8 @@ export default function App() {
       setUseFarhenheit,
       searchWeather,
       currentForecast: currentWeatherData?.forecast?.list || [],
-      loading
+      loading,
+      // userRejectedGeolocation: userNavigatorData?.rejected || false,
     }}>
       <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, enableDarkMode, disableDarkMode }}>
         <ThemeProvider theme={{ colors: { ...getCurrentColors() } }}>

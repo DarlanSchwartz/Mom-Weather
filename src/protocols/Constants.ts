@@ -1,16 +1,17 @@
 import { LightColors } from "../styles/Colors";
-import { UserData, Weather } from "./Application.types";
+import { UserNavigatorData, Weather } from "./Application.types";
 
 export const MIN_TEMP_TO_FREEZE = import.meta.env.VITE_MIN_TEMP_TO_FREEZE as number;
 export const OPEN_WEATHER_LINK = import.meta.env.VITE_WEATHER_API_LINK as string;
 export const GEOAPIFY_LINK = import.meta.env.VITE_GEOCODE_API_LINK as string;
 export const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY as string;
 export const GEOCODE_API_KEY = import.meta.env.VITE_GEOCODE_API_KEY as string;
+export const MAP_API_LINK = import.meta.env.VITE_MAP_API_LINK as string;
 export const DEFAULT_ERROR_TITLE = 'Error';
 
 
 export const BAD_WEATHER_OBJECT = {
-    name: 'Error',
+    name: 'Não encontrado',
     city: 'Error',
     currentTemperature: 0,
     min: 0,
@@ -45,4 +46,4 @@ export const DEFAULT_USER_DATA = {
     lat: -23.5489,
     lon: -46.6388,
     lang: 'pt_br',
-} as UserData;
+} as UserNavigatorData;
