@@ -38,3 +38,9 @@ export type Weather = {
     latitude: number;
     color: string;
 }
+
+export type UserData = {
+    lat: number;
+    lon: number;
+    lang: string;
+}

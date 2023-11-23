@@ -5,12 +5,13 @@ import { APIForecastResponse } from '../protocols/WeatherAPI.types';
 
 type ApplicationContextProps = {
     currentWeather: Weather;
-    setCurrentWeather: React.Dispatch<React.SetStateAction<Weather>>;
     useFarhenheit: boolean;
     setUseFarhenheit: React.Dispatch<React.SetStateAction<boolean>>;
-    searchWeather: (city: string) => void;
+    searchWeather: () => void;
     loading: boolean;
     currentForecast: APIForecastResponse[];
+    cityName: string;
+    setCityName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ApplicationContext = createContext<ApplicationContextProps>({} as ApplicationContextProps);

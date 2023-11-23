@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Sidebar from "../components/Sidebar/Sidebar.component";
 import Forecast from "../components/Forecast/Forecast.component";
 
-export default function Home() {
+export default function PageHome() {
     return (
         <PageContainer>
             <Sidebar />

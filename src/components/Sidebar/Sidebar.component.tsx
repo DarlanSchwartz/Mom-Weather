@@ -14,8 +14,7 @@ import 'animate.css';
 
 export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
-    const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading } = useContext(ApplicationContext);
-    const [cityName, setCityName] = useState<string>("");
+    const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading , cityName, setCityName } = useContext(ApplicationContext);
     const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
     const [currentClassName, setCurrentClassName] = useState<string>("");
@@ -48,7 +47,7 @@ export default function Sidebar() {
                     (size && size.width !== null && !(size.width <= 1140 && size.width >= 660)) &&
                     <SearchForm onSubmit={(e) => {
                         e.preventDefault();
-                        searchWeather(cityName);
+                        searchWeather();
                     }}>
                         <div className='input-container'>
                             <CiSearch className="icon" />
@@ -103,7 +102,7 @@ export default function Sidebar() {
                     searchEnabled &&
                     <ModalSearch className={currentClassName} onSubmit={(e) => {
                         e.preventDefault();
-                        searchWeather(cityName);
+                        searchWeather();
                         closeModal();
                     }}
                         onClick={closeModal}>

@@ -1,35 +1,40 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home.page";
-import { ThemeProvider } from "styled-components";
-import { LightColors, DarkColors } from "./styles/Colors";
 import { useState, useEffect } from "react";
 import ThemeContext from "./contexts/Theme.context";
-import { Weather } from "./protocols/Application.types";
+import { ThemeProvider } from "styled-components";
+import { LightColors, DarkColors } from "./styles/Colors";
 import ApplicationContext from "./contexts/Application.context";
+import { DEFAULT_USER_DATA, DEFAULT_WEATHER } from "./protocols/Constants";
+import { APP_ROUTES } from "./routes/routes";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { UserData } from "./protocols/Application.types";
 import { requestUserGeolocation } from "./services/Services.service";
 import API from "./services/API.service";
-import { APIForecastResponse } from "./protocols/WeatherAPI.types";
+import { useMutation } from "react-query";
+import PageHome from "./pages/Home.page";
+import PageNotFound from "./pages/NotFound.page";
 
 export default function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(false);
   const [useFarhenheit, setUseFarhenheit] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [currentForecast, setCurrentForecast] = useState<APIForecastResponse[]>([]);
-  const [currentWeather, setCurrentWeather] = useState<Weather>({
-    currentTemperature: 0,
-    description: '',
-    icon: '',
-    humidity: 0,
-    max: 0,
-    min: 0,
-    windSpeed: 0,
-    city: '',
-    feelsLike: 0,
-    name: '',
-    latitude: 0,
-    longitude: 0,
-    color: LightColors.wclear,
+  const [cityName, setCityName] = useState<string>("");
+  const [userNavigatorData, setUserNavigatorData] = useState<UserData | null>(DEFAULT_USER_DATA);
+
+  const { data: currentWeatherData, isLoading: loading, mutateAsync: searchWeather } = useMutation({
+    mutationKey: `weather`,
+    mutationFn: () => cityName === "" ?
+      API.getCityClimateByCoords(userNavigatorData?.lat || 0, userNavigatorData?.lon || 0, userNavigatorData?.lang || 'en')
+      : API.getCityClimateByName(cityName),
   });
+
+  useEffect(() => {
+    const item = localStorage.getItem('darkModeEnabled');
+    if (item) setDarkModeEnabled(JSON.parse(item).darkModeEnabled);
+    requestUserGeolocation(setUserNavigatorData, darkModeEnabled);
+  }, []);
+
+  useEffect(() => {
+    if (userNavigatorData) searchWeather();
+  }, [userNavigatorData]);
 
   function enableDarkMode() {
     setDarkModeEnabled(true);
@@ -44,40 +49,32 @@ export default function App() {
   function getCurrentColors() {
     return darkModeEnabled ? DarkColors : LightColors;
   }
-  useEffect(() => {
-    setLoading(true);
-    const item = localStorage.getItem('darkModeEnabled');
-    if (item) setDarkModeEnabled(JSON.parse(item).darkModeEnabled);
-    requestUserGeolocation((weather, forecast) => {
-      setCurrentWeather(weather);
-      setCurrentForecast(forecast.list);
-      setLoading(false);
-    });
-  }, []);
 
-  async function searchWeather(city: string) {
-    setLoading(true);
-    const result = await API.getCityClimateByName(city);
-    setCurrentWeather(result.weather);
-    setCurrentForecast(result.forecast?.list || []);
-    setLoading(false);
-  }
-
+  // query client
+  //errors swal
+  //show request
+  //save farhenheit
+  // readme
+  // colors modal
   return (
+
     <ApplicationContext.Provider value={{
-      currentWeather,
-      setCurrentWeather,
+      cityName,
+      setCityName,
+      currentWeather: currentWeatherData?.weather || DEFAULT_WEATHER,
       useFarhenheit,
       setUseFarhenheit,
       searchWeather,
-      currentForecast,
+      currentForecast: currentWeatherData?.forecast?.list || [],
       loading
     }}>
       <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, enableDarkMode, disableDarkMode }}>
         <ThemeProvider theme={{ colors: { ...getCurrentColors() } }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path={APP_ROUTES.HOME} element={<PageHome />} />
+              <Route path={APP_ROUTES.NOT_FOUND} element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>

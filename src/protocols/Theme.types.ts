@@ -21,4 +21,6 @@ export type ApplicationThemeColors = {
     chartTickText: string;
     inputPlaceholder: string;
     sidebarInputBoxshadow: string;
+    rainColor1: string;
+    rainColor2: string;
 };

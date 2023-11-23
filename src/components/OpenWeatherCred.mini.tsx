@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { GEOAPIFY_LINK, OPEN_WEATHER_LINK } from '../protocols/Constants';
 
 export default function OpenWeatherCred() {
-    return <OpenWeatherCredText>Dados fornecidos pela <a href={OPEN_WEATHER_LINK}>Open Weather API</a> e <a href={GEOAPIFY_LINK}>Geoapify</a></OpenWeatherCredText>
+    return <OpenWeatherCredText>Dados fornecidos pela <a target='_blank' href={OPEN_WEATHER_LINK}>Open Weather API</a> e <a target='_blank' href={GEOAPIFY_LINK}>Geoapify</a></OpenWeatherCredText>
 }
 
 const OpenWeatherCredText = styled.span`
