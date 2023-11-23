@@ -158,11 +158,10 @@ const CityName = styled.div`
     }
     
     @media (max-width: 400px){
-        h1{
+       h1{
             font-size: 40px;
             line-height: 100%;
-        }
-
+       }
         margin-top: 0;
         width: 100%;
         display: flex;
@@ -172,10 +171,13 @@ const CityName = styled.div`
     }
 
     @media (max-width: 660px) and (min-width: 400px){
-        font-size: 50px;
+        h1{
+            font-size: 50px;
+            line-height: 100%;
+        }
+        
         margin-top: 0;
         width: 100%;
-        line-height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
