@@ -23,6 +23,8 @@ export const LightColors: ApplicationThemeColors = {
     chartTickText: '#666666',
     inputPlaceholder: '#424243',
     sidebarInputBoxshadow: 'rgba(49, 79, 124, 0.08)',
+    rainColor1: '#278b9a',
+    rainColor2: 'rgba(255,255,255,.5)',
 }
 
 
@@ -49,4 +51,6 @@ export const DarkColors: ApplicationThemeColors = {
     chartTickText: '#b2b2b2',
     inputPlaceholder: '#8d8d8f',
     sidebarInputBoxshadow: 'rgba(255, 255, 255, 0.03)',
+    rainColor1: '#278b9a',
+    rainColor2: 'rgba(255,255,255,.5)',
 }
