@@ -138,17 +138,18 @@ export default function Forecast() {
 
 const CityName = styled.div`
     color: ${({ theme }) => theme.colors.textMainBlack};
-    font-size: 130px;
-    font-weight: 400;
-    line-height: 40%;
+   
     width: 100%;
     margin-top: 90px;
     margin-bottom: 20px;
-    white-space: nowrap;
+    
     padding-right: 20px;
-    position: relative;
+
     h1{
-        width: 100%;
+        font-size: 130px;
+        font-weight: 400;
+        line-height: 40%;
+        white-space: nowrap;
     }
     .texts{
         display: flex;
@@ -157,10 +158,13 @@ const CityName = styled.div`
     }
     
     @media (max-width: 400px){
-        font-size: 40px;
+        h1{
+            font-size: 40px;
+            line-height: 100%;
+        }
+
         margin-top: 0;
         width: 100%;
-        line-height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -177,9 +181,12 @@ const CityName = styled.div`
         align-items: center;
     }
 
-    @media (max-width: 1360px) and (min-width: 660px){
-        font-size: 75px;
-        margin-top: 40px;
+    @media (max-width: 1366px) and (min-width: 660px){
+        h1{
+            font-size: 75px;
+        }
+        margin-top: 30px;
+        margin-bottom: 0;
     }
 `;
 
@@ -203,7 +210,7 @@ const ForecastHeader = styled.div`
     @media (max-width: 862px) and (min-width: 660px){
        gap: 45px;
     }
-    @media (max-width: 1360px) and (min-width: 862px){
+    @media (max-width: 1366px) and (min-width: 862px){
        gap: 60px;
     }
 `;
@@ -273,7 +280,7 @@ const Coord = styled.span`
         margin-top: 10px;
     }
 
-    @media (max-width: 1360px) and (min-width: 660px){
+    @media (max-width: 1366px) and (min-width: 660px){
        
         font-size: 14px;
         line-height: 14px;

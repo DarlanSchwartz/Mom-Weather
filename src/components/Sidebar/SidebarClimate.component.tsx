@@ -65,7 +65,7 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
             max-width: 5rem;
             max-height: 5rem;
         }
-        @media (max-width: 1200px){
+        @media (max-width: 1366px){
             max-width: 7.375rem;
             max-height: 7.375rem;
         }
@@ -88,11 +88,11 @@ const TemperatureContainer = styled.div<TemperatureContainerProps>`
             font-size: 30px;
         }
 
-        @media (max-width: 1200px) and (min-width: 1140px){
+        @media (max-width: 1366px) and (min-width: 1140px){
             font-size: 90px;
         }
 
-        @media (min-height: 950px) and (min-width: 1360px){
+        @media (min-height: 950px) and (min-width: 1366px){
             font-size: 150px;
             margin-top: 0px;
             sup{
@@ -132,7 +132,7 @@ const MyClimateContainer = styled.div`
             font-size: 25px;
         }
 
-        @media (min-height: 950px) and (min-width: 1360px){
+        @media (min-height: 950px) and (min-width: 1366px){
             font-size: 32px;
             margin-top: 50px;
         }
@@ -152,7 +152,7 @@ const MyClimateContainer = styled.div`
         @media (max-width: 1200px) and (min-width: 1140px){
             font-size: 16px;
         }
-        @media (min-height: 950px) and (min-width: 1360px){
+        @media (min-height: 950px) and (min-width: 1366px){
             font-size: 24px;
             margin-top: 50px;
         }
@@ -179,7 +179,7 @@ const MyClimateContainer = styled.div`
         @media (max-width: 1200px) and (min-width: 1140px){
             font-size: 16px;
         }
-        @media (min-height: 950px) and (min-width: 1360px){
+        @media (min-height: 950px) and (min-width: 1366px){
             font-size: 24px;
             margin-top: 9px;
         }

@@ -82,7 +82,11 @@ const NextDaysClimateContainer = styled.div`
         padding-right: 0;
         height: 300px;
     }
-    
+
+    @media (max-width: 1366px) and (min-width: 660px){
+        height: 250px !important;
+    }
+
     .chart-container{
         background-color: ${({ theme }) => theme.colors.backgroundLight};
         padding-top: 40px;
@@ -91,6 +95,11 @@ const NextDaysClimateContainer = styled.div`
         @media (max-width: 660px){
             border: 0;
             height: 300px !important;
+        }
+
+        @media (max-width: 1366px) and (min-width: 660px){
+            border: 0;
+            height: 330px !important;
         }
     }
     

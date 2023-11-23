@@ -107,7 +107,7 @@ const ClimateBoxContainer = styled.div`
         }
     }
 
-    @media (max-width: 1360px) and (min-width: 750px){
+    @media (max-width: 1366px) and (min-width: 750px){
        
         max-height: 80px;
         padding: 15px;
@@ -123,7 +123,7 @@ const ClimateBoxContainer = styled.div`
             line-height: 24px;
         }
     }
-    @media (max-width: 2500px) and (min-width: 1360px){
+    @media (max-width: 2500px) and (min-width: 1366px){
         max-width: 600px;
     }   
 `;

@@ -218,11 +218,11 @@ const ToggleContainer = styled.div`
             font-size: 16px;
         }
 
-        @media (min-height: 660px) and (min-width: 1360px){
+        @media (min-height: 660px) and (min-width: 1366px){
             font-size: 20px;
         }
 
-        @media (min-height: 950px) and (min-width: 1360px){
+        @media (min-height: 950px) and (min-width: 1366px){
             font-size: 24px;
         }
     }
@@ -235,7 +235,7 @@ const ActionsContainer = styled.div`
     gap: 15px;
     margin-bottom: 40px;
 
-    @media (min-height: 950px) and (min-width: 1360px){
+    @media (min-height: 950px) and (min-width: 1366px){
         gap: 30px;
     }
 
@@ -293,7 +293,7 @@ const SearchForm = styled.form`
         position: relative;
         display: flex;
         justify-content: center;
-        @media (min-height: 950px) and (min-width: 1360px){
+        @media (min-height: 950px) and (min-width: 1366px){
             margin-top: 40px;
         }
 

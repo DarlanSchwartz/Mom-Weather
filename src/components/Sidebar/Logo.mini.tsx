@@ -56,7 +56,7 @@ const LogoContainer = styled.div`
         width: fit-content;
     }
 
-    @media (min-height: 950px) and (min-width: 1360px){
+    @media (min-height: 950px) and (min-width: 1366px){
         h1{
             font-size: 62px;
             max-width: 416px;

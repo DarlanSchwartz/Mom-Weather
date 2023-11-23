@@ -12,8 +12,8 @@ export default function ForecastMap({ weather, useFarhenheit, width, heigth }: {
 const IframeContainer = styled.iframe`
     padding-right: 30px;
 
-    @media (max-width: 660px){
+    @media (max-width: 1366px){
         padding: 0;
-        height: 300px;
+        height: 290px;
     }
 `;

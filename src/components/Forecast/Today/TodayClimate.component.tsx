@@ -35,6 +35,10 @@ const ClimateBoxesContainer = styled.div`
     @media (max-width: 1140px) and (min-width: 660px){
         max-height: 340px;
     }
+    @media (max-width: 1366px) and (min-width: 1140px){
+        margin-bottom: 20px;
+        margin-top: 0px;
+    }
 `;
 
 const TodayClimateContainer = styled.div`
@@ -59,7 +63,7 @@ const TodayText = styled.span`
         justify-content: center;
     }
 
-    @media (max-width: 1360px) and (min-width: 660px){
+    @media (max-width: 1366px) and (min-width: 660px){
         font-size: 18px;
     }
 `;

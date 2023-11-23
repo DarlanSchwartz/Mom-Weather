@@ -39,11 +39,11 @@ const OpenWeatherCredText = styled.span`
     @media (max-width: 1061px) and (min-width: 660px){
         font-size: 16px;
     }
-    @media (min-height: 660px) and (min-width: 1360px){
+    @media (min-height: 660px) and (min-width: 1366px){
         font-size: 18px;
     }
 
-    @media (min-height: 950px) and (min-width: 1360px){
+    @media (min-height: 950px) and (min-width: 1366px){
         font-size: 24px;
     }
 `;
