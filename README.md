@@ -4,8 +4,10 @@
 Mom Weather is a front-end web application designed to alleviate the stress of dressing appropriately for any given location. By simply entering the name of a city, users can access comprehensive weather information, including the current temperature, maximum and minimum temperatures, temperature map, and a forecast for the upcoming days.
 
 # :rocket: Demo
-[Link](https://mom-wheater.vercel.app/)
+## :link: [Link to demo](https://mom-wheater.vercel.app/)
 
+</br>
+</br>
 
 # :bookmark: Preview
 <div align="center">
@@ -45,12 +47,12 @@ For this project i used:
 - Geolocation based on text [Geoapify](https://apidocs.geoapify.com/)
 - Maps [Windy](https://www.windy.com/)
 
-# Installation and Running
+# :wrench: Installation and Running
 To run Mom Weather on your local machine or server, follow these steps:
 
 </br>
 
-- Open up your command line
+- Open up your command line 
 
 </br>
 
@@ -81,6 +83,4 @@ VITE_MAP_API_LINK=https://www.windy.com/
 ```bash 
 npm run dev
 ```
-6. Open http://localhost:5173/
-
-7. :ballot_box_with_check: Done
+6. Open http://localhost:5173/ :ballot_box_with_check:
