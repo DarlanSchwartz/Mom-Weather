@@ -50,12 +50,11 @@ export default function App() {
     return darkModeEnabled ? DarkColors : LightColors;
   }
 
-
-  //errors swal
-  //show request
   //save farhenheit
   // readme
   // colors modal
+  //darkmode and farhenheit on tabled and mobile
+  //favorites
   return (
 
     <ApplicationContext.Provider value={{

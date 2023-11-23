@@ -11,6 +11,10 @@ import LoadingClimate from '../LoadingClimate.mini';
 import Rain from '../RainDrops.component';
 import { WeatherCondition } from '../../protocols/WeatherAPI.types';
 import ForecastMap from './Map.component';
+import { FaMapLocationDot } from "react-icons/fa6";
+import { GoGraph } from "react-icons/go";
+import { IoToday } from "react-icons/io5";
+import { useWindowSize } from "@uidotdev/usehooks";
 enum ForecastState {
     TODAY,
     NEXT_DAYS,
@@ -20,6 +24,7 @@ export default function Forecast() {
     const [forecastState, setForecastState] = useState(ForecastState.TODAY);
     const { currentForecast, currentWeather, useFarhenheit, loading } = useContext(ApplicationContext);
     const errorOcurred = currentWeather.name === "Não encontrado";
+    const size = useWindowSize();
 
     return (
         <ForecastContainer>
@@ -31,7 +36,7 @@ export default function Forecast() {
                             if (forecastState == ForecastState.TODAY) return;
                             setForecastState(ForecastState.TODAY);
                         }}>
-                        Hoje
+                        {size && size.width !== null && size.width < 660 ? <IoToday className="icon"/> : "Hoje"}
                     </ForecastHeaderItem>
                     <ForecastHeaderItem
                         $active={forecastState == ForecastState.NEXT_DAYS}
@@ -40,7 +45,9 @@ export default function Forecast() {
                             setForecastState(ForecastState.NEXT_DAYS);
                         }}
                     >
-                        Próximos dias
+                        {size && size.width !== null && size.width < 660 ? <GoGraph className="icon"/> : 
+                        size && size.width !== null && size.width < 862 ? "Próx. dias" : "Próximos dias"
+                        }
                     </ForecastHeaderItem>
                     <ForecastHeaderItem
                         $active={forecastState == ForecastState.MAP}
@@ -49,10 +56,10 @@ export default function Forecast() {
                             setForecastState(ForecastState.MAP);
                         }}
                     >
-                        Mapa
+                       {size && size.width !== null && size.width < 660 ? <FaMapLocationDot className="icon"/> : "Mapa"}
                     </ForecastHeaderItem>
                 </ForecastHeader>
-               
+
                 {
                     (currentWeather.name === WeatherCondition.RAIN
                         || currentWeather.name === WeatherCondition.THUNDERSTORM
@@ -69,13 +76,13 @@ export default function Forecast() {
                             <LoadingClimate />
                             :
                             <>
-                                <CityName>{currentWeather.city}</CityName>
-                                {
-                                    !errorOcurred &&
-                                    <CoordinatesContainer>
-                                        <span>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</span>
-                                    </CoordinatesContainer>
-                                }
+                                <CityName>
+                                    <div className='texts'>
+                                    <h1>{currentWeather.city}</h1>
+                                    <Coord>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</Coord>
+                                    </div>
+                                </CityName>
+
                                 {
                                     forecastState == ForecastState.TODAY ?
                                         <>
@@ -99,25 +106,25 @@ export default function Forecast() {
                                             }
                                         </>
                                         : forecastState == ForecastState.NEXT_DAYS ?
-                                        <>
-                                            {
-                                                !errorOcurred &&
-                                                <NextDaysClimate forecast={currentForecast} useFarheinheit={useFarhenheit} />
-                                            }
-                                        </>
-                                        : 
-                                        <>
-                                            {
-                                                !errorOcurred &&
-                                                <ForecastMap
-                                                    heigth={"500"}
-                                                    width={"100%"}
-                                                   weather={currentWeather}
-                                                   useFarhenheit={useFarhenheit}
+                                            <>
+                                                {
+                                                    !errorOcurred &&
+                                                    <NextDaysClimate forecast={currentForecast} useFarheinheit={useFarhenheit} />
+                                                }
+                                            </>
+                                            :
+                                            <>
+                                                {
+                                                    !errorOcurred &&
+                                                    <ForecastMap
+                                                        heigth={"500"}
+                                                        width={"100%"}
+                                                        weather={currentWeather}
+                                                        useFarhenheit={useFarhenheit}
 
-                                                />
-                                            }
-                                        </>
+                                                    />
+                                                }
+                                            </>
                                 }
                             </>
                     }
@@ -129,31 +136,45 @@ export default function Forecast() {
     )
 }
 
-const CityName = styled.h1`
+const CityName = styled.div`
     color: ${({ theme }) => theme.colors.textMainBlack};
     font-size: 130px;
     font-weight: 400;
     line-height: 40%;
     width: 100%;
     margin-top: 90px;
+    margin-bottom: 20px;
     white-space: nowrap;
     padding-right: 20px;
-    padding-left: 20px;
+    position: relative;
+    h1{
+        width: 100%;
+    }
+    .texts{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
     
     @media (max-width: 400px){
         font-size: 40px;
-        margin-top: 20px;
+        margin-top: 0;
         width: 100%;
         line-height: 100%;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0;
     }
 
     @media (max-width: 660px) and (min-width: 400px){
         font-size: 50px;
-        margin-top: 20px;
+        margin-top: 0;
         width: 100%;
         line-height: 100%;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     @media (max-width: 1360px) and (min-width: 660px){
@@ -175,6 +196,15 @@ const ForecastHeader = styled.div`
        gap: 0;
        padding-right: 20px;
        padding-left: 20px;
+       border-bottom: 2px solid rgba(164, 164, 164, 0.1);
+       padding-bottom: 10px;
+       padding-top: 10px;
+    }
+    @media (max-width: 862px) and (min-width: 660px){
+       gap: 45px;
+    }
+    @media (max-width: 1360px) and (min-width: 862px){
+       gap: 60px;
     }
 `;
 const MainContent = styled.div`
@@ -211,31 +241,42 @@ const ForecastHeaderItem = styled.span<ForecastHeaderItemProps>`
     cursor: pointer;
     opacity: ${p => p.$active ? 1 : 0.5};
     transition: opacity 0.2s ease-in-out;
-    :hover{
+    &:hover{
         opacity: 1;
     }
 
     @media (max-width: 660px){
         font-size: 30px;
     }
+
+    .icon{
+        font-size: 25px;
+        color : ${p => p.$active ? p.theme.colors.textMainBlack : p.theme.colors.textLowGray};
+       
+    }
 `;
 
-const CoordinatesContainer = styled.div`
+const Coord = styled.span`
     width: 100%;
-    padding: 10px;
-    span{
-        color: ${({ theme }) => theme.colors.textMainBlack};
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 16px;
+    text-align: left;
+    color: ${({ theme }) => theme.colors.textMainBlack};
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    top:160%;
+    margin-top: 50px;
+    padding-left: 5px;
+    @media (max-width: 660px){
+        font-size: 10px;
+        line-height: 10px;
+        width: calc(100% -20px);
+        margin-top: 10px;
     }
 
-    @media (max-width: 1360px){
-        span{
-            font-size: 10px;
-            line-height: 10px;
-        }
-        padding: 5px;
+    @media (max-width: 1360px) and (min-width: 660px){
+       
+        font-size: 14px;
+        line-height: 14px;
     }
 `;
 

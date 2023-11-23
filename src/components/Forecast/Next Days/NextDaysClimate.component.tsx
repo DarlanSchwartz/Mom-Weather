@@ -80,13 +80,18 @@ const NextDaysClimateContainer = styled.div`
 
     @media (max-width: 660px){
         padding-right: 0;
+        height: 300px;
     }
-
+    
     .chart-container{
         background-color: ${({ theme }) => theme.colors.backgroundLight};
         padding-top: 40px;
         padding-bottom: 40px;
         border: 1px solid ${({ theme }) => theme.colors.chartBorder};
+        @media (max-width: 660px){
+            border: 0;
+            height: 300px !important;
+        }
     }
     
     .recharts-default-tooltip{
