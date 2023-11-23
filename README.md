@@ -1,12 +1,13 @@
-# Mom Weather
+# 🌦️ Mom Weather
+
 
 Mom Weather is a front-end web application designed to alleviate the stress of dressing appropriately for any given location. By simply entering the name of a city, users can access comprehensive weather information, including the current temperature, maximum and minimum temperatures, temperature map, and a forecast for the upcoming days.
 
-# Demo
-[You can test it HERE](https://mom-wheater.vercel.app/)
+# :rocket: Demo
+[Link](https://mom-wheater.vercel.app/)
 
 
-# Preview
+# :bookmark: Preview
 <div align="center">
     <img width="100%" src="./previews/preview1.png"/>
    </br>
@@ -22,7 +23,7 @@ Mom Weather is a front-end web application designed to alleviate the stress of d
 
 </br>
 
-# Tech Used
+# 💻 Tech Used
 For this project i used:
 
 - Framework [React v.18.2.0](https://react.dev/learn)
@@ -38,7 +39,7 @@ For this project i used:
 - Notification pop-ups [sweetalert2](https://www.npmjs.com/package/sweetalert2)
 - HTTP Requests [axios](https://www.npmjs.com/package/axios)
 
-# API's Used
+# :bookmark_tabs: API's Used
 
 - Forecasts and weather [Open Weather](https://openweathermap.org/api)
 - Geolocation based on text [Geoapify](https://apidocs.geoapify.com/)
@@ -65,6 +66,7 @@ cd Mom-Weather
 ```bash 
 npm install
 ```
+
 4. Create a [.env]() file and fill the variables with your api keys, follow this [.env.example](.env.example) file for examples
 ```properties
 VITE_WEATHER_API_KEY=your_open_weather_api_key_here
@@ -81,3 +83,4 @@ npm run dev
 ```
 6. Open http://localhost:5173/
 
+7. :ballot_box_with_check: Done
