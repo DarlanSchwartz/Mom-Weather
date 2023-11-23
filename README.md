@@ -4,7 +4,7 @@
 Mom Weather is a front-end web application designed to alleviate the stress of dressing appropriately for any given location. By simply entering the name of a city, users can access comprehensive weather information, including the current temperature, maximum and minimum temperatures, temperature map, and a forecast for the upcoming days.
 
 # :rocket: Demo
-## :link: [Link to demo](https://mom-wheater.vercel.app/)
+### [Link to demo](https://mom-wheater.vercel.app/)
 
 </br>
 </br>
