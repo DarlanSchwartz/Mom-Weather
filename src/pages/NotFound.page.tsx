@@ -22,6 +22,7 @@ const PageContainer = styled.main`
     flex-direction: column;
     gap: 30px;
     overflow: hidden;
+    background-color: ${({ theme }) => theme.colors.background};
     h1{
         font-size: 100px;
         font-style: normal;
@@ -31,6 +32,10 @@ const PageContainer = styled.main`
         font-weight: 300;
         user-select: none;
         -webkit-user-drag: none;
+        white-space: nowrap;
+        @media (max-width: 660px){
+            font-size: 60px;
+        }
     }
     h2{
         color: ${({ theme }) => theme.colors.textMainBlack};
@@ -40,6 +45,10 @@ const PageContainer = styled.main`
         line-height: 100%;
         user-select: none;
         -webkit-user-drag: none;
+        white-space: nowrap;
+        @media (max-width: 660px){
+            font-size: 24px;
+        }
     }
     img{
         max-width: 400px;
@@ -47,5 +56,10 @@ const PageContainer = styled.main`
         opacity: 0.5 !important;
         user-select: none;
         -webkit-user-drag: none;
+        white-space: nowrap;
+        @media (max-width: 660px){
+            max-width: 300px;
+            max-height: 300px;
+        }
     }
 `;
