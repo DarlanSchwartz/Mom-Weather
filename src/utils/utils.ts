@@ -36,7 +36,7 @@ export function metersPerSecondToMPH(metersPerSecond: number): number {
 }
 
 export function getTodayText(weather: Weather) {
-    if (weather.currentTemperature <= MIN_TEMP_TO_FREEZE ||
+    if (weather.currentTemperature < MIN_TEMP_TO_FREEZE ||
         weather.min <= MIN_TEMP_TO_FREEZE ||
         weather.max <= MIN_TEMP_TO_FREEZE) {
         return 'Sim, você deve levar um casaquinho!'
