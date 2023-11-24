@@ -9,7 +9,12 @@ Mom Weather is a front-end web application designed to alleviate the stress of d
 </br>
 </br>
 
-# :bookmark: Preview
+# :bookmark: Previews
+</br>
+
+### The website is fully responsive on across all screen sizes
+
+## :computer: Desktop
 <div align="center">
     <img width="100%" src="./previews/preview1.png"/>
    </br>
@@ -21,6 +26,21 @@ Mom Weather is a front-end web application designed to alleviate the stress of d
    </br>
    </br>
    <img  width="100%" src="./previews/preview4.png"/>
+</div>
+
+## :newspaper: Tablet
+
+   </br>
+      </br>
+ <img width="100%" src="./previews/preview5.png"/>
+    </br>
+       </br>
+
+## :iphone: Mobile 
+<div align="center">
+    <img align="left" width="200" src="./previews/preview6.png"/>
+   <img align="center"  width="200" src="./previews/preview7.png"/>
+   <img align="right" width="200" src="./previews/preview8.png"/>
 </div>
 
 </br>
