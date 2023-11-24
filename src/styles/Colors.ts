@@ -25,6 +25,7 @@ export const LightColors: ApplicationThemeColors = {
     sidebarInputBoxshadow: 'rgba(49, 79, 124, 0.08)',
     rainColor1: '#278b9a',
     rainColor2: 'rgba(255,255,255,.5)',
+    modalBackground: 'rgba(255,255,255,0.8)',
 }
 
 
@@ -53,4 +54,5 @@ export const DarkColors: ApplicationThemeColors = {
     sidebarInputBoxshadow: 'rgba(255, 255, 255, 0.03)',
     rainColor1: '#278b9a',
     rainColor2: 'rgba(255,255,255,.5)',
+    modalBackground: 'rgba(0,0,0,.8)',
 }

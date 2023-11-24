@@ -23,4 +23,5 @@ export type ApplicationThemeColors = {
     sidebarInputBoxshadow: string;
     rainColor1: string;
     rainColor2: string;
+    modalBackground: string;
 };

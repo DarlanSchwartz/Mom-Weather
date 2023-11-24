@@ -15,48 +15,78 @@ import { FaMoon } from 'react-icons/fa';
 import { LuSunMoon } from 'react-icons/lu';
 import { TbTemperatureFahrenheit } from "react-icons/tb";
 import { TbTemperatureCelsius } from "react-icons/tb";
-
-
+import { RxHamburgerMenu } from "react-icons/rx";
+import ApplicationModal from '../ApplicationModal.modal';
+import { SidebarInput } from './SearchInput.styled';
+import { ModalSearchInput } from '../ModalInput.styled';
+import { CopyrightText } from './CopyrightText.styled';
+import { FaCog } from "react-icons/fa";
 export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
     const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading, cityName, setCityName } = useContext(ApplicationContext);
     const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
     const [currentClassName, setCurrentClassName] = useState<string>("");
-    const size = useWindowSize();
-    function openModal() {
-        setSearchEnabled(true);
-        setCurrentClassName("");
+    const [mobileConfigEnabled, setMobileConfigEnabled] = useState<boolean>(true);
+    
+    const windowSize = useWindowSize();
+    const [closingModal, setClosingModal] = useState<boolean>(false);
+    function openModalMobileConfig() {
+        setMobileConfigEnabled(true);
+        setCurrentClassName("animate__animated animate__fadeIn");
     }
+    function openModalSearch() {
+        setSearchEnabled(true);
+        setCurrentClassName("animate__animated animate__fadeIn");
+    }
+
+    function searchWeatherViaModal(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        searchWeather();
+        closeModal();
+    }
+
     function closeModal() {
+        if (closingModal) return;
         setCurrentClassName("animate__animated animate__fadeOut");
+        setClosingModal(true);
         setTimeout(() => {
             setSearchEnabled(false);
+            setMobileConfigEnabled(false);
             setCurrentClassName("");
+            setClosingModal(false);
         }, 1000);
     }
 
     useEffect(() => {
-        if (size && size.width !== null && size.width <= 660) {
-            closeModal();
-        }
-    }, [size])
-
+        // if (windowSize && windowSize.width !== null && windowSize.width <= 660) {
+        //     closeModal();
+        // }
+    }, [windowSize])
 
     return (
         <SidebarContainer>
             <MainContent>
-                <Logo />
-
                 {
-                    (size && size.width !== null && !(size.width <= 1140 && size.width >= 660)) &&
+                    (windowSize && windowSize.width && windowSize.width > 660 || (windowSize && windowSize.width && windowSize.width <= 660 && !isFocusedSearch)) &&
+                    <Logo />
+                }
+                {
+                    !isFocusedSearch && (windowSize && windowSize.width !== null && windowSize.width <= 660) &&
+                    <CiSearch
+                        className="icon-search-mobile"
+                        onClick={() => setIsFocusedSearch(!isFocusedSearch)}
+                    />
+                }
+                {
+                    ((isFocusedSearch && windowSize && windowSize.width !== null && !(windowSize.width <= 1140 && windowSize.width >= 660)) || windowSize && windowSize.width && windowSize.width > 1140) &&
                     <SearchForm onSubmit={(e) => {
                         e.preventDefault();
                         searchWeather();
                     }}>
                         <div className='input-container'>
                             <CiSearch className="icon" />
-                            <SearchInput
+                            <SidebarInput
                                 type="text"
                                 placeholder="Procure por uma cidade"
                                 autoFocus
@@ -66,7 +96,6 @@ export default function Sidebar() {
                                 value={cityName}
                                 onChange={(e) => setCityName(e.currentTarget.value)}
                                 autoComplete='on'
-                                onFocus={() => setIsFocusedSearch(true)}
                                 onBlur={() => setIsFocusedSearch(false)}
                             />
                         </div>
@@ -76,14 +105,14 @@ export default function Sidebar() {
                     loading ?
                         <>
                             {
-                                (size && size.width !== null && size.width > 1140) &&
+                                (windowSize && windowSize.width !== null && windowSize.width > 1140) &&
                                 <LoadingClimate />
                             }
                         </>
                         :
                         <>
                             {
-                                (!isFocusedSearch || (size && size.width !== null && size.width > 660)) &&
+                                (!isFocusedSearch || (windowSize && windowSize.width !== null && windowSize.width > 660)) &&
                                 < SidebarClimate
                                     key={new Date().getTime()}
                                     date={new Date()}
@@ -97,21 +126,26 @@ export default function Sidebar() {
                         </>
                 }
                 {
-                    (size && size.width !== null && size.width <= 1140 && size.width >= 660) &&
+                    (windowSize && windowSize.width !== null && windowSize.width <= 1140 && windowSize.width >= 660) &&
                     <IoSearchOutline
                         className="icon-search"
-                        onClick={openModal}
+                        onClick={openModalSearch}
+                    />
+                }
+                {
+                    (windowSize && windowSize.width !== null && windowSize.width <= 660) &&
+                    <RxHamburgerMenu
+                        className="hamburger-menu"
+                        onClick={openModalMobileConfig}
                     />
                 }
                 {
                     searchEnabled &&
-                    <ModalSearch className={currentClassName} onSubmit={(e) => {
-                        e.preventDefault();
-                        searchWeather();
-                        closeModal();
-                    }}
+                    <ApplicationModal
+                        className={currentClassName}
+                        onSubmit={searchWeatherViaModal}
                         onClick={closeModal}>
-                        <input
+                        <ModalSearchInput
                             type="text"
                             className='animate__animated animate__bounceInLeft'
                             placeholder='Procure por uma cidade, estado , país ou continente'
@@ -120,8 +154,52 @@ export default function Sidebar() {
                             onClick={(e) => e.stopPropagation()}
                             autoFocus
                         />
-                    </ModalSearch>
+                    </ApplicationModal>
                 }
+                {
+                    windowSize && windowSize.width !== null && windowSize.width <= 660 &&
+                    mobileConfigEnabled &&
+                    <ApplicationModal
+                        className={currentClassName}
+                        onSubmit={(e) => e.preventDefault()}
+                        onClick={closeModal}>
+                        <MobileConfigContainer onClick={(e)=> e.stopPropagation()}>
+                            <h1><FaCog className="config-icon" />Configuração</h1>
+                            <ToggleContainer className='toogle-config' onClick={(e) => e.stopPropagation()}>
+                                <Toggle
+                                    enabled={useFarhenheit}
+                                    onToggle={setUseFarhenheit}
+                                    enabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
+                                        <TbTemperatureFahrenheit size={18} /> : undefined
+                                    }
+                                    disabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
+                                        <TbTemperatureCelsius size={18} /> : undefined
+                                    }
+                                    useBackground={true}
+                                />
+                                <p>{useFarhenheit ? "Fahrenheit" : "Celsius"}</p>
+
+                            </ToggleContainer>
+                            <ToggleContainer className='toogle-config'  onClick={(e) => e.stopPropagation()}>
+                                <Toggle
+                                    enabled={darkModeEnabled}
+                                    enabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
+                                        <FaMoon size={18} /> : undefined
+                                    }
+                                    disabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
+                                        <LuSunMoon size={18} /> : undefined
+                                    }
+                                    onToggle={() => {
+                                        if (darkModeEnabled) disableDarkMode();
+                                        else enableDarkMode();
+                                    }}
+                                />
+                                <p>Dark Mode</p>
+                            </ToggleContainer>
+                        </MobileConfigContainer>
+                    </ApplicationModal>
+                }
+
             </MainContent>
             <BottomContent>
                 <ActionsContainer>
@@ -129,10 +207,10 @@ export default function Sidebar() {
                         <Toggle
                             enabled={useFarhenheit}
                             onToggle={setUseFarhenheit}
-                            enabledIcon={size && size.width !== null && size.width <= 1140 ?
+                            enabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
                                 <TbTemperatureFahrenheit size={18} /> : undefined
                             }
-                            disabledIcon={size && size.width !== null && size.width <= 1140 ?
+                            disabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
                                 <TbTemperatureCelsius size={18} /> : undefined
                             }
                             useBackground={true}
@@ -142,10 +220,10 @@ export default function Sidebar() {
                     <ToggleContainer>
                         <Toggle
                             enabled={darkModeEnabled}
-                            enabledIcon={size && size.width !== null && size.width <= 1140 ?
+                            enabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
                                 <FaMoon size={18} /> : undefined
                             }
-                            disabledIcon={size && size.width !== null && size.width <= 1140 ?
+                            disabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
                                 <LuSunMoon size={18} /> : undefined
                             }
                             onToggle={() => {
@@ -162,23 +240,37 @@ export default function Sidebar() {
     )
 }
 
-const ModalSearch = styled.form`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    min-height: 100vh;
-    background-color: rgba(0,0,0,0.8);
-    z-index: 999;
+const MobileConfigContainer = styled.div`
+    width: 100%;
     display: flex;
-    padding: 20px;
-    input {
-        border-radius: 20px;
-        width: 100%;
-        padding: 10px;
-        border: 0;
-        flex-grow: 0;
-        height: 50px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 20px;
+    height: 190px;
+    h1{
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        color: ${({ theme }) => theme.colors.textMainBlack};
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        svg{
+            color: ${({ theme }) => theme.colors.textMainBlack};
+        }
+    }
+    .toogle-config{
+        width: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p{
+            white-space: nowrap;
+            color: ${({ theme }) => theme.colors.textMainBlack};
+        }
     }
 `;
 
@@ -187,6 +279,16 @@ const MainContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    .hamburger-menu{
+        color: ${({ theme }) => theme.colors.textMainBlack};
+        font-size: 32px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .icon-search-mobile{
+        color: ${({ theme }) => theme.colors.textMainBlack};
+        font-size: 32px;
+    }
     .icon-search{
         font-size: 32px;
         box-sizing: border-box;
@@ -326,44 +428,5 @@ const SearchForm = styled.form`
         transform: translateY(-50%);
         color: #8B9CAF;
         font-size: 25px;
-    }
-`;
-const SearchInput = styled.input`
-    width: 100%;
-    height: 60px;
-    border-radius: 20px;
-    box-shadow: 0px 24px 48px 0px ${({ theme }) => theme.colors.sidebarInputBoxshadow};
-    padding-left: 45px;
-    border: 0;
-    background-color: ${({ theme }) => theme.colors.searchBackground};
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-    max-width: 500px;
-    transition: all 200ms;
-    color: ${({ theme }) => theme.colors.textMainBlack};
-    &::placeholder{
-        color: ${({ theme }) => theme.colors.inputPlaceholder};
-    }
-    @media (max-width: 1200px){
-        font-size: 16px;
-    }
-`;
-
-const CopyrightText = styled.span`
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    color: ${({ theme }) => theme.colors.textMainBlack};
-    @media (max-width: 1140px){
-        display: none;
-    }
-    @media (max-width: 1200px) and (min-width: 1140px){
-        font-size: 16px;
-    }
-    @media (min-height: 950px) and (min-width: 1200px){
-        font-size: 24px;
     }
 `;
