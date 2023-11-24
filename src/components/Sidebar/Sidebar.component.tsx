@@ -371,7 +371,7 @@ const SidebarContainer = styled.aside`
     justify-content: space-between;
     width: 100%;
     max-width: 34.63%;
-    min-height: 100dvh;
+    min-height: 100svh;
     background-color: ${({ theme }) => theme.colors.backgroundLight};
     color: #fff;
     padding: 20px;

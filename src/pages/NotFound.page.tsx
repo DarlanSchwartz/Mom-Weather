@@ -15,7 +15,7 @@ export default function PageNotFound() {
 
 const PageContainer = styled.main`
     width: 100%;
-    height: 100dvh;
+    height: 100svh;
     display: flex;
     justify-content: center;
     align-items: center;

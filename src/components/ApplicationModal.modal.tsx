@@ -18,7 +18,7 @@ const ModalContainer = styled.form`
     top: 0;
     left: 0;
     width: 100vw;
-    min-height: 100vh;
+    min-height: 100svh;
     background-color: ${({ theme }) => theme.colors.modalBackground};
     z-index: 999;
     display: flex;
