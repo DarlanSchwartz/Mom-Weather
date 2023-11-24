@@ -27,7 +27,7 @@ export default function Sidebar() {
     const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
     const [currentClassName, setCurrentClassName] = useState<string>("");
-    const [mobileConfigEnabled, setMobileConfigEnabled] = useState<boolean>(true);
+    const [mobileConfigEnabled, setMobileConfigEnabled] = useState<boolean>(false);
     
     const windowSize = useWindowSize();
     const [closingModal, setClosingModal] = useState<boolean>(false);
