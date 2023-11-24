@@ -71,20 +71,14 @@ export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast
 
 const NextDaysClimateContainer = styled.div`
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 460px;
+    height: 100% !important;
     padding-right: 30px;
-
+    
     @media (max-width: 660px){
         padding-right: 0;
-        height: 300px;
-    }
-
-    @media (max-width: 1366px) and (min-width: 660px){
-        height: 250px !important;
+        height: 100% !important;
+        min-height: 300px !important;
+        flex-shrink: 0;
     }
 
     .chart-container{
@@ -92,14 +86,19 @@ const NextDaysClimateContainer = styled.div`
         padding-top: 40px;
         padding-bottom: 40px;
         border: 1px solid ${({ theme }) => theme.colors.chartBorder};
+        height: calc(100% - 19px) !important;
+        min-height: 300px !important;
         @media (max-width: 660px){
             border: 0;
-            height: 300px !important;
+            height: 100%;
         }
 
         @media (max-width: 1366px) and (min-width: 660px){
             border: 0;
-            height: 330px !important;
+            height: 100%;
+        }
+        @media (min-width: 1400px){
+            max-height: 450px !important;
         }
     }
     

@@ -6,15 +6,20 @@ import { useContext } from 'react';
 import Toggle from './Toggle.mini';
 import ThemeContext from '../../contexts/Theme.context';
 import ApplicationContext from '../../contexts/Application.context';
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import LoadingClimate from '../LoadingClimate.mini';
 import { useWindowSize } from '@uidotdev/usehooks';
 import { IoSearchOutline } from "react-icons/io5";
 import 'animate.css';
+import { FaMoon } from 'react-icons/fa';
+import { LuSunMoon } from 'react-icons/lu';
+import { TbTemperatureFahrenheit } from "react-icons/tb";
+import { TbTemperatureCelsius } from "react-icons/tb";
+
 
 export default function Sidebar() {
     const { darkModeEnabled, enableDarkMode, disableDarkMode } = useContext(ThemeContext);
-    const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading , cityName, setCityName } = useContext(ApplicationContext);
+    const { currentWeather, useFarhenheit, setUseFarhenheit, searchWeather, loading, cityName, setCityName } = useContext(ApplicationContext);
     const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
     const [currentClassName, setCurrentClassName] = useState<string>("");
@@ -32,11 +37,11 @@ export default function Sidebar() {
     }
 
     useEffect(() => {
-      if(size && size.width !== null && size.width <= 660){
-        closeModal();
-      }
+        if (size && size.width !== null && size.width <= 660) {
+            closeModal();
+        }
     }, [size])
-    
+
 
     return (
         <SidebarContainer>
@@ -124,12 +129,25 @@ export default function Sidebar() {
                         <Toggle
                             enabled={useFarhenheit}
                             onToggle={setUseFarhenheit}
+                            enabledIcon={size && size.width !== null && size.width <= 1140 ?
+                                <TbTemperatureFahrenheit size={18} /> : undefined
+                            }
+                            disabledIcon={size && size.width !== null && size.width <= 1140 ?
+                                <TbTemperatureCelsius size={18} /> : undefined
+                            }
+                            useBackground={true}
                         />
                         <span>°F</span>
                     </ToggleContainer>
                     <ToggleContainer>
                         <Toggle
                             enabled={darkModeEnabled}
+                            enabledIcon={size && size.width !== null && size.width <= 1140 ?
+                                <FaMoon size={18} /> : undefined
+                            }
+                            disabledIcon={size && size.width !== null && size.width <= 1140 ?
+                                <LuSunMoon size={18} /> : undefined
+                            }
                             onToggle={() => {
                                 if (darkModeEnabled) disableDarkMode();
                                 else enableDarkMode();
