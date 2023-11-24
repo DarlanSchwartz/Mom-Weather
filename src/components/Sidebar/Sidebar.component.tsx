@@ -59,9 +59,9 @@ export default function Sidebar() {
     }
 
     useEffect(() => {
-        // if (windowSize && windowSize.width !== null && windowSize.width <= 660) {
-        //     closeModal();
-        // }
+        if (windowSize && windowSize.width !== null && windowSize.width <= 660) {
+            closeModal();
+        }
     }, [windowSize])
 
     return (
