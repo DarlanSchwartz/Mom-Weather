@@ -14,12 +14,12 @@ interface Drop {
 
 export default function Rain({ dropCount }: RainProps) {
   const [drops, setDrops] = useState<Drop[]>([]);
-  const size = useWindowSize();
+  const windowSize = useWindowSize();
   function startRain() {
     const newDrops: Drop[] = [];
     for (let i = 1; i < dropCount; i++) {
-      const dropLeft = randRange(0, size.width || 2000);
-      const dropTop = randRange(-1000, size.height || 1000);
+      const dropLeft = randRange(0, windowSize.width || 2000);
+      const dropTop = randRange(-1000, windowSize.height || 1000);
       newDrops.push({ id: `drop${i}`, left: dropLeft, top: dropTop });
     }
     setDrops(newDrops);
