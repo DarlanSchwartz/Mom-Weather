@@ -41,6 +41,21 @@ Mom Weather is a front-end web application designed to alleviate the stress of d
 </div>
 
 </br>
+<div align="left">
+
+# :sparkles: Effects
+
+This project has two hand made effects/animations for when is raining or snowing:
+
+- ### :sweat_drops:  Rain
+ <img width="100%" src="./previews/preview10.png"/>
+
+- ### :snowflake:  Snow
+ <img width="100%" src="./previews/preview9.png"/>
+
+
+</br>
+</br>
 
 # 💻 Tech Used
 For this project i used:
@@ -57,6 +72,7 @@ For this project i used:
 - Graph [recharts](https://www.npmjs.com/package/recharts)
 - Notification pop-ups [sweetalert2](https://www.npmjs.com/package/sweetalert2)
 - HTTP Requests [axios](https://www.npmjs.com/package/axios)
+</div>
 
 # :bookmark_tabs: API's Used
 
