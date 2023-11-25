@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GEOAPIFY_LINK, MAP_API_LINK, OPEN_WEATHER_LINK } from '../protocols/Constants';
+import { GEOAPIFY_LINK, MAP_API_LINK, OPEN_WEATHER_LINK } from '../../protocols/Constants';
 
 export default function OpenWeatherCred() {
     return (

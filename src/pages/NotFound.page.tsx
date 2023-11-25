@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "animate.css";
-import Rain from "../components/RainDrops.component";
+import Rain from "../components/Effects/RainDrops.component";
 
 export default function PageNotFound() {
     return (

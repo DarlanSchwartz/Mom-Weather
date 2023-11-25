@@ -2,20 +2,20 @@
 import styled from 'styled-components';
 import TodayClimate from './Today/TodayClimate.component';
 import { useContext, useState } from 'react';
-import OpenWeatherCred from '../OpenWeatherCred.mini';
+import OpenWeatherCred from '../Common/OpenWeatherCred.mini';
 import ApplicationContext from '../../contexts/Application.context';
 import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '../../utils/utils';
 import { ForecastUnit } from '../../protocols/Application.types';
 import NextDaysClimate from './Next Days/NextDaysClimate.component';
-import LoadingClimate from '../LoadingClimate.mini';
-import Rain from '../RainDrops.component';
+import LoadingClimate from '../Common/LoadingClimate.mini';
+import Rain from '../Effects/RainDrops.component';
 import { WeatherCondition } from '../../protocols/WeatherAPI.types';
-import ForecastMap from './Map.component';
+import ForecastMap from './Map/Map.component';
 import { FaMapLocationDot } from "react-icons/fa6";
 import { GoGraph } from "react-icons/go";
 import { IoToday } from "react-icons/io5";
 import { useWindowSize } from "@uidotdev/usehooks";
-import SnowDrops from '../SnowDrops.component';
+import SnowDrops from '../Effects/SnowDrops.component';
 enum ForecastState {
     TODAY,
     NEXT_DAYS,

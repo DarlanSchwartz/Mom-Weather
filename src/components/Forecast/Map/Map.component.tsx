@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Weather } from '../../protocols/Application.types'
+import { Weather } from '../../../protocols/Application.types'
 
 export default function ForecastMap({ weather, useFarhenheit, width, heigth }: { weather: Weather, useFarhenheit: boolean, width: string, heigth: string }) {
     return (
