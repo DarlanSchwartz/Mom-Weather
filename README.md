@@ -15,8 +15,6 @@ Mom Weather is a front-end web application designed to alleviate the stress of d
 
 ## :computer: Desktop
 <div align="center">
-    <img width="100%" src="./previews/preview1.png"/>
-   </br>
     </br>
     <img  width="100%" src="./previews/preview2.png"/>
    </br>
@@ -24,40 +22,35 @@ Mom Weather is a front-end web application designed to alleviate the stress of d
    <img  width="100%" src="./previews/preview3.png"/>
    </br>
    </br>
-   <img  width="100%" src="./previews/preview4.png"/>
 </div>
+
+ # :sparkles: Effects and  Dark Mode :first_quarter_moon:
+
+This project has two hand crafted effects/animations, one for rain and another for snow. Additionally, as you may have already observed, it offers a dark mode for an enhanced user experience.
+
+- ### :sweat_drops:  Rain
+ <img width="100%" src="./previews/preview10.gif"/>
+
+- ### :snowflake:  Snow
+ <img width="100%" src="./previews/preview9.gif"/>
 
 ## :newspaper: Tablet
 
 </br>
- <img width="100%" src="./previews/preview5.png"/>
+ <img width="100%" src="./previews/preview5.gif"/>
 </br>
 
 ## :iphone: Mobile 
+ <img align="right" width="100%" src="./previews/preview8.gif"/>
 <div align="center">
     <img align="left" width="200" src="./previews/preview6.png"/>
-   <img align="center"  width="200" src="./previews/preview7.png"/>
-   <img align="right" width="200" src="./previews/preview8.png"/>
+   <img align="right"  width="200" src="./previews/preview7.png"/>
+  
 </div>
 
-</br>
-<div align="left">
-
-# :sparkles: Effects
-
-This project has two hand made effects/animations for when is raining or snowing:
-
-- ### :sweat_drops:  Rain
- <img width="100%" src="./previews/preview10.png"/>
-
-- ### :snowflake:  Snow
- <img width="100%" src="./previews/preview9.png"/>
-
-
-</br>
-</br>
 
 # 💻 Tech Used
+
 For this project i used:
 
 - Framework [React v.18.2.0](https://react.dev/learn)
@@ -72,7 +65,7 @@ For this project i used:
 - Graph [recharts](https://www.npmjs.com/package/recharts)
 - Notification pop-ups [sweetalert2](https://www.npmjs.com/package/sweetalert2)
 - HTTP Requests [axios](https://www.npmjs.com/package/axios)
-</div>
+
 
 # :bookmark_tabs: API's Used
 
