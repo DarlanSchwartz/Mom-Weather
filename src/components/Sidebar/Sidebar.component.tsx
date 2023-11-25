@@ -253,13 +253,13 @@ const MobileConfigContainer = styled.div`
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
-        color: ${({ theme }) => theme.colors.textMainBlack};
+        color: white;
         display: flex;
         align-items: center;
         gap: 10px;
         margin-bottom: 30px;
         svg{
-            color: ${({ theme }) => theme.colors.textMainBlack};
+            color: white;
         }
     }
     .toogle-config{
@@ -269,7 +269,7 @@ const MobileConfigContainer = styled.div`
         justify-content: space-between;
         p{
             white-space: nowrap;
-            color: ${({ theme }) => theme.colors.textMainBlack};
+            color: white;
         }
     }
 `;

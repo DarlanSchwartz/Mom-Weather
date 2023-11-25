@@ -14,21 +14,46 @@ export function requestUserGeolocation(then: (data: UserNavigatorData) => void, 
             lon = position.coords.longitude;
             lang = navigator.language.toLocaleLowerCase().replace('-', '_');
             then({ lat, lon, lang, rejected: false });
-        }, () => {
+        }, (error) => {
             then({ lat, lon, lang, rejected: true });
-            throwError('Não foi possível obter sua localização atual', DEFAULT_ERROR_TITLE, darkModeEnabled);
+            let errorMessage = '';
+            let errorTitle = DEFAULT_ERROR_TITLE;
+            localStorage.setItem("rejected-geolocation", "true");
+            
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorTitle = 'Geolocalização negada';
+                    errorMessage = 'Por favor habilite-a para visualizar o clima da sua localização automaticamente.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorTitle = 'Localização indisponível';
+                    errorMessage = 'Não foi possivel obter a sua localização.';
+                    break;
+                case error.TIMEOUT:
+                    errorTitle = 'Tempo esgotado';
+                    errorMessage = 'O tempo para obter a sua localização esgotou.';
+                    break;
+                default:
+                    errorTitle = 'Erro';
+                    errorMessage = 'Ocorreu um erro ao obter a sua localização.';
+                    break;
+            }
+            throwError(errorMessage, errorTitle, darkModeEnabled);
         });
+    } else {
+        throwError('Seu browser não suporta geolocalização!', "Navegador sem suporte.", darkModeEnabled);
+        localStorage.setItem("rejected-geolocation", "true");
     }
 }
 
 
-export function throwError(message: string, title?: string,darkModeEnabled:boolean = false) {
+export function throwError(message: string, title?: string, darkModeEnabled: boolean = false) {
     return Swal.fire({
         title: title || DEFAULT_ERROR_TITLE,
         text: message,
         icon: 'error',
         confirmButtonText: 'Ok',
-        confirmButtonColor: darkModeEnabled ?DarkColors.climateBox :  LightColors.climateBox,
+        confirmButtonColor: darkModeEnabled ? DarkColors.climateBox : LightColors.climateBox,
         background: darkModeEnabled ? DarkColors.background : LightColors.background,
     });
 }

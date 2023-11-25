@@ -29,6 +29,7 @@ export default function App() {
   useEffect(() => {
     const item = localStorage.getItem('darkModeEnabled');
     if (item) setDarkModeEnabled(JSON.parse(item).darkModeEnabled);
+    if(localStorage.getItem("rejected-geolocation")) return;
     requestUserGeolocation(setUserNavigatorData, darkModeEnabled);
   }, []);
 
@@ -52,8 +53,6 @@ export default function App() {
 
   //save farhenheit
   // readme
-  // colors modal
-  //darkmode and farhenheit on tabled and mobile
   //favorites
   return (
 
