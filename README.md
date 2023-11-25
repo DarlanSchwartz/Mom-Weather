@@ -37,17 +37,20 @@ This project has two hand crafted effects/animations, one for rain and another f
 ## :newspaper: Tablet
 
 </br>
+
  <img width="100%" src="./previews/preview5.gif"/>
+
 </br>
 
 ## :iphone: Mobile 
- <img align="right" width="100%" src="./previews/preview8.gif"/>
-<div align="center">
-    <img align="left" width="200" src="./previews/preview6.png"/>
-   <img align="right"  width="200" src="./previews/preview7.png"/>
-  
-</div>
-
+<img align="right" width="100%" src="./previews/preview8.gif"/>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 
 # 💻 Tech Used
 
@@ -65,7 +68,6 @@ For this project i used:
 - Graph [recharts](https://www.npmjs.com/package/recharts)
 - Notification pop-ups [sweetalert2](https://www.npmjs.com/package/sweetalert2)
 - HTTP Requests [axios](https://www.npmjs.com/package/axios)
-
 
 # :bookmark_tabs: API's Used
 

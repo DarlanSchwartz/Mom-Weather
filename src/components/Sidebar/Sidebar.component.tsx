@@ -90,6 +90,7 @@ export default function Sidebar() {
                                 type="text"
                                 placeholder="Procure por uma cidade"
                                 autoFocus
+                                required
                                 id='city'
                                 name='city'
                                 lang={navigator.language}
@@ -146,6 +147,7 @@ export default function Sidebar() {
                         onSubmit={searchWeatherViaModal}
                         onClick={closeModal}>
                         <ModalSearchInput
+                            required
                             type="text"
                             className='animate__animated animate__bounceInLeft'
                             placeholder='Procure por uma cidade, estado , país ou continente'
