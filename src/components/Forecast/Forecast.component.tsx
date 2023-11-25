@@ -15,6 +15,7 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { GoGraph } from "react-icons/go";
 import { IoToday } from "react-icons/io5";
 import { useWindowSize } from "@uidotdev/usehooks";
+import SnowDrops from '../SnowDrops.component';
 enum ForecastState {
     TODAY,
     NEXT_DAYS,
@@ -70,6 +71,10 @@ export default function Forecast() {
                                 currentWeather.name === WeatherCondition.DRIZZLE ? 50 : 0
                     } />
                 }
+                {
+                    currentWeather.name === WeatherCondition.SNOW &&
+                    <SnowDrops dropCount={130} />
+                }
                 <>
                     {
                         loading ?
@@ -121,7 +126,6 @@ export default function Forecast() {
                                                         width={"100%"}
                                                         weather={currentWeather}
                                                         useFarhenheit={useFarhenheit}
-
                                                     />
                                                 }
                                             </>

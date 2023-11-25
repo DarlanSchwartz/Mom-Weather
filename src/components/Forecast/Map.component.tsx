@@ -13,7 +13,9 @@ const IframeContainer = styled.iframe`
     padding-right: 30px;
     height: 100% !important;
     min-height: 300px !important;
-    @media (max-width: 1366px){
+    height:calc(100% - 500px)!important;
+    @media (max-width: 660px){
         padding: 0;
+        height:auto !important;
     }
 `;

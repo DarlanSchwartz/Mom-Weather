@@ -12,9 +12,8 @@ export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast
     function formatForecastData() {
         return forecast.map((item) => {
             return {
-                name: formatDateString(item.dt_txt, navigator.language, { weekday: 'long' }),
+                weekDay: formatDateString(item.dt_txt, navigator.language, { weekday: 'long' }),
                 temperature: useFarheinheit ? convertCelciusToFarenheit(item.main.temp) : item.main.temp,
-                min: useFarheinheit ? convertCelciusToFarenheit(item.main.temp_min) : item.main.temp_min,
             }
         })
     }
@@ -34,7 +33,7 @@ export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast
                 >
                     <CartesianGrid strokeDasharray="0 0" fill={darkModeEnabled ? DarkColors.backgroundLight : LightColors.backgroundLight} />
                     <XAxis
-                        dataKey="name"
+                        dataKey="weekDay"
                         allowDuplicatedCategory={true}
                         tickCount={8}
                         tickMargin={5}
