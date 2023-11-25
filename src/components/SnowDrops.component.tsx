@@ -2,78 +2,81 @@ import { useWindowSize } from '@uidotdev/usehooks';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-interface RainProps {
-  dropCount: number;
-}
-
 interface Drop {
-  id: string;
+  id: number;
   left: number;
   top: number;
-}
+  width: string;
+  height: string;
+  image: string;
+};
 
-export default function SnowDrops({ dropCount }: RainProps) {
-  const [drops, setDrops] = useState<Drop[]>([]);
+const SNOW_FLAKE_IMAGE = "/images/snowflake.png";
+const BLURP_IMAGE = "/images/blurp.png";
+const BLURP2_IMAGE = "/images/blurp2.png";
+const SNOW_IMAGES = [
+  BLURP_IMAGE,
+  BLURP_IMAGE,
+  BLURP2_IMAGE,
+  BLURP2_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+  SNOW_FLAKE_IMAGE,
+];
+export default function SnowDrops({ snowCount }: { snowCount: number }) {
+  const [snowflakes, setSnowflakes] = useState<Drop[]>([]);
   const windowSize = useWindowSize();
-  function startRain() {
-    const newDrops: Drop[] = [];
-    for (let i = 1; i < dropCount; i++) {
-      const dropLeft = randRange(0, windowSize.width || 2000);
-      const dropTop = randRange(-1000, windowSize.height || 1000);
-      newDrops.push({ id: `drop${i}`, left: dropLeft, top: dropTop });
+  function startSnow() {
+    const newSnowflakes: Drop[] = [];
+    for (let id = 1; id < snowCount; id++) {
+      const left = randRange(0, windowSize.width || 2000);
+      const top = randRange(windowSize && windowSize.height ? windowSize.height : -1000, windowSize.height || 1000);
+      const size = `${Math.floor(randRange(5, 8))}px`;
+      newSnowflakes.push({
+        id,
+        left,
+        top,
+        width: size,
+        height: size,
+        image: SNOW_IMAGES[Math.floor(Math.random() * SNOW_IMAGES.length)]
+      });
     }
-    setDrops(newDrops);
+    setSnowflakes(newSnowflakes);
   }
 
-  function stopRain() {
-    setDrops([]);
-  }
-
-  function randRange(minNum: number, maxNum: number) {
-    return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+  function randRange(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   useEffect(() => {
-    startRain();
-    return () => stopRain();
-  }, [dropCount]);
-
-  function getRandomImage() {
-    const images = [
-      "https://static.vecteezy.com/system/resources/thumbnails/028/536/500/small/simple-white-circle-and-drop-shadow-png.png",
-      "https://openweathermap.org/img/wn/13n@2x.png",
-      "https://openweathermap.org/img/wn/13n@2x.png",
-      "https://openweathermap.org/img/wn/13n@2x.png",
-      "https://openweathermap.org/img/wn/13n@2x.png",
-    ];
-    return images[Math.floor(Math.random() * images.length)];
-  }
-
-  function getRandomOpacity() {
-    const opacity = ["0.2", "0.4", "0.6", "0.8"];
-    return opacity[Math.floor(Math.random() * opacity.length)];
-  }
-
-  function getRandomSize() {
-    const sizes = ["30px", "40px", "50px"];
-    let size = sizes[Math.floor(Math.random() * sizes.length)];
-    return { width: size, height: size };
-  }
+    startSnow();
+    return () => setSnowflakes([]);
+  }, [snowCount]);
 
   return (
     <RainContainer>
-      {drops.map((drop) => (
-        <RainDrop key={drop.id} src={getRandomImage()}
-          className="drop"
+      {snowflakes.map((drop) => (
+        <RainDrop
+          key={drop.id}
+          src={drop.image}
+          draggable={false}
           style={{
             left: `${drop.left}px`,
             top: `${drop.top}px`,
-            ...getRandomSize(),
-            opacity: getRandomOpacity(),
+            width: drop.width,
+            height: drop.height,
+            opacity: randRange(0.6, 0.8),
             animationDuration: `${randRange(10, 20)}s`,
-          }} 
-          draggable={false}
-          />
+          }}
+
+        />
       ))}
     </RainContainer>
   );

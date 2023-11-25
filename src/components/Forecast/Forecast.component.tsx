@@ -26,7 +26,6 @@ export default function Forecast() {
     const { currentForecast, currentWeather, useFarhenheit, loading } = useContext(ApplicationContext);
     const errorOcurred = currentWeather.name === "Não encontrado";
     const size = useWindowSize();
-
     return (
         <ForecastContainer>
             <MainContent>
@@ -37,7 +36,7 @@ export default function Forecast() {
                             if (forecastState == ForecastState.TODAY) return;
                             setForecastState(ForecastState.TODAY);
                         }}>
-                        {size && size.width !== null && size.width < 660 ? <IoToday className="icon"/> : "Hoje"}
+                        {size && size.width !== null && size.width < 660 ? <IoToday className="icon" /> : "Hoje"}
                     </ForecastHeaderItem>
                     <ForecastHeaderItem
                         $active={forecastState == ForecastState.NEXT_DAYS}
@@ -46,8 +45,8 @@ export default function Forecast() {
                             setForecastState(ForecastState.NEXT_DAYS);
                         }}
                     >
-                        {size && size.width !== null && size.width < 660 ? <GoGraph className="icon"/> : 
-                        size && size.width !== null && size.width < 862 ? "Próx. dias" : "Próximos dias"
+                        {size && size.width !== null && size.width < 660 ? <GoGraph className="icon" /> :
+                            size && size.width !== null && size.width < 862 ? "Próx. dias" : "Próximos dias"
                         }
                     </ForecastHeaderItem>
                     <ForecastHeaderItem
@@ -57,7 +56,7 @@ export default function Forecast() {
                             setForecastState(ForecastState.MAP);
                         }}
                     >
-                       {size && size.width !== null && size.width < 660 ? <FaMapLocationDot className="icon"/> : "Mapa"}
+                        {size && size.width !== null && size.width < 660 ? <FaMapLocationDot className="icon" /> : "Mapa"}
                     </ForecastHeaderItem>
                 </ForecastHeader>
 
@@ -73,7 +72,7 @@ export default function Forecast() {
                 }
                 {
                     currentWeather.name === WeatherCondition.SNOW &&
-                    <SnowDrops dropCount={130} />
+                    <SnowDrops snowCount={300} />
                 }
                 <>
                     {
@@ -83,8 +82,8 @@ export default function Forecast() {
                             <>
                                 <CityName>
                                     <div className='texts'>
-                                    <h1>{currentWeather.city}</h1>
-                                    <Coord>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</Coord>
+                                        <h1>{currentWeather.city}</h1>
+                                        <Coord>Lat: {currentWeather.latitude} Long: {currentWeather.longitude}</Coord>
                                     </div>
                                 </CityName>
 
