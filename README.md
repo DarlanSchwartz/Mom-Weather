@@ -97,7 +97,11 @@ cd Mom-Weather
 npm install
 ```
 
-4. Create a [.env]() file and fill the variables with your api keys, follow this [.env.example](.env.example) file for examples
+4. Get your API keys from the following websites:
+- [Open Weather](https://home.openweathermap.org/api_keys)
+- [Geoapify](https://myprojects.geoapify.com/)
+
+5. Create a [.env]() file and fill the variables with your api keys, follow this [.env.example](.env.example) file for examples
 ```properties
 VITE_WEATHER_API_KEY=your_open_weather_api_key_here
 VITE_GEOCODE_API_KEY=your_geoapify_api_key_here
@@ -106,12 +110,13 @@ VITE_WEATHER_API_LINK=https://openweathermap.org/
 VITE_MIN_TEMP_TO_FREEZE=minimum_temperature_to_wear_a_jacket_here => 17
 VITE_MAP_API_LINK=https://www.windy.com/
 ```
-5. Run the project
+
+6. Run the project
 
 ```bash 
 npm run dev
 ```
-6. Open http://localhost:5173/ :ballot_box_with_check:
+7. Open http://localhost:5173/ :ballot_box_with_check:
 
 # Additional Information
 
