@@ -1,17 +1,15 @@
 # 🌦️ Mom Weather
 
-
 Mom Weather is a front-end web application designed to alleviate the stress of dressing appropriately for any given location. By simply entering the name of a city, users can access comprehensive weather information, including the current temperature, maximum and minimum temperatures, temperature map, and a forecast for the upcoming days.
 
 # :rocket: Demo
 ### [Link to demo](https://mom-weather.vercel.app/)
 
 </br>
-</br>
 
 # :bookmark: Previews
 
-### The website is fully responsive across all screen sizes
+ The website adjusts to any screen size, for a smooth and responsive experience.
 
 ## :computer: Desktop
 <div align="center">
@@ -24,6 +22,19 @@ Mom Weather is a front-end web application designed to alleviate the stress of d
    </br>
 </div>
 
+## :newspaper: Tablet
+
+</br>
+
+ <img width="100%" src="./previews/preview5.gif"/>
+
+</br>
+
+## :iphone: Mobile 
+<div align="center">
+    <img width="100%" src="./previews/preview8.gif"/>
+</div>
+ 
  # :sparkles: Effects and  Dark Mode :first_quarter_moon:
 
 This project has two hand crafted effects/animations, one for rain and another for snow. Additionally, as you may have already observed, it offers a dark mode for an enhanced user experience.
@@ -34,23 +45,6 @@ This project has two hand crafted effects/animations, one for rain and another f
 - ### :snowflake:  Snow
  <img width="100%" src="./previews/preview9.gif"/>
 
-## :newspaper: Tablet
-
-</br>
-
- <img width="100%" src="./previews/preview5.gif"/>
-
-</br>
-
-## :iphone: Mobile 
-<img align="right" width="100%" src="./previews/preview8.gif"/>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
 
 # 💻 Tech Used
 
@@ -97,11 +91,15 @@ cd Mom-Weather
 npm install
 ```
 
-4. Get your API keys from the following websites:
+4. :warning: ***Important*** :warning:
+
+#### Get your API keys from the following websites:
 - [Open Weather](https://home.openweathermap.org/api_keys)
 - [Geoapify](https://myprojects.geoapify.com/)
 
-5. Create a [.env]() file and fill the variables with your api keys, follow this [.env.example](.env.example) file for examples
+***Then***
+
+ Create a  ***.env*** file the the root folder and fill the variables with your API keys, follow this [.env.example](.env.example) file for examples
 ```properties
 VITE_WEATHER_API_KEY=your_open_weather_api_key_here
 VITE_GEOCODE_API_KEY=your_geoapify_api_key_here
@@ -111,15 +109,15 @@ VITE_MIN_TEMP_TO_FREEZE=minimum_temperature_to_wear_a_jacket_here => 17
 VITE_MAP_API_LINK=https://www.windy.com/
 ```
 
-6. Run the project
+5. Run the project
 
 ```bash 
 npm run dev
 ```
-7. Open http://localhost:5173/ :ballot_box_with_check:
+6. Open http://localhost:5173/ :ballot_box_with_check:
 
-# Additional Information
+# :checkered_flag: Additional Information
 
-- This project also includes a [Roadmap/Todo](roadmap.todo) file for updates and improvements that will be implemented in the future.
+- Explore this project future plans and ongoing improvements through the [Roadmap/Todo](roadmap.todo) file. </br> This document outlines upcoming updates and enhancements that will be implemented over time. The todo file was conveniently created using this [Todo List extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=saber2pr.todolist).
 
-- Thanks to [ezgif](https://ezgif.com/) for providing the gif editor to make this readme file more appealing.
+- Thanks to [ezgif](https://ezgif.com/) for providing the gif editor to make the preview images of this readme file more appealing.
