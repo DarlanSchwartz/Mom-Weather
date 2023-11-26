@@ -6,6 +6,13 @@ import { GeoLocationAPIResponse } from "../protocols/GeolocationAPI.types";
 import { BAD_WEATHER_OBJECT, DEFAULT_ERROR_TITLE, GEOCODE_API_KEY, WEATHER_API_KEY } from "../protocols/Constants";
 import { throwError } from "./Services.service";
 
+/**
+ * Gets city climate by name
+ * @param city city name to get climate
+* @param [darkModeEnabled] is dark mode enabled? This is used to show error message in dark mode.
+ * @example
+ * const { weather, forecast } = await getCityClimateByName('São Paulo', true);
+ */
 async function getCityClimateByName(city: string, darkModeEnabled = false) {
     const encodedCity = encodeURI(city);
     const url = `https://api.geoapify.com/v1/geocode/search?text=${encodedCity}&apiKey=${GEOCODE_API_KEY}`;
@@ -21,12 +28,29 @@ async function getCityClimateByName(city: string, darkModeEnabled = false) {
     return { weather, forecast };
 }
 
+/**
+ * Gets city climate by coords
+ * @param latitude latitude number to get climate
+ * @param longitude longitude number to get climate
+ * @param lang language to get climate
+ * @example
+ * const { weather, forecast } = await getCityClimateByCoords(-23.682, -46.875, 'pt_br', true);
+ */
 async function getCityClimateByCoords(latitude: number, longitude: number, lang: string) {
     const weather = await getWeatherByCoords(latitude, longitude, lang);
     const forecast = await getForecastByCoords(latitude, longitude, lang);
     return { weather, forecast };
 }
 
+/**
+ * Gets weather by coords
+ * @param latitude latitude number to get weather
+ * @param longitude longitude number to get weather
+ * @param lang language to get weather
+ * @param [darkModeEnabled] is dark mode enabled? This is used to show error message in dark mode.
+ * @example
+ * const weather = await getWeatherByCoords(-23.682, -46.875, 'pt_br', true);
+ */
 async function getWeatherByCoords(latitude: number, longitude: number, lang: string, darkModeEnabled = false) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const response = await axios.get<WeatherAPIResponse>(url);
@@ -55,6 +79,15 @@ async function getWeatherByCoords(latitude: number, longitude: number, lang: str
     return BAD_WEATHER_OBJECT;
 }
 
+/**
+ * Gets forecast by coords
+ * @param latitude latitude number to get forecast
+ * @param longitude longitude number to get forecast
+ * @param lang language to get forecast
+ * @param [darkModeEnabled] is dark mode enabled used to show error message in dark mode 
+ * @example
+ * const forecast = await getForecastByCoords(-23.682, -46.875, 'pt_br', true);
+ */
 async function getForecastByCoords(latitude: number, longitude: number, lang: string, darkModeEnabled = false) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&lang=${lang}&units=metric`;
     const result = await axios.get<ForecastAPIResponse>(url);
@@ -62,6 +95,11 @@ async function getForecastByCoords(latitude: number, longitude: number, lang: st
     return result.data as ForecastAPIResponse;
 }
 
+/** 
+ * @example
+ * import API from '../services/API.service';
+ * const { weather, forecast } = await API.getCityClimateByName('São Paulo', true);
+ */
 const API = {
     getCityClimateByName,
     getWeatherByCoords,
