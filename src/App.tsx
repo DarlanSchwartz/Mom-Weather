@@ -51,11 +51,7 @@ export default function App() {
     return darkModeEnabled ? DarkColors : LightColors;
   }
 
-  //save farhenheit
-  // readme
-  //favorites
   return (
-
     <ApplicationContext.Provider value={{
       cityName,
       setCityName,
@@ -65,7 +61,6 @@ export default function App() {
       searchWeather,
       currentForecast: currentWeatherData?.forecast?.list || [],
       loading,
-      // userRejectedGeolocation: userNavigatorData?.rejected || false,
     }}>
       <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, enableDarkMode, disableDarkMode }}>
         <ThemeProvider theme={{ colors: { ...getCurrentColors() } }}>

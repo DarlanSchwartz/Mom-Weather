@@ -112,3 +112,9 @@ VITE_MAP_API_LINK=https://www.windy.com/
 npm run dev
 ```
 6. Open http://localhost:5173/ :ballot_box_with_check:
+
+# Additional Information
+
+- This project also includes a [Roadmap/Todo](roadmap.todo) file for updates and improvements that will be implemented in the future.
+
+- Thanks to [ezgif](https://ezgif.com/) for providing the gif editor to make this readme file more appealing.

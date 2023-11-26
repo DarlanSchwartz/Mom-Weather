@@ -1,0 +1,78 @@
+{
+  "todotree": {
+    "tree": [
+      {
+        "key": 1701004263236,
+        "children": [],
+        "todo": {
+          "content": "Settings: Make user be able to disable effects like rain and snow",
+          "id": 1701004263236,
+          "level": "danger",
+          "done": false,
+          "start": 1701004263236,
+          "focus": false,
+          "end": 1701004402819
+        }
+      },
+      {
+        "key": 1701004288172,
+        "children": [],
+        "todo": {
+          "content": "Settings: Save user settings on one go creating a hook for localStorage",
+          "id": 1701004288172,
+          "level": "warning",
+          "done": false,
+          "start": 1701004288172
+        }
+      },
+      {
+        "key": 1701004180364,
+        "children": [],
+        "todo": {
+          "content": "Save farhenheit enabled/disabled on user localStorage",
+          "id": 1701004180364,
+          "level": "warning",
+          "done": false,
+          "start": 1701004180364
+        }
+      },
+      {
+        "key": 1701004244108,
+        "children": [],
+        "todo": {
+          "content": "Favorites : Create a favorites tab to users be able to save cities",
+          "id": 1701004244108,
+          "level": "success",
+          "done": false,
+          "start": 1701004244108
+        }
+      },
+      {
+        "key": 1701004075820,
+        "children": [],
+        "todo": {
+          "content": "Refactor API : The functions should not depend on darkModeEnabled params and use theme object instead.",
+          "id": 1701004075820,
+          "level": "secondary",
+          "done": false,
+          "start": 1701004075820
+        }
+      }
+    ],
+    "expandKeys": [
+      1701004075820
+    ],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
+    "add_mode": "bottom",
+    "virtual": false,
+    "timelines": [],
+    "showLine": false,
+    "playFontSize": 24,
+    "title": "roadmap",
+    "autoSort": false,
+    "showEndTime": false,
+    "simpleMode": false,
+    "lang": "en",
+    "version": "1701004572604"
+  }
+}
