@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Logo from './Logo.mini';
 import { CiSearch } from "react-icons/ci";
 import SidebarClimate from './SidebarClimate.component';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import Toggle from './Toggle.mini';
 import ThemeContext from '../../contexts/Theme.context';
 import ApplicationContext from '../../contexts/Application.context';
@@ -28,7 +28,7 @@ export default function Sidebar() {
     const [isFocusedSearch, setIsFocusedSearch] = useState<boolean>(false);
     const [currentClassName, setCurrentClassName] = useState<string>("");
     const [mobileConfigEnabled, setMobileConfigEnabled] = useState<boolean>(false);
-    
+
     const windowSize = useWindowSize();
     const [closingModal, setClosingModal] = useState<boolean>(false);
     function openModalMobileConfig() {
@@ -80,12 +80,22 @@ export default function Sidebar() {
                 }
                 {
                     ((isFocusedSearch && windowSize && windowSize.width !== null && !(windowSize.width <= 1140 && windowSize.width >= 660)) || windowSize && windowSize.width && windowSize.width > 1140) &&
-                    <SearchForm onSubmit={(e) => {
+                    <SearchForm $focus={isFocusedSearch} onSubmit={(e) => {
                         e.preventDefault();
                         searchWeather();
                     }}>
                         <div className='input-container'>
-                            <CiSearch className="icon" />
+                            <CiSearch
+                                className="icon"
+                                title={isFocusedSearch ? "Pesquisar" : ""}
+                                onMouseDown={(e: React.MouseEvent) => {
+                                    e.stopPropagation();
+                                    if (isFocusedSearch && cityName.length >= 2) {
+                                        searchWeather();
+                                    }
+                                }}
+
+                            />
                             <SidebarInput
                                 type="text"
                                 placeholder="Procure por uma cidade"
@@ -95,8 +105,10 @@ export default function Sidebar() {
                                 name='city'
                                 lang={navigator.language}
                                 value={cityName}
+                                minLength={2}
                                 onChange={(e) => setCityName(e.currentTarget.value)}
                                 autoComplete='on'
+                                onFocus={() => setIsFocusedSearch(true)}
                                 onBlur={() => setIsFocusedSearch(false)}
                             />
                         </div>
@@ -165,7 +177,7 @@ export default function Sidebar() {
                         className={currentClassName}
                         onSubmit={(e) => e.preventDefault()}
                         onClick={closeModal}>
-                        <MobileConfigContainer onClick={(e)=> e.stopPropagation()}>
+                        <MobileConfigContainer onClick={(e) => e.stopPropagation()}>
                             <h1><FaCog className="config-icon" />Configuração</h1>
                             <ToggleContainer className='toogle-config' onClick={(e) => e.stopPropagation()}>
                                 <Toggle
@@ -182,7 +194,7 @@ export default function Sidebar() {
                                 <p>{useFarhenheit ? "Fahrenheit" : "Celsius"}</p>
 
                             </ToggleContainer>
-                            <ToggleContainer className='toogle-config'  onClick={(e) => e.stopPropagation()}>
+                            <ToggleContainer className='toogle-config' onClick={(e) => e.stopPropagation()}>
                                 <Toggle
                                     enabled={darkModeEnabled}
                                     enabledIcon={windowSize && windowSize.width !== null && windowSize.width <= 1140 ?
@@ -395,8 +407,11 @@ const SidebarContainer = styled.aside`
         min-width: 80px;
     }
 `;
+type SearchFormProps = {
+    $focus: boolean;
+}
 
-const SearchForm = styled.form`
+const SearchForm = styled.form<SearchFormProps>`
     width: 100%;
     margin-top: 20px;
     position: relative;
@@ -423,12 +438,23 @@ const SearchForm = styled.form`
             margin-top: 0;
         }   
     }
+    ${p => p.$focus && `
+        input{
+            padding-left: 10px;
+        }
+    `}
     .icon{
+        transition: all 200ms;
         position: absolute;
-        left: 10px;
+        left: ${p => p.$focus ? '90%' : '3%'};
+        cursor: ${p => p.$focus ? 'pointer' : 'default'};
         top: 50%;
+        color: #8b9caf;
         transform: translateY(-50%);
-        color: #8B9CAF;
         font-size: 25px;
+        ${p => p.$focus ? p.title = 'Limpar' : p.title = 'Pesquisar'};
+        &:hover{
+           ${p => p.$focus ? 'color: #554c99' : 'color: #8b9caf'};
+        }
     }
 `;
