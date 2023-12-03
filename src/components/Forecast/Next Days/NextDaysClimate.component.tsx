@@ -7,15 +7,15 @@ import ThemeContext from '../../../contexts/Theme.context';
 import { useContext } from 'react';
 import { DarkColors, LightColors } from '../../../styles/Colors';
 
-export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast: APIForecastResponse[], useFarheinheit: boolean }) {
+export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast: APIForecastResponse[], useFarheinheit: boolean; }) {
     const { darkModeEnabled } = useContext(ThemeContext);
     function formatForecastData() {
         return forecast.map((item) => {
             return {
                 weekDay: formatDateString(item.dt_txt, navigator.language, { weekday: 'long' }),
                 temperature: useFarheinheit ? convertCelciusToFarenheit(item.main.temp) : item.main.temp,
-            }
-        })
+            };
+        });
     }
     return (
         <NextDaysClimateContainer>
@@ -41,7 +41,7 @@ export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast
                         minTickGap={60}
                         tick={{
                             stroke: darkModeEnabled ? DarkColors.chartTickText : LightColors.chartTickText,
-                            strokeWidth:0.1
+                            strokeWidth: 0.1
                         }}
                     />
                     <YAxis
@@ -50,7 +50,7 @@ export default function NextDaysClimate({ forecast, useFarheinheit }: { forecast
                         tickFormatter={(value) => `${Math.round(Number(value))}°${useFarheinheit ? "F" : "C"}`}
                         tick={{
                             stroke: darkModeEnabled ? DarkColors.chartTickText : LightColors.chartTickText,
-                            strokeWidth:0.1
+                            strokeWidth: 0.1
                         }}
                     />
                     <Tooltip

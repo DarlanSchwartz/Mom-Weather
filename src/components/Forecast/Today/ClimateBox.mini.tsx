@@ -5,7 +5,7 @@ type ClimateBoxProps = {
     label: string;
     value: number;
     unit: ForecastUnit;
-}
+};
 
 export default function ClimateBox({ label, value, unit }: ClimateBoxProps) {
     return (
@@ -13,7 +13,7 @@ export default function ClimateBox({ label, value, unit }: ClimateBoxProps) {
             <h2>{label}</h2>
             <span>{value}{(unit === ForecastUnit.CELSIUS || unit === ForecastUnit.FAHRENHEIT) && '°'}{unit}</span>
         </ClimateBoxContainer>
-    )
+    );
 }
 
 const ClimateBoxContainer = styled.div`

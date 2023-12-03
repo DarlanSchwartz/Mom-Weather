@@ -19,7 +19,7 @@ export function requestUserGeolocation(then: (data: UserNavigatorData) => void, 
             let errorMessage = '';
             let errorTitle = DEFAULT_ERROR_TITLE;
             localStorage.setItem("rejected-geolocation", "true");
-            
+
             switch (error.code) {
                 case error.PERMISSION_DENIED:
                     errorTitle = 'Geolocalização negada';

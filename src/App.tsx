@@ -29,7 +29,7 @@ export default function App() {
   useEffect(() => {
     const item = localStorage.getItem('darkModeEnabled');
     if (item) setDarkModeEnabled(JSON.parse(item).darkModeEnabled);
-    if(localStorage.getItem("rejected-geolocation")) return;
+    if (localStorage.getItem("rejected-geolocation")) return;
     requestUserGeolocation(setUserNavigatorData, darkModeEnabled);
   }, []);
 
@@ -74,5 +74,5 @@ export default function App() {
         </ThemeProvider>
       </ThemeContext.Provider>
     </ApplicationContext.Provider>
-  )
+  );
 }

@@ -46,14 +46,14 @@ type Coord = {
 
 export type APIForecastResponse = {
   dt: number;
-  main: MainWeatherData & { temp_kf: number };
+  main: MainWeatherData & { temp_kf: number; };
   weather: Weather[];
-  clouds: { all: number };
+  clouds: { all: number; };
   wind: Wind;
   visibility: number;
   pop: number;
-  rain: { "3h": number };
-  sys: { pod: string };
+  rain: { "3h": number; };
+  sys: { pod: string; };
   dt_txt: string;
 };
 
@@ -96,7 +96,7 @@ export enum WeatherCondition {
   DRIZZLE = "Drizzle",
   RAIN = "Rain",
   SNOW = "Snow",
-  MIST= "Mist",
+  MIST = "Mist",
   CLEAR = "Clear",
   CLOUDS = "Clouds",
 }

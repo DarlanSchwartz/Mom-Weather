@@ -6,16 +6,16 @@ type ToggleProps = {
     enabledIcon?: React.ReactNode;
     disabledIcon?: React.ReactNode;
     useBackground?: boolean;
-}
+};
 
-export default function Toggle({ enabled, onToggle, enabledIcon, disabledIcon, useBackground}: ToggleProps) {
+export default function Toggle({ enabled, onToggle, enabledIcon, disabledIcon, useBackground }: ToggleProps) {
     return (
         <ToggleContainer onClick={() => onToggle(!enabled)}>
             <ToggleCircle $enabled={enabled} $useBackground={(!enabledIcon && !disabledIcon) || useBackground} >
-                {enabled ?  enabledIcon : disabledIcon}
+                {enabled ? enabledIcon : disabledIcon}
             </ToggleCircle>
         </ToggleContainer>
-    )
+    );
 }
 const ToggleContainer = styled.div`
     width: 40px;
@@ -43,7 +43,7 @@ const ToggleContainer = styled.div`
 type ToggleCircleProps = {
     $enabled: boolean;
     $useBackground?: boolean;
-}
+};
 
 const ToggleCircle = styled.div<ToggleCircleProps>`
     width: 16px;

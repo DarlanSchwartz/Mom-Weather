@@ -9,7 +9,7 @@ type MyClimateProps = {
     temperatureColor: string;
     weatherDescription: string;
     date: Date;
-}
+};
 
 export default function SidebarClimate({ temperature, farenheit, image, temperatureColor, weatherDescription, date }: MyClimateProps) {
     const dateFormatter = new Intl.DateTimeFormat(navigator.language, { weekday: 'long' });
@@ -30,12 +30,12 @@ export default function SidebarClimate({ temperature, farenheit, image, temperat
                 </>
             }
         </MyClimateContainer>
-    )
+    );
 }
 
 type TemperatureContainerProps = {
     $color: string;
-}
+};
 
 const TemperatureContainer = styled.div<TemperatureContainerProps>`
     width: 100%;

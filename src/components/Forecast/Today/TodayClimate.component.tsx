@@ -15,7 +15,7 @@ export default function TodayClimate({ todayText, forecast, speedUnit }: TodayFo
             </ClimateBoxesContainer>
             <TodayText>{todayText}</TodayText>
         </TodayClimateContainer>
-    )
+    );
 }
 
 const ClimateBoxesContainer = styled.div`

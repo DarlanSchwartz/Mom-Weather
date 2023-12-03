@@ -1,17 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-
-
 interface ApplicationModalProps extends React.FormHTMLAttributes<HTMLFormElement> {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export default function ApplicationModal({ children, ...props }: ApplicationModalProps) {
   return (
     <ModalContainer {...props}>
-        {children}
+      {children}
     </ModalContainer>
-  )
+  );
 }
 const ModalContainer = styled.form`
     position: fixed;

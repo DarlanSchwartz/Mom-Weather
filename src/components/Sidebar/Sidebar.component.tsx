@@ -62,7 +62,7 @@ export default function Sidebar() {
         if (windowSize && windowSize.width !== null && windowSize.width <= 660) {
             closeModal();
         }
-    }, [windowSize])
+    }, [windowSize]);
 
     return (
         <SidebarContainer>
@@ -251,7 +251,7 @@ export default function Sidebar() {
                 <CopyrightText>Todos os direitos reservados. {new Date().getFullYear()}.</CopyrightText>
             </BottomContent>
         </SidebarContainer>
-    )
+    );
 }
 
 const MobileConfigContainer = styled.div`
@@ -409,7 +409,7 @@ const SidebarContainer = styled.aside`
 `;
 type SearchFormProps = {
     $focus: boolean;
-}
+};
 
 const SearchForm = styled.form<SearchFormProps>`
     width: 100%;

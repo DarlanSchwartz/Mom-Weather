@@ -10,7 +10,7 @@ export default function PageNotFound() {
             <h1 className="animate__animated animate__fadeInLeft">404</h1>
             <h2 className="animate__animated animate__fadeInRight">Página não encontrada</h2>
         </PageContainer>
-    )
+    );
 }
 
 const PageContainer = styled.main`

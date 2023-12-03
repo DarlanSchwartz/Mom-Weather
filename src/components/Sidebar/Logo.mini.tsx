@@ -8,7 +8,7 @@ export default function Logo() {
             <img src={LogoIcon} alt="" />
             <h1>Levo um casaquinho?</h1>
         </LogoContainer>
-    )
+    );
 }
 
 const LogoContainer = styled.div`

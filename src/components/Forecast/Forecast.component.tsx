@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import TodayClimate from './Today/TodayClimate.component';
 import { useContext, useState } from 'react';
-import OpenWeatherCred from '../Common/OpenWeatherCred.mini';
+import FooterCredits from '../Common/FooterCredits.mini';
 import ApplicationContext from '../../contexts/Application.context';
 import { convertCelciusToFarenheit, getTodayText, metersPerSecondToMPH } from '../../utils/utils';
 import { ForecastUnit } from '../../protocols/Application.types';
@@ -134,9 +134,9 @@ export default function Forecast() {
                 </>
 
             </MainContent>
-            <OpenWeatherCred />
+            <FooterCredits />
         </ForecastContainer>
-    )
+    );
 }
 
 const CityName = styled.div`
@@ -243,7 +243,7 @@ const ForecastContainer = styled.div`
 
 type ForecastHeaderItemProps = {
     $active: boolean;
-}
+};
 
 const ForecastHeaderItem = styled.span<ForecastHeaderItemProps>`
     color: ${p => p.$active ? p.theme.colors.textMainBlack : p.theme.colors.textLowGray};

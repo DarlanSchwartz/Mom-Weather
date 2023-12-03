@@ -12,7 +12,7 @@ type ApplicationContextProps = {
     currentForecast: APIForecastResponse[];
     cityName: string;
     setCityName: React.Dispatch<React.SetStateAction<string>>;
-}
+};
 
 const ApplicationContext = createContext<ApplicationContextProps>({} as ApplicationContextProps);
 export default ApplicationContext;

@@ -26,7 +26,7 @@ export const LightColors: ApplicationThemeColors = {
     rainColor1: '#278b9a',
     rainColor2: 'rgba(255,255,255,.5)',
     modalBackground: 'rgba(0,0,0,.8)',
-}
+};
 
 
 export const DarkColors: ApplicationThemeColors = {
@@ -55,4 +55,4 @@ export const DarkColors: ApplicationThemeColors = {
     rainColor1: '#278b9a',
     rainColor2: 'rgba(255,255,255,.5)',
     modalBackground: 'rgba(0,0,0,.8)',
-}
+};

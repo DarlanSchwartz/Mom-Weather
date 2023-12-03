@@ -39,7 +39,7 @@ export function getTodayText(weather: Weather) {
     if (weather.currentTemperature < MIN_TEMP_TO_FREEZE ||
         weather.min < MIN_TEMP_TO_FREEZE ||
         weather.max < MIN_TEMP_TO_FREEZE) {
-        return 'Sim, você deve levar um casaquinho!'
+        return 'Sim, você deve levar um casaquinho!';
     }
     return 'Não, você não deve levar um casaquinho!';
 }
@@ -50,7 +50,7 @@ export function addLeadingZero(number: number) {
 
 export function formatDateString(input: string, locale?: string, dateOptions?: Intl.DateTimeFormatOptions): string {
     const inputDate = new Date(input);
-    const formatter = new Intl.DateTimeFormat(locale,dateOptions);
+    const formatter = new Intl.DateTimeFormat(locale, dateOptions);
     const day = inputDate.getDate();
     const month = inputDate.getMonth() + 1;
     const dayOfWeek = formatter.format(inputDate).slice(0, 3);

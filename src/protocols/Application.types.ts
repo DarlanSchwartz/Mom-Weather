@@ -12,7 +12,7 @@ export type ForecastInformation = {
     humidity: number;
     windSpeed: number;
     fahrenheit: boolean;
-}
+};
 
 export type TodayForecast = {
     cityName: string;
@@ -21,7 +21,7 @@ export type TodayForecast = {
     todayText: string;
     forecast: ForecastInformation;
     speedUnit: ForecastUnit;
-}
+};
 
 export type Weather = {
     city: string;
@@ -37,11 +37,11 @@ export type Weather = {
     longitude: number;
     latitude: number;
     color: string;
-}
+};
 
 export type UserNavigatorData = {
     lat: number;
     lon: number;
     lang: string;
     rejected: boolean;
-}
+};

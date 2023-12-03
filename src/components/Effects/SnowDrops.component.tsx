@@ -9,7 +9,7 @@ interface Drop {
   width: string;
   height: string;
   image: string;
-};
+}
 
 const SNOW_FLAKE_IMAGE = "/images/snowflake.png";
 const BLURP_IMAGE = "/images/blurp.png";
@@ -30,7 +30,7 @@ const SNOW_IMAGES = [
   SNOW_FLAKE_IMAGE,
   SNOW_FLAKE_IMAGE,
 ];
-export default function SnowDrops({ snowCount }: { snowCount: number }) {
+export default function SnowDrops({ snowCount }: { snowCount: number; }) {
   const [snowflakes, setSnowflakes] = useState<Drop[]>([]);
   const windowSize = useWindowSize();
   function startSnow() {

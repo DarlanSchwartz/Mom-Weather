@@ -8,7 +8,7 @@ export default function PageHome() {
             <Sidebar />
             <Forecast />
         </PageContainer>
-    )
+    );
 }
 
 const PageContainer = styled.main`
