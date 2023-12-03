@@ -14,8 +14,8 @@ import { throwError } from "./Services.service";
  * const { weather, forecast } = await getCityClimateByName('São Paulo', true);
  */
 async function getCityClimateByName(city: string, darkModeEnabled = false) {
-    const encodedCity = encodeURI(city);
-    const url = `https://api.geoapify.com/v1/geocode/search?text=${encodedCity}&apiKey=${GEOCODE_API_KEY}`;
+    const encodedCityName = encodeURI(city);
+    const url = `https://api.geoapify.com/v1/geocode/search?text=${encodedCityName}&apiKey=${GEOCODE_API_KEY}`;
     const cityInformation = await axios.get<GeoLocationAPIResponse>(url);
     if (cityInformation.data.features.length === 0) {
         throwError('Não foi possivel obter o clima desta localização.', DEFAULT_ERROR_TITLE, darkModeEnabled);
@@ -72,10 +72,7 @@ async function getWeatherByCoords(latitude: number, longitude: number, lang: str
         };
         return result;
     }
-    else {
-        throwError('Não foi possivel obter o clima desta localização.', DEFAULT_ERROR_TITLE, darkModeEnabled);
-    }
-
+    throwError('Não foi possivel obter o clima desta localização.', DEFAULT_ERROR_TITLE, darkModeEnabled);
     return BAD_WEATHER_OBJECT;
 }
 

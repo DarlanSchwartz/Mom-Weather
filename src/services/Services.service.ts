@@ -3,7 +3,7 @@ import { DarkColors, LightColors } from "../styles/Colors";
 import { DEFAULT_ERROR_TITLE } from "../protocols/Constants";
 import { UserNavigatorData } from "../protocols/Application.types";
 
-export function requestUserGeolocation(then: (data: UserNavigatorData) => void, darkModeEnabled: boolean) {
+export function requestUserGeolocation(afterExecution: (data: UserNavigatorData) => void, darkModeEnabled: boolean) {
     let lat = 0;
     let lon = 0;
     let lang = 'en';
@@ -13,9 +13,9 @@ export function requestUserGeolocation(then: (data: UserNavigatorData) => void, 
             lat = position.coords.latitude;
             lon = position.coords.longitude;
             lang = navigator.language.toLocaleLowerCase().replace('-', '_');
-            then({ lat, lon, lang, rejected: false });
+            afterExecution({ lat, lon, lang, rejected: false });
         }, (error) => {
-            then({ lat, lon, lang, rejected: true });
+            afterExecution({ lat, lon, lang, rejected: true });
             let errorMessage = '';
             let errorTitle = DEFAULT_ERROR_TITLE;
             localStorage.setItem("rejected-geolocation", "true");
