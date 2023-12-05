@@ -5,7 +5,7 @@ import { LightColors, DarkColors } from "./styles/Colors";
 import ApplicationContext from "./contexts/Application.context";
 import { DEFAULT_USER_DATA, DEFAULT_WEATHER } from "./protocols/Constants";
 import { APP_ROUTES } from "./routes/routes";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { UserNavigatorData } from "./protocols/Application.types";
 import { requestUserGeolocation } from "./services/Services.service";
 import API from "./services/API.service";
@@ -18,7 +18,6 @@ export default function App() {
   const [useFarhenheit, setUseFarhenheit] = useState(false);
   const [cityName, setCityName] = useState<string>("");
   const [userNavigatorData, setUserNavigatorData] = useState<UserNavigatorData | null>(DEFAULT_USER_DATA);
-
   const { data: currentWeatherData, isLoading: loading, mutateAsync: searchWeather } = useMutation({
     mutationKey: `weather`,
     mutationFn: () => cityName === "" ?
@@ -30,6 +29,7 @@ export default function App() {
     const item = localStorage.getItem('darkModeEnabled');
     if (item) setDarkModeEnabled(JSON.parse(item).darkModeEnabled);
     if (localStorage.getItem("rejected-geolocation")) return;
+    if (window.location.pathname !== APP_ROUTES.HOME) return;
     requestUserGeolocation(setUserNavigatorData, darkModeEnabled);
   }, []);
 

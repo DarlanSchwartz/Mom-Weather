@@ -1,6 +1,7 @@
 import { useWindowSize } from '@uidotdev/usehooks';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { randomRange } from '../../utils/utils';
 
 interface RainProps {
   dropCount: number;
@@ -18,8 +19,8 @@ export default function Rain({ dropCount }: RainProps) {
   function startRain() {
     const newDrops: Drop[] = [];
     for (let i = 1; i < dropCount; i++) {
-      const dropLeft = randRange(0, windowSize.width || 2000);
-      const dropTop = randRange(-1000, windowSize.height || 1000);
+      const dropLeft = randomRange(0, windowSize.width || 2000);
+      const dropTop = randomRange(-1000, windowSize.height || 1000);
       newDrops.push({ id: `drop${i}`, left: dropLeft, top: dropTop });
     }
     setDrops(newDrops);
@@ -29,9 +30,6 @@ export default function Rain({ dropCount }: RainProps) {
     setDrops([]);
   }
 
-  function randRange(minNum: number, maxNum: number) {
-    return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
-  }
 
   useEffect(() => {
     startRain();

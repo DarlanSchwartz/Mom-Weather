@@ -1,8 +1,9 @@
 import { useWindowSize } from '@uidotdev/usehooks';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { randomRange } from '../../utils/utils';
 
-interface Drop {
+interface SnowFlake {
   id: number;
   left: number;
   top: number;
@@ -31,28 +32,24 @@ const SNOW_IMAGES = [
   SNOW_FLAKE_IMAGE,
 ];
 export default function SnowDrops({ snowCount }: { snowCount: number; }) {
-  const [snowflakes, setSnowflakes] = useState<Drop[]>([]);
+  const [snowflakes, setSnowflakes] = useState<SnowFlake[]>([]);
   const windowSize = useWindowSize();
   function startSnow() {
-    const newSnowflakes: Drop[] = [];
+    const newSnowflakes: SnowFlake[] = [];
     for (let id = 1; id < snowCount; id++) {
-      const left = randRange(0, windowSize.width || 2000);
-      const top = randRange(windowSize && windowSize.height ? windowSize.height : -1000, windowSize.height || 1000);
-      const size = `${Math.floor(randRange(5, 8))}px`;
+      const left = randomRange(0, windowSize.width || 2000);
+      const top = randomRange(windowSize && windowSize.height ? windowSize.height : -1000, windowSize.height || 1000);
+      const size = `${randomRange(5, 8)}px`;
       newSnowflakes.push({
         id,
         left,
         top,
         width: size,
         height: size,
-        image: SNOW_IMAGES[Math.floor(Math.random() * SNOW_IMAGES.length)]
+        image: SNOW_IMAGES[randomRange(0, SNOW_IMAGES.length - 1)]
       });
     }
     setSnowflakes(newSnowflakes);
-  }
-
-  function randRange(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   useEffect(() => {
@@ -61,9 +58,9 @@ export default function SnowDrops({ snowCount }: { snowCount: number; }) {
   }, [snowCount]);
 
   return (
-    <RainContainer>
+    <SnowContainer>
       {snowflakes.map((drop) => (
-        <RainDrop
+        <SnowFlake
           key={drop.id}
           src={drop.image}
           draggable={false}
@@ -72,17 +69,15 @@ export default function SnowDrops({ snowCount }: { snowCount: number; }) {
             top: `${drop.top}px`,
             width: drop.width,
             height: drop.height,
-            opacity: randRange(0.6, 0.8),
-            animationDuration: `${randRange(10, 20)}s`,
-          }}
-
-        />
+            opacity: randomRange(0.6, 0.8),
+            animationDuration: `${randomRange(10, 20)}s`,
+          }} />
       ))}
-    </RainContainer>
+    </SnowContainer>
   );
 }
 
-const RainContainer = styled.div`
+const SnowContainer = styled.div`
   width: 100%;
   position: fixed;
   top: 0;
@@ -102,7 +97,7 @@ const RainContainer = styled.div`
   }
 `;
 
-const RainDrop = styled.img`
+const SnowFlake = styled.img`
 	position: absolute;
   filter: brightness(0) invert(1);
 	bottom:200px;
