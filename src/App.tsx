@@ -5,7 +5,7 @@ import { LightColors, DarkColors } from "./styles/Colors";
 import ApplicationContext from "./contexts/Application.context";
 import { DEFAULT_USER_DATA, DEFAULT_WEATHER } from "./protocols/Constants";
 import { APP_ROUTES } from "./routes/routes";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { UserNavigatorData } from "./protocols/Application.types";
 import { requestUserGeolocation } from "./services/Services.service";
 import API from "./services/API.service";
